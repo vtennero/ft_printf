@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/07 13:46:36 by vtennero          #+#    #+#             */
-/*   Updated: 2017/12/13 21:38:41 by vtennero         ###   ########.fr       */
+/*   Created: 2017/12/12 17:48:38 by vtennero          #+#    #+#             */
+/*   Updated: 2017/12/13 15:29:54 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-#include "libft/libft.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-
-#include <stdarg.h>
-
-typedef int t_bool;
-
-enum
+int	ft_printf(const char *format, ...)
 {
-	HASH, PLUS, MINUS, SPACE, ZERO, H, L, J, Z, HH, LL
-};
+	va_list	arguments;
 
-typedef struct	s_params
-{
-	int			width;
-	int			prec;
-	int			spec;
-	t_bool		flags[LL + 1];
-}				t_params;
+	va_start(arguments, format);
 
-int	ft_printf(const char *format, ...);
-
-#endif
+	va_end(arguments);
+	return (0);
+}

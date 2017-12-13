@@ -6,13 +6,13 @@
 #    By: vtennero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/17 15:16:05 by vtennero          #+#    #+#              #
-#    Updated: 2017/12/07 13:49:08 by vtennero         ###   ########.fr        #
+#    Updated: 2017/12/13 19:40:22 by vtennero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = dummy_test
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS =# -Wall -Werror -Wextra
 
 LIBFT_DIR = libft
 LIBFT_NAME = libft.a
