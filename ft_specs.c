@@ -13,12 +13,12 @@
 #include "ft_printf.h"
 
 #include <stdio.h>
-
+/*
 void	ft_is_s(t_params *arg)
 {
 	printf("s\n");
 }
-
+*/
 void	ft_is_cap_s(t_params *arg)
 {
 	printf("S\n");

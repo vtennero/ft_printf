@@ -6,7 +6,7 @@
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 13:46:36 by vtennero          #+#    #+#             */
-/*   Updated: 2017/12/14 14:22:07 by vtennero         ###   ########.fr       */
+/*   Updated: 2017/12/14 19:01:51 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef int t_bool;
 
 enum
 {
-	HASH, PLUS, MINUS, SPACE, ZERO, H, L, J, Z, HH, LL
+	HASH, PLUS, MINUS, SPACE, ZERO, H, L, J, Z, HH, LL, PREC
 };
 
 enum
@@ -38,7 +38,7 @@ typedef struct	s_params
 	int			width;
 	int			prec;
 	//t_bool		spec[L_CHR + 1];
-	t_bool		flags[LL + 1];
+	t_bool		flags[PREC + 1];
 }				t_params;
 
 typedef struct s_struct
@@ -48,7 +48,10 @@ typedef struct s_struct
 
 int	ft_printf(const char *format, ...);
 
-void	ft_is_s(t_params *arg);
+//SPECIFIERS
+
+void	ft_is_s(t_params *arg, char *str);
+
 void	ft_is_cap_s(t_params *arg);
 void	ft_is_p(t_params *arg);
 void	ft_is_d(t_params *arg);
@@ -62,5 +65,13 @@ void	ft_is_x(t_params *arg);
 void	ft_is_cap_x(t_params *arg);
 void	ft_is_c(t_params *arg);
 void	ft_is_cap_c(t_params *arg);
+
+//PRINT
+
+void	ft_write(char *str);
+
+//UTILITIES
+
+void	ft_print_params(t_params *arg);
 
 #endif

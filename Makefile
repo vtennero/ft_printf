@@ -6,7 +6,7 @@
 #    By: vtennero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/17 15:16:05 by vtennero          #+#    #+#              #
-#    Updated: 2017/12/14 15:35:36 by vtennero         ###   ########.fr        #
+#    Updated: 2017/12/14 19:04:18 by vtennero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ LIBFT_NAME = libft.a
 
 LIBFT = $(patsubst %, $(LIBFT_DIR)/%,$(LIBFT_NAME))
 
-OBJ =  main.o ft_specs.o
+OBJ =  $(SRC:.c=.o)
 
-SRC =  main.c ft_specs.c
+SRC =  main.c ft_specs.c utilities.c ft_write.c ft_is_s.c
 
 .PHONY: all clean fclean re
 
@@ -38,7 +38,8 @@ clean:
 	@ /bin/rm -f $(OBJ)
 	@ make clean -C $(LIBFT_DIR)
 
-fclean: clean
+fclean:
+	@ make clean
 	@ /bin/rm -f $(NAME)
 	@ make fclean -C $(LIBFT_DIR)
 
