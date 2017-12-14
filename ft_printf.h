@@ -6,7 +6,7 @@
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 13:46:36 by vtennero          #+#    #+#             */
-/*   Updated: 2017/12/14 12:55:43 by vtennero         ###   ########.fr       */
+/*   Updated: 2017/12/14 14:22:07 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,30 @@ typedef struct	s_params
 {
 	int			width;
 	int			prec;
-	t_bool		spec[L_CHR + 1];
+	//t_bool		spec[L_CHR + 1];
 	t_bool		flags[LL + 1];
 }				t_params;
 
+typedef struct s_struct
+{
+	void		(*printfunc)(t_params *arg);
+}				t_struct;
+
 int	ft_printf(const char *format, ...);
+
+void	ft_is_s(t_params *arg);
+void	ft_is_cap_s(t_params *arg);
+void	ft_is_p(t_params *arg);
+void	ft_is_d(t_params *arg);
+void	ft_is_cap_d(t_params *arg);
+void	ft_is_i(t_params *arg);
+void	ft_is_o(t_params *arg);
+void	ft_is_cap_o(t_params *arg);
+void	ft_is_u(t_params *arg);
+void	ft_is_cap_u(t_params *arg);
+void	ft_is_x(t_params *arg);
+void	ft_is_cap_x(t_params *arg);
+void	ft_is_c(t_params *arg);
+void	ft_is_cap_c(t_params *arg);
 
 #endif

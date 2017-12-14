@@ -6,12 +6,32 @@
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 11:52:18 by vtennero          #+#    #+#             */
-/*   Updated: 2017/12/14 12:55:40 by vtennero         ###   ########.fr       */
+/*   Updated: 2017/12/14 16:41:44 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "ft_printf.h"
+
+static t_struct	g_formats[127];
+
+void		ft_set_g_formats(void)
+{
+	g_formats['s'].printfunc = ft_is_s;
+	g_formats['S'].printfunc = ft_is_cap_s;
+	g_formats['p'].printfunc = ft_is_p;
+	g_formats['d'].printfunc = ft_is_d;
+	g_formats['D'].printfunc = ft_is_cap_d;
+	g_formats['i'].printfunc = ft_is_i;
+	g_formats['o'].printfunc = ft_is_o;
+	g_formats['O'].printfunc = ft_is_cap_o;
+	g_formats['u'].printfunc = ft_is_u;
+	g_formats['U'].printfunc = ft_is_cap_u;
+	g_formats['x'].printfunc = ft_is_x;
+	g_formats['X'].printfunc = ft_is_cap_x;
+	g_formats['c'].printfunc = ft_is_c;
+	g_formats['C'].printfunc = ft_is_cap_c;
+}
 
 t_bool		ft_is_char(char c1, char c2)
 {
@@ -59,11 +79,6 @@ int		ft_set_length(t_params *arg, char *str, int *index)
 	return (0);
 }
 
-void		ft_set_bool_flags(t_params *arg, int n)
-{
-	arg->flags[n] = 1;	
-}
-
 int		ft_set_width(t_params *arg, char *str, int *index)
 {
 	if (ft_isdigit((int)str[*index]) == 1)
@@ -99,7 +114,13 @@ int		ft_set_prec(t_params *arg, char *str, int *index)
 
 int		ft_set_spec(t_params *arg, char *str, int *index)
 {
-	if (ft_is_char(str[*index], 's') == 1)
+	if (g_formats[str[*index]].printfunc)
+	{
+		g_formats[str[*index]].printfunc(arg);
+		return (1);
+	}
+	return (0);
+/*	if (ft_is_char(str[*index], 's') == 1)
 		return (arg->spec[STR] = 1);
 	else if (ft_is_char(str[*index], 'S') == 1)
 		return (arg->spec[L_STR] = 1);
@@ -128,6 +149,7 @@ int		ft_set_spec(t_params *arg, char *str, int *index)
 	else if (ft_is_char(str[*index], 'C') == 1)
 		return (arg->spec[L_CHR] = 1);
 	return (0);
+*/
 }
 
 t_params	*ft_create_params(void)
@@ -157,7 +179,7 @@ t_params	*ft_set_zero_params(t_params *arg)
 	  }*/
 	return (arg);
 }
-
+/*
 void	ft_print_params(t_params *arg)
 {
 	printf("%c : %d\n", '#', arg->flags[0]);
@@ -188,7 +210,7 @@ void	ft_print_params(t_params *arg)
 	printf("%c : %d\n", 'x', arg->spec[12]);
 	printf("%c : %d\n", 'C', arg->spec[13]);
 }
-
+*/
 int		ft_read_string(char *str)
 {
 	int	index;
@@ -214,7 +236,7 @@ int		ft_read_string(char *str)
 					else if (ft_set_prec(&arg, str, &index) == 1)
 						;
 					else if (ft_set_spec(&arg, str, &index) == 1)
-						;
+						break;
 					else
 						break;
 					index++;
@@ -223,18 +245,18 @@ int		ft_read_string(char *str)
 			index++;
 		}
 	}
-	ft_print_params(&arg);
+	//ft_print_params(&arg);
 	return (0);
 }
 
 int		main(int ac, char **av)
 {
-	t_params	*arg;
-
+	
 	if (ac == 2)
 		;
+	ft_set_g_formats();
 	ft_read_string(av[1]);
-	printf("%+c\n", 'a');
+	printf("%.50 .s\n", "hello");
 	//ft_putnbr(printf(""));
 	//ft_putchar(10);
 	//printf("%Z546", 6);

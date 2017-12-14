@@ -6,7 +6,7 @@
 #    By: vtennero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/17 15:16:05 by vtennero          #+#    #+#              #
-#    Updated: 2017/12/13 19:40:22 by vtennero         ###   ########.fr        #
+#    Updated: 2017/12/14 15:35:36 by vtennero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ LIBFT_NAME = libft.a
 
 LIBFT = $(patsubst %, $(LIBFT_DIR)/%,$(LIBFT_NAME))
 
-OBJ =  main.o
+OBJ =  main.o ft_specs.o
 
-SRC =  main.c
+SRC =  main.c ft_specs.c
 
 .PHONY: all clean fclean re
 
