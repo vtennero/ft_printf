@@ -117,11 +117,14 @@ int		ft_set_prec(t_params *arg, char *str, int *index)
 	return (0);
 }
 
-int		ft_set_spec(t_params *arg, char *str, int *index)
+int		ft_set_spec(t_params *arg, char *str, int *index, char *var, char *buf)
 {
 	if (g_formats[str[*index]].printfunc)
 	{
-		g_formats[str[*index]].printfunc(arg);
+		//ft_write(ft_strjoin_clr(g_formats[str[*index]].printfunc(arg, var), buf, 2));
+		ft_write(ft_strjoin_clr(buf, g_formats[str[*index]].printfunc(arg, var), 2));
+		//ft_write(buf);
+		//ft_write(g_formats[str[*index]].printfunc(arg, var));
 		return (1);
 	}
 	return (0);
@@ -146,7 +149,7 @@ t_params	*ft_set_zero_params(t_params *arg)
 	return (arg);
 }
 
-int		ft_read_string(char *str)
+int		ft_read_string(char *str, char *var)
 {
 	int			index;
 	t_params	arg;
@@ -173,13 +176,13 @@ int		ft_read_string(char *str)
 						;
 					else if (ft_set_prec(&arg, str, &index) == 1)
 						;
-					else if (ft_set_spec(&arg, str, &index) == 1)
+					else if (ft_set_spec(&arg, str, &index, var, buf) == 1)
 						break;
 					else
 						break;
 					index++;
 				}
-			ft_print_params(&arg);
+			//ft_print_params(&arg);
 			}
 			index++;
 		}
@@ -187,6 +190,36 @@ int		ft_read_string(char *str)
 	return (0);
 }
 
+int	ft_printf(const char *format, ...)
+{
+	va_list	arguments;
+
+	va_start(arguments, format);
+	//printf("%s", va_arg(arguments, char *));
+	//va_arg(arguments, char *);
+	//printf("%s", va_arg(arguments, char *));
+	ft_read_string((char *)format, va_arg(arguments, char *));
+	va_end(arguments);
+	return (0);
+}
+
+int	main(int ac, char **av)
+{
+	if (ac)
+	{
+		ft_set_g_formats();
+		//ft_read_string(TEXT);
+		ft_write("my printf :\n");
+		ft_printf(TEXT);
+		ft_putchar(10);
+		printf("standard printf :\n");
+		printf(TEXT);
+		ft_putchar(10);
+		}
+	return (0);
+}
+
+/*
 int		main(int ac, char **av)
 {
 	
@@ -207,3 +240,4 @@ int		main(int ac, char **av)
 	//ft_putchar('漢');
 	return (0);
 }
+*/

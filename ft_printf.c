@@ -18,14 +18,22 @@ int	ft_printf(const char *format, ...)
 	va_list	arguments;
 
 	va_start(arguments, format);
-	printf("%s", va_arg(arguments, char *));
+	//printf("%s", va_arg(arguments, char *));
+	//va_arg(arguments, char *);
+	//printf("%s", va_arg(arguments, char *));
+	ft_read_string(format, va_arg(arguments, char *));
 	va_end(arguments);
 	return (0);
 }
-
+/*
 int	main(int ac, char **av)
 {
-	if (ac == 2)
-		ft_printf("%s", av[1]);
+	if (ac)
+	{
+		ft_set_g_formats();
+		ft_read_string(av[1], av[2]);
+		//ft_printf("%s\n", "toto", "tata");
+		}
 	return (0);
 }
+*/

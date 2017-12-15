@@ -20,7 +20,7 @@
 
 #include <stdarg.h>
 
-# define TEXT "%.4s", "anticonsti"
+# define TEXT "kbfjn;odnv"
 
 typedef int t_bool;
 
