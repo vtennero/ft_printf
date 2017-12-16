@@ -20,7 +20,11 @@
 
 #include <stdarg.h>
 
-# define TEXT "%.4s", "anticonsti"
+# define TEXT "//buffer[1]//%50.5 -0s//buffer[2]//", "anticonstitutionnel"
+//# define TEXT "//buffer[1]//%50.5 -0s//buffer[2]//%s", "anticonstitutionnel", "toto"
+
+//# define TEXT "%50.5 0s", "anticonstitutionnel"
+//# define TEXT "%010.5s", "anticonstitutionnel"
 
 typedef int t_bool;
 

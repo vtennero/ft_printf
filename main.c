@@ -101,8 +101,8 @@ int		ft_set_prec(t_params *arg, char *str, int *index)
 	{
 		*index += 1;
 		arg->flags[PREC] = 1;
-			arg->prec = 0;
-		if (ft_isdigit(str[*index]) == 1)
+		arg->prec = 0;
+		if (ft_isdigit((int)str[*index]) == 1)
 		{
 			arg->prec = 0;
 			while (ft_isdigit((int)str[*index]) == 1)
@@ -110,19 +110,36 @@ int		ft_set_prec(t_params *arg, char *str, int *index)
 				arg->prec = 10 * arg->prec + (int)str[*index] - 48;
 				*index += 1;
 			}
-			*index -= 1;
+
 		}
+		*index -= 1;
 		return (1);
 	}
 	return (0);
 }
 
-int		ft_set_spec(t_params *arg, char *str, int *index, char *var, char *buf)
+t_params	*ft_set_overrides(t_params *arg)
+{
+	if (arg->flags[PLUS] && arg->flags[SPACE])
+		arg->flags[SPACE] = 0;
+	if (arg->flags[MINUS] && arg->flags[ZERO])
+		arg->flags[ZERO] = 0;
+	//cas des signed char
+	//if (arg->flags[PREC] && arg->flags[ZERO])
+	//	arg->flags[ZERO] = 0;
+	//ft_print_params(arg);
+	return (arg);
+}
+
+
+int		ft_set_spec(t_params *arg, char *str, int *index, va_list arguments, char **buf)
 {
 	if (g_formats[str[*index]].printfunc)
 	{
-		//ft_write(ft_strjoin_clr(g_formats[str[*index]].printfunc(arg, var), buf, 2));
-		ft_write(ft_strjoin_clr(buf, g_formats[str[*index]].printfunc(arg, var), 2));
+		ft_set_overrides(arg);
+		//ft_print_params(arg);
+		//ft_write(ft_strjoin(g_formats[str[*index]].printfunc(ft_set_overrides(arg), var), buf));
+		*buf = ft_strjoin_clr(*buf, g_formats[str[*index]].printfunc(arg, va_arg(arguments, char *)), 0);
 		//ft_write(buf);
 		//ft_write(g_formats[str[*index]].printfunc(arg, var));
 		return (1);
@@ -149,13 +166,17 @@ t_params	*ft_set_zero_params(t_params *arg)
 	return (arg);
 }
 
-int		ft_read_string(char *str, char *var)
+int		ft_read_string(char *str, va_list arguments)
 {
 	int			index;
 	t_params	arg;
 	char		*buf;
+	int			tmp;
 
+	//ft_putstr("read string\n");
+	buf = NULL;
 	index = 0;
+	tmp = index;
 	ft_bzero(&arg, sizeof(t_params));
 	if (str)
 	{
@@ -164,11 +185,14 @@ int		ft_read_string(char *str, char *var)
 			if (str[index] == '%')
 			{
 				ft_bzero(&arg, sizeof(t_params));
-				buf = strndup(str, index);
+				//buf = strndup(str, index);
+				buf = ft_strjoin_clr(buf, ft_strsub(str, tmp, index), 1);
+				
+				//ft_putendl(buf);
 				index++;
 				while (str[index] != '\0')
 				{
-					if (ft_set_flags(&arg, str, &index) == 1)
+					if (ft_set_flags(&arg, str, &index) == 1)						
 						;
 					else if (ft_set_length(&arg, str, &index) == 1)
 						;
@@ -176,8 +200,11 @@ int		ft_read_string(char *str, char *var)
 						;
 					else if (ft_set_prec(&arg, str, &index) == 1)
 						;
-					else if (ft_set_spec(&arg, str, &index, var, buf) == 1)
+					else if (ft_set_spec(&arg, str, &index, arguments, &buf) == 1)
+					{
+						tmp = index;
 						break;
+					}
 					else
 						break;
 					index++;
@@ -186,7 +213,9 @@ int		ft_read_string(char *str, char *var)
 			}
 			index++;
 		}
+		//buf = ft_strjoin_clr(buf, tmp)
 	}
+	ft_write(buf);
 	return (0);
 }
 
@@ -198,7 +227,7 @@ int	ft_printf(const char *format, ...)
 	//printf("%s", va_arg(arguments, char *));
 	//va_arg(arguments, char *);
 	//printf("%s", va_arg(arguments, char *));
-	ft_read_string((char *)format, va_arg(arguments, char *));
+	ft_read_string((char *)format, arguments);
 	va_end(arguments);
 	return (0);
 }
@@ -208,13 +237,12 @@ int	main(int ac, char **av)
 	if (ac)
 	{
 		ft_set_g_formats();
-		//ft_read_string(TEXT);
 		ft_write("my printf :\n");
 		ft_printf(TEXT);
 		ft_putchar(10);
-		printf("standard printf :\n");
+		ft_write("standard printf :\n");
 		printf(TEXT);
-		ft_putchar(10);
+		//ft_putchar(10);
 		}
 	return (0);
 }
