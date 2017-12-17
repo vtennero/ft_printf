@@ -2,6 +2,7 @@
 
 int		main(void)
 {
-	printf("%3s\n", "hello");
+	printf("%.6d\n", 450);
+	printf("%.6d\n", -450);
 	return (0);
 }

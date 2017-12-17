@@ -6,7 +6,7 @@
 #    By: vtennero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/17 15:16:05 by vtennero          #+#    #+#              #
-#    Updated: 2017/12/14 19:04:18 by vtennero         ###   ########.fr        #
+#    Updated: 2017/12/17 16:55:42 by vtennero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,12 @@ LIBFT = $(patsubst %, $(LIBFT_DIR)/%,$(LIBFT_NAME))
 
 OBJ =  $(SRC:.c=.o)
 
-SRC =  main.c ft_specs.c utilities.c ft_write.c ft_is_s.c
+SRC =  main.c \
+	   ft_specs.c \
+	   utilities.c \
+	   ft_write.c \
+	   ft_is_s.c \
+	   ft_is_d.c
 
 .PHONY: all clean fclean re
 

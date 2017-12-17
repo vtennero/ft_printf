@@ -6,7 +6,7 @@
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/17 15:25:20 by vtennero          #+#    #+#             */
-/*   Updated: 2017/11/27 15:32:08 by vtennero         ###   ########.fr       */
+/*   Updated: 2017/12/17 19:41:30 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,10 @@ t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+int					ft_abs(int n);
+int					ft_llulen(unsigned long long n);
+char				*ft_itoa_base(int n, const char *base);
+char				*ft_llutoa_base(unsigned long long n, const char *base);
+int					ft_max(size_t n, size_t p);
 
 #endif

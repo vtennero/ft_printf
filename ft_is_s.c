@@ -2,7 +2,6 @@
 
 #include "ft_printf.h"
 
-#include <stdio.h>
 
 static char		ft_set_zero(t_params *arg)
 {
@@ -43,6 +42,7 @@ char		*ft_is_s_left(int malloc_size, int n, char *str, char c)
 	int		j;
 	char	*s;
 
+
 	i = 0;
 	j = 0;
 	s = malloc(malloc_size + 1);
@@ -64,13 +64,17 @@ char		*ft_is_s_left(int malloc_size, int n, char *str, char c)
 	return (s);
 }
 
-char		*ft_is_s(t_params *arg, char *str)
+char		*ft_is_s(t_params *arg, va_list arguments)
 {
 	int		malloc_size;
 	int		prec;
 	int		width;
 	int		str_length;
 	int		n;
+	char	*str;
+
+	str = va_arg(arguments, char *);
+	//str = ft_llutoa_base((char *)va_arg(arguments, unsigned long long), "0123456789");
 
 	str_length = ft_strlen(str);
 	width = arg->width;
@@ -82,8 +86,8 @@ char		*ft_is_s(t_params *arg, char *str)
 
 	if (prec > str_length)
 		malloc_size = str_length;
-	//else if (arg->flags[PREC] == 0)
-	//	malloc_size = str_length;
+	else if (arg->flags[PREC] == 0)
+		malloc_size = str_length;
 	else
 		malloc_size = prec;
 

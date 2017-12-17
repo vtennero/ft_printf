@@ -116,7 +116,7 @@ int		ft_set_prec(t_params *arg, char *str, int *index)
 		return (1);
 	}
 	return (0);
-}
+} 
 
 t_params	*ft_set_overrides(t_params *arg)
 {
@@ -124,23 +124,33 @@ t_params	*ft_set_overrides(t_params *arg)
 		arg->flags[SPACE] = 0;
 	if (arg->flags[MINUS] && arg->flags[ZERO])
 		arg->flags[ZERO] = 0;
+	
 	//cas des signed char
+	
 	//if (arg->flags[PREC] && arg->flags[ZERO])
 	//	arg->flags[ZERO] = 0;
 	//ft_print_params(arg);
 	return (arg);
 }
 
+char	*ft_set_type(void)
+{
+	return ("char *");
+}
 
 int		ft_set_spec(t_params *arg, char *str, int *index, va_list arguments, char **buf)
 {
 	if (g_formats[str[*index]].printfunc)
 	{
 		ft_set_overrides(arg);
-		//ft_print_params(arg);
-		//ft_write(ft_strjoin(g_formats[str[*index]].printfunc(ft_set_overrides(arg), var), buf));
-		*buf = ft_strjoin_clr(*buf, g_formats[str[*index]].printfunc(arg, va_arg(arguments, char *)), 0);
-		//ft_write(buf);
+		//ft_write("toto");
+		//ft_print_params(arg);		
+		//ft_write(g_formats[str['s']].printfunc(arg, va_arg(arguments, char*)));
+		//ft_write(va_arg(arguments, char *));
+
+		*buf = ft_strjoin_clr(*buf, g_formats[str[(*index)]].printfunc(arg, arguments), 0);
+		//ft_write(*buf);
+
 		//ft_write(g_formats[str[*index]].printfunc(arg, var));
 		return (1);
 	}
@@ -173,7 +183,6 @@ int		ft_read_string(char *str, va_list arguments)
 	char		*buf;
 	int			tmp;
 
-	//ft_putstr("read string\n");
 	buf = NULL;
 	index = 0;
 	tmp = index;
@@ -185,10 +194,8 @@ int		ft_read_string(char *str, va_list arguments)
 			if (str[index] == '%')
 			{
 				ft_bzero(&arg, sizeof(t_params));
-				//buf = strndup(str, index);
-				buf = ft_strjoin_clr(buf, ft_strsub(str, tmp, index), 1);
-				
-				//ft_putendl(buf);
+				tmp = (tmp != 0) ? tmp + 1 : tmp;
+				buf = ft_strjoin_clr(buf, ft_strsub(str, tmp, index - tmp), 1);
 				index++;
 				while (str[index] != '\0')
 				{
@@ -207,13 +214,11 @@ int		ft_read_string(char *str, va_list arguments)
 					}
 					else
 						break;
-					index++;
+					index++;		
 				}
-			//ft_print_params(&arg);
 			}
 			index++;
 		}
-		//buf = ft_strjoin_clr(buf, tmp)
 	}
 	ft_write(buf);
 	return (0);
@@ -224,9 +229,6 @@ int	ft_printf(const char *format, ...)
 	va_list	arguments;
 
 	va_start(arguments, format);
-	//printf("%s", va_arg(arguments, char *));
-	//va_arg(arguments, char *);
-	//printf("%s", va_arg(arguments, char *));
 	ft_read_string((char *)format, arguments);
 	va_end(arguments);
 	return (0);
@@ -238,11 +240,10 @@ int	main(int ac, char **av)
 	{
 		ft_set_g_formats();
 		ft_write("my printf :\n");
-		ft_printf(TEXT);
+		//ft_printf(TEXT);
 		ft_putchar(10);
 		ft_write("standard printf :\n");
 		printf(TEXT);
-		//ft_putchar(10);
 		}
 	return (0);
 }
