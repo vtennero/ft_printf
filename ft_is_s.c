@@ -20,6 +20,8 @@ char		*ft_is_s_right(int malloc_size, int n, char *str, char c)
 	j = 0;
 	n = malloc_size - n;
 	s = malloc(malloc_size + 1);
+	if (s)
+	{
 	while (i < malloc_size)
 	{
 		if (n)
@@ -33,6 +35,7 @@ char		*ft_is_s_right(int malloc_size, int n, char *str, char c)
 		i++;
 	}
 	s[i] = '\0';
+}
 	return (s);
 }
 
@@ -46,6 +49,8 @@ char		*ft_is_s_left(int malloc_size, int n, char *str, char c)
 	i = 0;
 	j = 0;
 	s = malloc(malloc_size + 1);
+	if (s)
+	{
 	while (i < malloc_size)
 	{
 		if (n)
@@ -61,6 +66,7 @@ char		*ft_is_s_left(int malloc_size, int n, char *str, char c)
 		i++;
 	}
 	s[i] = '\0';
+}
 	return (s);
 }
 

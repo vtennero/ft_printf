@@ -240,7 +240,7 @@ int	main(int ac, char **av)
 	{
 		ft_set_g_formats();
 		ft_write("my printf :\n");
-		//ft_printf(TEXT);
+		ft_printf(TEXT);
 		ft_putchar(10);
 		ft_write("standard printf :\n");
 		printf(TEXT);

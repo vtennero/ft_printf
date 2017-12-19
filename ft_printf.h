@@ -25,7 +25,7 @@
 //# define TEXT "%d %U", 6, 5
 //# define TEXT "%#+0- 10.5s", NULL
 //# define TEXT "%5.5 0 d", 450
-# define TEXT "%6.5d", -4
+# define TEXT "%8.3 +d", 44
 
 //# define TEXT "%50.5 0s", "anticonstitutionnel"
 //# define TEXT "%010.5s", "anticonstitutionnel"
