@@ -73,7 +73,6 @@ int					ft_memcmp(const void *s1, const void *s2, size_t n);
 char				**ft_strsplit(char const *s, char c);
 void				ft_putnbr_fd(int n, int fd);
 char				*ft_strtrim(char const *s);
-char				*ft_itoa(int n);
 int					ft_atoi(const char *str);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 void				*ft_memmove(void *dst, const void *src, size_t len);
@@ -86,9 +85,24 @@ void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_abs(int n);
-int					ft_llulen(unsigned long long n);
-char				*ft_itoa_base(int n, const char *base);
-char				*ft_llutoa_base(unsigned long long n, const char *base);
 int					ft_max(size_t n, size_t p);
+/*
+** ------------------------- ITOA & ALII -------------------------
+*/
+char				*ft_itoa(int n);
+char				*ft_ltoa(long n);
+char				*ft_lutoa(unsigned long n);
+char				*ft_lltoa(long long n);
+char				*ft_llutoa(unsigned long long n);
+char				*ft_itoa_base(int n, const char *base);
+char				*ft_ltoa_base(long n, const char *base);
+char				*ft_lutoa_base(unsigned long n, const char *base);
+char				*ft_lltoa_base(long long n, const char *base);
+char				*ft_llutoa_base(unsigned long long n, const char *base);
+int					ft_intlen(int n);
+int					ft_longlen(long n);
+int					ft_ulonglen(unsigned long n);
+int					ft_llonglen(long long n);
+int					ft_ullonglen(unsigned long long n);
 
 #endif

@@ -70,7 +70,7 @@ char		*ft_is_s_left(int malloc_size, int n, char *str, char c)
 	return (s);
 }
 
-char		*ft_is_s(t_params *arg, va_list arguments)
+char		*ft_is_s(t_params *arg, va_list lst)
 {
 	int		malloc_size;
 	int		prec;
@@ -79,7 +79,7 @@ char		*ft_is_s(t_params *arg, va_list arguments)
 	int		n;
 	char	*str;
 
-	str = va_arg(arguments, char *);
+	str = va_arg(lst, char *);
 	//str = ft_llutoa_base((char *)va_arg(arguments, unsigned long long), "0123456789");
 
 	str_length = ft_strlen(str);

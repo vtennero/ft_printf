@@ -20,10 +20,10 @@ char	*ft_itoa_base(int n, const char *base)
 	int		nc;
 	int		neg;
 
-	neg = (n < 0) ? 1 : 0;
-	i = 1 + neg;
 	if (!base)
 		return (NULL);
+	neg = (n < 0) ? 1 : 0;
+	i = 1 + neg;
 	baselen = ft_strlen(base);
 	nc = n;
 	while (nc /= baselen)

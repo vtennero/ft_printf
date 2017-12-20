@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_llutoa_base.c                                   :+:      :+:    :+:   */
+/*   ft_lutoa_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/17 15:22:15 by vtennero          #+#    #+#             */
-/*   Updated: 2017/12/17 15:22:26 by vtennero         ###   ########.fr       */
+/*   Created: 2017/12/20 17:02:03 by vtennero          #+#    #+#             */
+/*   Updated: 2017/12/20 17:02:04 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_llutoa_base(unsigned long long n, const char *base)
+char	*ft_lutoa_base(unsigned long n, const char *base)
 {
-	char					*str;
-	int						baselen;
-	int						i;
-	unsigned long long		nc;
+	char				*str;
+	int					baselen;
+	int					i;
+	unsigned long		nc;
 
 	i = 1;
 	if (!base)

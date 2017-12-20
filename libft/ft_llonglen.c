@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_llutoa_base.c                                   :+:      :+:    :+:   */
+/*   ft_llonglen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/17 15:22:15 by vtennero          #+#    #+#             */
-/*   Updated: 2017/12/17 15:22:26 by vtennero         ###   ########.fr       */
+/*   Created: 2017/12/20 16:29:31 by vtennero          #+#    #+#             */
+/*   Updated: 2017/12/20 16:29:33 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_llutoa_base(unsigned long long n, const char *base)
+int	ft_llonglen(long long n)
 {
-	char					*str;
-	int						baselen;
-	int						i;
-	unsigned long long		nc;
+	int	len;
 
-	i = 1;
-	if (!base)
-		return (NULL);
-	baselen = ft_strlen(base);
-	nc = n;
-	while (nc /= baselen)
-		++i;
-	if ((str = ft_strnew(i)) == NULL)
-		return (NULL);
-	str[i] = '\0';
-	while (i > 0)
-	{
-		str[--i] = base[ft_abs(n % baselen)];
-		n /= baselen;
-	}
-	return (str);
+	len = (n < 0) ? 2 : 1;
+	while (n /= 10)
+		++len;
+	return (len);
 }

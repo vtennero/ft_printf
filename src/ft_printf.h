@@ -18,14 +18,15 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdarg.h>
+#include <limits.h>
 
 //# define TEXT "//buffer[1]//%50.5 -0s//buffer[2]//", "anticonstitutionnel"
 //# define TEXT "//buffer[1]//%50.5 -0s//buffer[2]//%s%.4s %5.4d", "anticonstitutionnel", "toto", "titi", 350
 //# define TEXT "%d %U", 6, 5
 //# define TEXT "%#+0- 10.5s", NULL
 //# define TEXT "%5.5 0 d", 450
-# define TEXT "%8.3 +d", 44
-
+//# define TEXT "%.-60d", 44
+# define TEXT "%010=", 44
 //# define TEXT "%50.5 0s", "anticonstitutionnel"
 //# define TEXT "%010.5s", "anticonstitutionnel"
 
@@ -52,32 +53,36 @@ typedef struct	s_params
 
 typedef struct s_struct
 {
-	char		*(*printfunc)(t_params *arg, va_list arguments);
+	char		*(*printfunc)(t_params *arg, va_list lst);
 }				t_struct;
 
 int		ft_printf(const char *format, ...);
 
 //SPECIFIERS
 
-char	*ft_is_s(t_params *arg, va_list arguments);
+char	*ft_is_s(t_params *arg, va_list lst);
 
-char	*ft_is_cap_s(t_params *arg, va_list arguments);
-char	*ft_is_p(t_params *arg, va_list arguments);
-char	*ft_is_d(t_params *arg, va_list arguments);
-char	*ft_is_cap_d(t_params *arg, va_list arguments);
-char	*ft_is_i(t_params *arg, va_list arguments);
-char	*ft_is_o(t_params *arg, va_list arguments);
-char	*ft_is_cap_o(t_params *arg, va_list arguments);
-char	*ft_is_u(t_params *arg, va_list arguments);
-char	*ft_is_cap_u(t_params *arg, va_list arguments);
-char	*ft_is_x(t_params *arg, va_list arguments);
-char	*ft_is_cap_x(t_params *arg, va_list arguments);
-char	*ft_is_c(t_params *arg, va_list arguments);
-char	*ft_is_cap_c(t_params *arg, va_list arguments);
+char	*ft_is_cap_s(t_params *arg, va_list lst);
+char	*ft_is_p(t_params *arg, va_list lst);
+char	*ft_is_d(t_params *arg, va_list lst);
+char	*ft_is_cap_d(t_params *arg, va_list lst);
+char	*ft_is_i(t_params *arg, va_list lst);
+char	*ft_is_o(t_params *arg, va_list lst);
+char	*ft_is_cap_o(t_params *arg, va_list lst);
+char	*ft_is_u(t_params *arg, va_list lst);
+char	*ft_is_cap_u(t_params *arg, va_list lst);
+char	*ft_is_x(t_params *arg, va_list lst);
+char	*ft_is_cap_x(t_params *arg, va_list lst);
+char	*ft_is_c(t_params *arg, va_list lst);
+char	*ft_is_cap_c(t_params *arg, va_list lst);
+
+//CAST
+
+long long	ft_prop_cast(t_params *arg, va_list lst, char c);
 
 //PRINT
 
-void	ft_write(char *str);
+int		ft_write(char *str);
 
 //UTILITIES
 

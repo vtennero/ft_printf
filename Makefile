@@ -23,6 +23,7 @@ SRC =  main.c \
 	   ft_write.c \
 	   ft_is_s.c \
 	   ft_is_d.c \
+	   ft_prop_cast.c
 
 LSRC = ft_memcmp.c \
 	  ft_strclr.c \
@@ -52,7 +53,7 @@ LSRC = ft_memcmp.c \
 	  ft_isprint.c \
 	  ft_putendl.c \
 	  ft_striteri.c \
-	  ft_strstr.c ft_itoa.c \
+	  ft_strstr.c \
 	  ft_putendl_fd.c \
 	  ft_putnbr.c \
 	  ft_strlcat.c \
@@ -68,7 +69,6 @@ LSRC = ft_memcmp.c \
 	  ft_memalloc.c \
 	  ft_strncat.c \
 	  ft_toupper.c \
-	  ft_llutoa_base.c \
 	  ft_memccpy.c \
 	  ft_strcat.c \
 	  ft_strncmp.c \
@@ -85,9 +85,22 @@ LSRC = ft_memcmp.c \
 	  ft_lstmap.c \
 	  ft_strndup.c \
 	  ft_abs.c \
-	  ft_llulen.c \
-	  ft_itoa_base.c \
 	  ft_max.c \
+	  ft_itoa.c \
+	  ft_ltoa.c \
+	  ft_lutoa.c \
+	  ft_lltoa.c \
+	  ft_llutoa.c \
+	  ft_itoa_base.c \
+	  ft_ltoa_base.c \
+	  ft_lutoa_base.c \
+	  ft_lltoa_base.c \
+	  ft_llutoa_base.c \
+	  ft_intlen.c \
+	  ft_longlen.c \
+	  ft_ulonglen.c \
+	  ft_llonglen.c \
+	  ft_ullonglen.c
 
 PLSRC = $(addprefix libft/, $(LSRC))
 

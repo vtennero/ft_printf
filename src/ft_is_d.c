@@ -37,18 +37,21 @@ static char	*ft_malloc_width(int n, int z)
 	int		i;
 	char	c;
 
-	c = (z) ? '0' : ' ';
+	//c = (z) ? '0' : ' ';
+	c = ' ';
 	i = 0;
-	str = (char *)malloc (n + 1);
+	if (n < 0)
+		n = 0;
+	str = (char *)malloc(n + 1);
 	if (str)
 	{
-	while (i < n)
-	{
-		str[i] = c;
-		i++;
+		while (i < n)
+		{
+			str[i] = c;
+			i++;
+		}
+		str[i] = '\0';
 	}
-	str[i] = '\0';
-}
 	return (str);
 }
 
@@ -57,35 +60,46 @@ static char	*ft_malloc_prec(char *str, int prec)
 	char	*s1;
 	int		i;
 	int		j;
+	int		len;
 
 	i = 0;
 	j = 0;
-	s1 = (char *)malloc(sizeof(char) * ft_max(ft_strlen(str), prec) + 1);
+	len = ft_strlen(str);
+	s1 = (char *)malloc(sizeof(char) * ft_max(len, prec) + 1);
 	if (s1)
 	{
-	while (i < prec - ft_strlen(str))
-		s1[i++] = '0';
-	while (j < ft_strlen(str))
-	{
-		s1[i] = str[j];
-		j++;
-		i++;
-	}
+/*		ft_putnbr(prec - len);
+		ft_putnbr(prec - len);
+		ft_putnbr(prec);
+		if (prec - len > 0)
+		{
+		ft_putstr("tata\n");
+		ft_putnbr(prec - len);
+*/
+			while (i < prec - len)
+				s1[i++] = '0';
+//		}
+		while (j < len)
+		{
+			s1[i] = str[j];
+			j++;
+			i++;
+		}
 }
 	return (s1);
 }
 
-char	*ft_is_d(t_params *arg, va_list arguments)
+char	*ft_is_d(t_params *arg, va_list lst)
 {
-	int		number;
-	char	*s1;
-	char	*s2;
+	long long	number;
+	char		*s1;
+	char		*s2;
 
-	number = va_arg(arguments, int);
+	number = ft_prop_cast(arg, lst, 'd');
 	ft_override_params(arg, number);
 	s1 = ft_malloc_prec(ft_itoa_base(ft_abs(number), "0123456789"), arg->prec);
 	s1 = ft_prepend(s1, number, arg);
-	s2 = ft_malloc_width(ft_strlen(s1), arg->flags[ZERO]);
+	s2 = ft_malloc_width(arg->width - ft_strlen(s1), arg->flags[ZERO]);	
 	if (arg->flags[MINUS])
 		return (ft_strjoin_clr(s1, s2, 2));
 	else

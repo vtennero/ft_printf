@@ -110,7 +110,6 @@ int		ft_set_prec(t_params *arg, char *str, int *index)
 				arg->prec = 10 * arg->prec + (int)str[*index] - 48;
 				*index += 1;
 			}
-
 		}
 		*index -= 1;
 		return (1);
@@ -133,11 +132,6 @@ t_params	*ft_set_overrides(t_params *arg)
 	return (arg);
 }
 
-char	*ft_set_type(void)
-{
-	return ("char *");
-}
-
 int		ft_set_spec(t_params *arg, char *str, int *index, va_list arguments, char **buf)
 {
 	if (g_formats[str[*index]].printfunc)
@@ -147,7 +141,6 @@ int		ft_set_spec(t_params *arg, char *str, int *index, va_list arguments, char *
 		//ft_print_params(arg);		
 		//ft_write(g_formats[str['s']].printfunc(arg, va_arg(arguments, char*)));
 		//ft_write(va_arg(arguments, char *));
-
 		*buf = ft_strjoin_clr(*buf, g_formats[str[(*index)]].printfunc(arg, arguments), 0);
 		//ft_write(*buf);
 
@@ -213,6 +206,7 @@ int		ft_read_string(char *str, va_list arguments)
 						break;
 					}
 					else
+						
 						break;
 					index++;		
 				}
@@ -220,14 +214,14 @@ int		ft_read_string(char *str, va_list arguments)
 			index++;
 		}
 	}
-	ft_write(buf);
-	return (0);
+	return (ft_write(buf));
 }
 
 int	ft_printf(const char *format, ...)
 {
 	va_list	arguments;
 
+	ft_set_g_formats();
 	va_start(arguments, format);
 	ft_read_string((char *)format, arguments);
 	va_end(arguments);

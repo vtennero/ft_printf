@@ -17,7 +17,6 @@ int	main(int ac, char **av)
 {
 	if (ac)
 	{
-		ft_set_g_formats();
 		ft_write("my printf :\n");
 		ft_printf(TEXT);
 		ft_putchar(10);

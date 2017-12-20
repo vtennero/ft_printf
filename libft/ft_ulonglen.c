@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_llulen.c                                        :+:      :+:    :+:   */
+/*   ft_ulonglen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/17 15:22:58 by vtennero          #+#    #+#             */
-/*   Updated: 2017/12/17 15:23:03 by vtennero         ###   ########.fr       */
+/*   Created: 2017/12/20 16:56:38 by vtennero          #+#    #+#             */
+/*   Updated: 2017/12/20 16:56:55 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_llulen(unsigned long long n)
+int	ft_ulonglen(unsigned long n)
 {
 	int	len;
 
