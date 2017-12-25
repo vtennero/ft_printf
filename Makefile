@@ -14,7 +14,9 @@ NAME = dummy_test
 
 LIB = libftprintf.a
 
-FLAGS =# -Wall -Werror -Wextra
+#FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Wno-empty-body -Wno-unused -Wextra
+#FLAGS = 
 
 SRC =  main.c \
 	   ft_printf.c \
@@ -108,7 +110,7 @@ PSRC = $(addprefix src/, $(SRC))
 
 OBJ =  $(SRC:.c=.o) $(LSRC:.c=.o)
 
-all: $(LIB)
+all:
 	@ gcc -c $(PLSRC) -I libft/
 	@ gcc -c $(PSRC) -I src/
 	@ ar rc $(LIB) $(OBJ)

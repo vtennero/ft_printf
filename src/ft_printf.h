@@ -20,13 +20,16 @@
 #include <stdarg.h>
 #include <limits.h>
 
+#include <stdint.h>
+
 //# define TEXT "//buffer[1]//%50.5 -0s//buffer[2]//", "anticonstitutionnel"
-//# define TEXT "//buffer[1]//%50.5 -0s//buffer[2]//%s%.4s %5.4d", "anticonstitutionnel", "toto", "titi", 350
+# define TEXT "//buffer[1]//%50.5 -0s//buffer[2]//%s%.4s %5.4d", "anticonstitutionnel", "toto", "titi", 350
 //# define TEXT "%d %U", 6, 5
 //# define TEXT "%#+0- 10.5s", NULL
 //# define TEXT "%5.5 0 d", 450
 //# define TEXT "%.-60d", 44
-# define TEXT "%010=", 44
+//# define TEXT "Bonjour %10.4d, ca va ? %054-d", -44, 52
+//# define TEXT "Bonjour %10.4d, ca va ? %054d", -44, 52
 //# define TEXT "%50.5 0s", "anticonstitutionnel"
 //# define TEXT "%010.5s", "anticonstitutionnel"
 

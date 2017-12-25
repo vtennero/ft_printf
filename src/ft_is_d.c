@@ -37,8 +37,8 @@ static char	*ft_malloc_width(int n, int z)
 	int		i;
 	char	c;
 
-	//c = (z) ? '0' : ' ';
-	c = ' ';
+	c = (z) ? '0' : ' ';
+	//c = ' ';
 	i = 0;
 	if (n < 0)
 		n = 0;
@@ -96,6 +96,7 @@ char	*ft_is_d(t_params *arg, va_list lst)
 	char		*s2;
 
 	number = ft_prop_cast(arg, lst, 'd');
+	//ft_print_params(arg);
 	ft_override_params(arg, number);
 	s1 = ft_malloc_prec(ft_itoa_base(ft_abs(number), "0123456789"), arg->prec);
 	s1 = ft_prepend(s1, number, arg);
