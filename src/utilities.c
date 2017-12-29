@@ -30,3 +30,27 @@ void	ft_print_params(t_params *arg)
 	printf("width = %d\n", arg->width);
 	printf("precision = %d\n", arg->prec);
 }
+
+char	*ft_append(char *buf, int n, char c)
+{
+	char	*append;
+	int		i;
+
+	i = 0;
+	append = malloc(sizeof(char) * n + 1);
+	if (append)
+	{
+		while (i < n)
+			append[i++] = c;
+	}
+	append[i] = '\0';
+	return (ft_strjoin_clr(buf, append, 2));
+}
+
+t_bool		ft_is_char(char c1, char c2)
+{
+	if (c1 == c2)
+		return (1);
+	else
+		return (0);
+}

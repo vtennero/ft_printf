@@ -81,7 +81,8 @@ char		*ft_is_s(t_params *arg, va_list lst)
 
 	str = va_arg(lst, char *);
 	//str = ft_llutoa_base((char *)va_arg(arguments, unsigned long long), "0123456789");
-
+	if (str == NULL)
+		str = ft_strdup("(null)"); //leak
 	str_length = ft_strlen(str);
 	width = arg->width;
 	prec = arg->prec;

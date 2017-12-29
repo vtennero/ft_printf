@@ -22,7 +22,9 @@ int	main(int ac, char **av)
 		ft_putchar(10);
 		ft_write("standard printf :\n");
 		printf(TEXT);
-		}
+	}
+	//while (1)
+	//	;
 	return (0);
 }
 

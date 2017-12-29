@@ -14,9 +14,9 @@ NAME = dummy_test
 
 LIB = libftprintf.a
 
-#FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 #FLAGS = -Wall -Wno-empty-body -Wno-unused -Wextra
-FLAGS = 
+#FLAGS = 
 
 SRC =  main.c \
 	   ft_printf.c \

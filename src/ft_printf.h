@@ -22,16 +22,28 @@
 
 #include <stdint.h>
 
-//# define TEXT "//buffer[1]//%50.5 -0s//buffer[2]//", "anticonstitutionnel"
-# define TEXT "//buffer[1]//%50.5 -0s//buffer[2]//%s%.4s %5.4d", "anticonstitutionnel", "toto", "titi", 350
-//# define TEXT "%d %U", 6, 5
+// NSFW
+
+#define TEXT "%5%"
+
+
+
+
 //# define TEXT "%#+0- 10.5s", NULL
+//#define TEXT "%%%%%%%%%trtftft%%%%"
+//#define TEXT "toto%%basdsadas"
+//#define TEXT "totos", "titi"
+//#define TEXT "toto%%b%s", "titi"
+//#define TEXT "toto%%b/%10-.4s"
+//# define TEXT "//buffer[1]//%50.5 -0s//buffer[2]//%s%.4s %5.4d", "anticonstitutionnel", "toto", "titi", 350
+//# define TEXT "%d %U", 6, 5
 //# define TEXT "%5.5 0 d", 450
 //# define TEXT "%.-60d", 44
 //# define TEXT "Bonjour %10.4d, ca va ? %054-d", -44, 52
 //# define TEXT "Bonjour %10.4d, ca va ? %054d", -44, 52
 //# define TEXT "%50.5 0s", "anticonstitutionnel"
 //# define TEXT "%010.5s", "anticonstitutionnel"
+//# define TEXT "//buffer[1]//%50.5 -0s//buffer[2]//", "anticonstitutionnel"
 
 typedef int t_bool;
 
@@ -90,5 +102,12 @@ int		ft_write(char *str);
 //UTILITIES
 
 void	ft_print_params(t_params *arg);
+char	*ft_append(char *buf, int n, char c);
+t_bool		ft_is_char(char c1, char c2);
+
+//OTHER
+
+char		*ft_is_s_left(int malloc_size, int n, char *str, char c);
+char		*ft_is_s_right(int malloc_size, int n, char *str, char c);
 
 #endif

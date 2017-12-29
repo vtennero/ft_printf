@@ -22,6 +22,8 @@ with:
 -Wall -Wno-empty-body -Wno-unused -Wextra
 ```
 
+Note: this prinft is made for Mac use and won't run the same way on Linux.
+
 ## Running the tests
 
 The easiest way is to add a .c with a main function that calls ft_printf with the parameters of your choice, compile it with libftprintf.a, then run the newly created executable.

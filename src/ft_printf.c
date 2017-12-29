@@ -6,7 +6,7 @@
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 17:48:38 by vtennero          #+#    #+#             */
-/*   Updated: 2017/12/14 18:39:28 by vtennero         ###   ########.fr       */
+/*   Updated: 2017/12/29 17:15:40 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,6 @@ void		ft_set_g_formats(void)
 	g_formats['X'].printfunc = ft_is_cap_x;
 	g_formats['c'].printfunc = ft_is_c;
 	g_formats['C'].printfunc = ft_is_cap_c;
-}
-
-t_bool		ft_is_char(char c1, char c2)
-{
-	if (c1 == c2)
-		return (1);
-	else
-		return (0);
 }
 
 int		ft_set_flags(t_params *arg, char *str, int *index)
@@ -169,16 +161,26 @@ t_params	*ft_set_zero_params(t_params *arg)
 	return (arg);
 }
 
+char		*ft_width_perc(t_params *arg)
+{
+	if (arg->flags[MINUS])
+		return(ft_is_s_right(arg->width, arg->width - 1, "%", ' '));
+	else
+		return(ft_is_s_left(arg->width, arg->width - 1, "%", ' '));
+}
+
 int		ft_read_string(char *str, va_list arguments)
 {
 	int			index;
 	t_params	arg;
 	char		*buf;
-	int			tmp;
+	//int			tmp;
+	int			p;
 
 	buf = NULL;
 	index = 0;
-	tmp = index;
+	p = 0;
+	//tmp = index;
 	ft_bzero(&arg, sizeof(t_params));
 	if (str)
 	{
@@ -186,9 +188,10 @@ int		ft_read_string(char *str, va_list arguments)
 		{
 			if (str[index] == '%')
 			{
+				p++;
 				ft_bzero(&arg, sizeof(t_params));
-				tmp = (tmp != 0) ? tmp + 1 : tmp;
-				buf = ft_strjoin_clr(buf, ft_strsub(str, tmp, index - tmp), 1);
+				//tmp = (tmp != 0) ? tmp + 1 : tmp;
+				//buf = ft_strjoin_clr(buf, ft_strsub(str, tmp, index - tmp), 1);
 				index++;
 				while (str[index] != '\0')
 				{
@@ -197,20 +200,41 @@ int		ft_read_string(char *str, va_list arguments)
 					else if (ft_set_length(&arg, str, &index) == 1)
 						;
 					else if (ft_set_width(&arg, str, &index) == 1)
-						;
+					{
+						if (str[index + 1] == '%')
+						{
+							buf = ft_width_perc(&arg);
+							index++;
+							break;
+						}
+					}
 					else if (ft_set_prec(&arg, str, &index) == 1)
 						;
 					else if (ft_set_spec(&arg, str, &index, arguments, &buf) == 1)
 					{
-						tmp = index;
+						//tmp = index;
+						break;
+					}
+					else if (str[index] == '%')
+					{
+						while (str[index] == '%')
+						{
+							p++;
+							index++;
+						}
+						index--;
+						buf = ft_append(buf, p / 2, '%');
+						//tmp = index;
+						p = 0;
 						break;
 					}
 					else
-						
 						break;
 					index++;		
 				}
 			}
+			else
+				buf = ft_append(buf, 1, str[index]);
 			index++;
 		}
 	}
@@ -220,10 +244,13 @@ int		ft_read_string(char *str, va_list arguments)
 int	ft_printf(const char *format, ...)
 {
 	va_list	arguments;
+	int	n;
 
 	ft_set_g_formats();
 	va_start(arguments, format);
-	ft_read_string((char *)format, arguments);
+	/*if (ft_strstr(format, "%") == NULL)
+		return (ft_write((char *)format));*/
+	n = ft_read_string((char *)format, arguments);
 	va_end(arguments);
-	return (0);
+	return (n);
 }
