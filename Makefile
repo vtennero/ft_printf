@@ -6,7 +6,7 @@
 #    By: vtennero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/17 15:16:05 by vtennero          #+#    #+#              #
-#    Updated: 2017/12/17 16:55:42 by vtennero         ###   ########.fr        #
+#    Updated: 2017/12/29 14:21:20 by vtennero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ NAME = dummy_test
 LIB = libftprintf.a
 
 #FLAGS = -Wall -Werror -Wextra
-FLAGS = -Wall -Wno-empty-body -Wno-unused -Wextra
-#FLAGS = 
+#FLAGS = -Wall -Wno-empty-body -Wno-unused -Wextra
+FLAGS = 
 
 SRC =  main.c \
 	   ft_printf.c \
