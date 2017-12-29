@@ -57,7 +57,7 @@ ft_printf("%#+0- 10.5s", NULL);
 
 Instructions : [Subject](http://bit.ly/2le7CAs)
 
-Test programs (not made by me) : [1. 42FC](https://github.com/jgigault/42FileChecker) [2. curqui_test](https://github.com/curquiza/curqui_test)
+Test programs (not made by me) : [42FC](https://github.com/jgigault/42FileChecker) | [curqui_test](https://github.com/curquiza/curqui_test)
 
 ## Author
 
