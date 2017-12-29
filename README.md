@@ -10,19 +10,7 @@ Clone the repository and:
 make
 ```
 
-### For Linux users only
-
-In the makefile, replace :
-
-```
--Wall -Werror -Wextra
-```
-with:
-```
--Wall -Wno-empty-body -Wno-unused -Wextra
-```
-
-Note: this prinft is made for Mac use and won't run the same way on Linux.
+Note : Not Supported on the Linux Operating System
 
 ## Running the tests
 
