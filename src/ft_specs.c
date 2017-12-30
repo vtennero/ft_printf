@@ -13,12 +13,7 @@
 #include "ft_printf.h"
 
 #include <stdio.h>
-/*
-void	ft_is_s(t_params *arg)
-{
-	printf("s\n");
-}
-*/
+
 char	*ft_is_cap_s(t_params *arg, va_list lst)
 {
 	printf("S\n");
@@ -30,13 +25,7 @@ char	*ft_is_p(t_params *arg, va_list lst)
 	printf("p\n");
 	return (0);
 }
-/*
-char	*ft_is_d(t_params *arg, va_list lst)
-{
-	printf("d\n");
-	return (0);
-}
-*/
+
 char	*ft_is_cap_d(t_params *arg, va_list lst)
 {
 	printf("D\n");
@@ -57,12 +46,6 @@ char	*ft_is_o(t_params *arg, va_list lst)
 char	*ft_is_cap_o(t_params *arg, va_list lst)
 {
 	printf("O\n");
-	return (0);
-}
-
-char	*ft_is_u(t_params *arg, va_list lst)
-{
-	printf("u\n");
 	return (0);
 }
 

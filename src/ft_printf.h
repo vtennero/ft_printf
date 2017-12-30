@@ -23,18 +23,22 @@
 
 // NSFW
 
-//#define TEXT "%lld", 9223372036854775807
-//#define TEXT "%lld", -9223372036854775808
-//#define TEXT "%jd", 9223372036854775807
-//#define TEXT "%jd", -9223372036854775808
+//#define TEXT "%u", -4294967296
+//#define TEXT "%u", -4294967297
+//#define TEXT "%u", 9223372036854775807
+//#define TEXT "%u", 4294967296
+//#define TEXT "%u", -4294967299
 
+//d
+
+#define TEXT "%lllhd", 92233
 //#define TEXT "%.d %.0d", 0, 0
 //#define TEXT "%.d", 0, 0
 //#define TEXT "%.d", 0
 //#define TEXT "@moulitest: %5.d %5.0d", 0, 0
-#define TEXT "@moulitest: %.d %.0d", 0, 0
-
-//d
+//#define TEXT "@moulitest: %.d %.0d", 0, 0
+//#define TEXT "@moulitest: %.d", 0
+//#define TEXT "@moulitest: %.d %.0d", 42, 43
 
 //# define TEXT "%d %U", 6, 5
 //# define TEXT "%5.5 0 d", 450
@@ -54,6 +58,12 @@
 //#define TEXT "%03.2d", 1
 //#define TEXT "% d", 42
 //#define TEXT "% 10.5d", 4242
+
+
+//#define TEXT "%lld", 9223372036854775807
+//#define TEXT "%lld", -9223372036854775808
+//#define TEXT "%jd", 9223372036854775807
+//#define TEXT "%jd", -9223372036854775808
 
 //ld lld ...
 
@@ -79,7 +89,6 @@
 //#define TEXT "totos", "titi"
 //#define TEXT "toto%%b%s", "titi"
 //#define TEXT "toto%%b/%10-.4s"
-
 
 typedef int t_bool;
 
@@ -107,39 +116,63 @@ typedef struct s_struct
 	char		*(*printfunc)(t_params *arg, va_list lst);
 }				t_struct;
 
-int		ft_printf(const char *format, ...);
+int			ft_printf(const char *format, ...);
+
+//PARAMETERS CREATION
+
+void		ft_set_g_formats(void);
+t_params	*ft_create_params(void);
+t_params	*ft_set_zero_params(t_params *arg);
+
+//PARAMETERS SETTINGS
+
+int		ft_set_flags(t_params *arg, char *str, int *index);
+int		ft_set_length(t_params *arg, char *str, int *index);
+int		ft_set_width(t_params *arg, char *str, int *index);
+int		ft_set_prec(t_params *arg, char *str, int *index);
+int		ft_set_spec(t_params *arg, char *str, int *index, va_list arguments, char **buf);
+
+//PARAMETERS OVERRIDE
+
+t_params	*ft_general_overrides(t_params *arg);
+void		ft_override_params_d(t_params *arg, long long nb);
+void		ft_override_spec(t_params *arg);
 
 //SPECIFIERS
 
-char	*ft_is_s(t_params *arg, va_list lst);
+char		*ft_is_s(t_params *arg, va_list lst);
 
-char	*ft_is_cap_s(t_params *arg, va_list lst);
-char	*ft_is_p(t_params *arg, va_list lst);
-char	*ft_is_d(t_params *arg, va_list lst);
-char	*ft_is_cap_d(t_params *arg, va_list lst);
-char	*ft_is_i(t_params *arg, va_list lst);
-char	*ft_is_o(t_params *arg, va_list lst);
-char	*ft_is_cap_o(t_params *arg, va_list lst);
-char	*ft_is_u(t_params *arg, va_list lst);
-char	*ft_is_cap_u(t_params *arg, va_list lst);
-char	*ft_is_x(t_params *arg, va_list lst);
-char	*ft_is_cap_x(t_params *arg, va_list lst);
-char	*ft_is_c(t_params *arg, va_list lst);
-char	*ft_is_cap_c(t_params *arg, va_list lst);
+char		*ft_is_cap_s(t_params *arg, va_list lst);
+char		*ft_is_p(t_params *arg, va_list lst);
+char		*ft_is_d(t_params *arg, va_list lst);
+char		*ft_is_cap_d(t_params *arg, va_list lst);
+char		*ft_is_i(t_params *arg, va_list lst);
+char		*ft_is_o(t_params *arg, va_list lst);
+char		*ft_is_cap_o(t_params *arg, va_list lst);
+char		*ft_is_u(t_params *arg, va_list lst);
+char		*ft_is_cap_u(t_params *arg, va_list lst);
+char		*ft_is_x(t_params *arg, va_list lst);
+char		*ft_is_cap_x(t_params *arg, va_list lst);
+char		*ft_is_c(t_params *arg, va_list lst);
+char		*ft_is_cap_c(t_params *arg, va_list lst);
 
-//CAST
+//CAST / VA_ARGS
 
-long long	ft_prop_cast(t_params *arg, va_list lst, char c);
+//long long	ft_prop_cast(t_params *arg, va_list lst, char c);
+
+long long	ft_prop_cast_d(t_params *arg, va_list lst);
+long long	ft_prop_cast_u(t_params *arg, va_list lst);
+void		*ft_prop_cast_s(t_params *arg, va_list lst);
 
 //PRINT
 
-int		ft_write(char *str);
+int			ft_write(char *str);
 
 //UTILITIES
 
-void	ft_print_params(t_params *arg);
-char	*ft_append(char *buf, int n, char c);
-char	*ft_prepend(char *buf, int n, char c);
+void		ft_print_params(t_params *arg);
+char		*ft_append(char *buf, int n, char c);
+char		*ft_prepend(char *buf, int n, char c);
 t_bool		ft_is_char(char c1, char c2);
 
 //OTHER

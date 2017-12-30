@@ -25,7 +25,12 @@ SRC =  main.c \
 	   ft_write.c \
 	   ft_is_s.c \
 	   ft_is_d.c \
-	   ft_prop_cast.c
+	   ft_is_u.c \
+	   ft_prop_cast.c \
+	   ft_create_params.c \
+	   ft_set_params.c \
+	   ft_override_params.c \
+	   ft_override_spec.c
 
 LSRC = ft_memcmp.c \
 	  ft_strclr.c \

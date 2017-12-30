@@ -33,103 +33,11 @@ void		ft_set_g_formats(void)
 	g_formats['C'].printfunc = ft_is_cap_c;
 }
 
-int		ft_set_flags(t_params *arg, char *str, int *index)
-{
-	if (ft_is_char(str[*index], '#') == 1)
-		return(arg->flags[HASH] = 1);	
-	else if (ft_is_char(str[*index], '+') == 1)
-		return(arg->flags[PLUS] = 1);	
-	else if (ft_is_char(str[*index], '-') == 1)
-		return(arg->flags[MINUS] = 1);	
-	else if (ft_is_char(str[*index], ' ') == 1)
-		return(arg->flags[SPACE] = 1);	
-	else if (ft_is_char(str[*index], '0') == 1)
-		return(arg->flags[ZERO] = 1);
-	return (0);
-}
-
-int		ft_set_length(t_params *arg, char *str, int *index)
-{
-	if (ft_strnequ(str + *index, "hh", 2) == 1)
-	{
-		*index += 1;
-		return (arg->flags[HH] = 1);
-	}
-	if (ft_strnequ(str + *index, "ll", 2) == 1)
-	{
-		*index += 1;
-		return (arg->flags[LL] = 1);
-	}	
-	else if (ft_is_char(str[*index], 'h') == 1)
-		return(arg->flags[H] = 1);	
-	else if (ft_is_char(str[*index], 'l') == 1)
-		return(arg->flags[L] = 1);	
-	else if (ft_is_char(str[*index], 'j') == 1)
-		return(arg->flags[J] = 1);	
-	else if (ft_is_char(str[*index], 'z') == 1)
-		return(arg->flags[Z] = 1);	
-	return (0);
-}
-
-int		ft_set_width(t_params *arg, char *str, int *index)
-{
-	if (ft_isdigit((int)str[*index]) == 1)
-	{
-		arg->width = 0;
-		while (ft_isdigit((int)str[*index]) == 1)
-		{
-			arg->width = 10 * arg->width + (int)str[*index] - 48;
-			*index += 1;
-		}
-		*index -= 1;
-		//if (arg->width > 0)
-			return (1);
-	}
-	return (0);
-}
-
-int		ft_set_prec(t_params *arg, char *str, int *index)
-{
-	if (ft_is_char(str[*index], '.') == 1)
-	{
-		*index += 1;
-		arg->flags[PREC] = 1;
-		arg->prec = 0;
-		if (ft_isdigit((int)str[*index]) == 1)
-		{
-			arg->prec = 0;
-			while (ft_isdigit((int)str[*index]) == 1)
-			{
-				arg->prec = 10 * arg->prec + (int)str[*index] - 48;
-				*index += 1;
-			}
-		}
-		*index -= 1;
-		return (1);
-	}
-	return (0);
-} 
-
-t_params	*ft_set_overrides(t_params *arg)
-{
-	if (arg->flags[PLUS] && arg->flags[SPACE])
-		arg->flags[SPACE] = 0;
-	if (arg->flags[MINUS] && arg->flags[ZERO])
-		arg->flags[ZERO] = 0;
-	
-	//cas des signed char
-	
-	//if (arg->flags[PREC] && arg->flags[ZERO])
-	//	arg->flags[ZERO] = 0;
-	//ft_print_params(arg);
-	return (arg);
-}
-
 int		ft_set_spec(t_params *arg, char *str, int *index, va_list arguments, char **buf)
 {
 	if (g_formats[str[*index]].printfunc)
 	{
-		ft_set_overrides(arg);
+		ft_general_overrides(arg);
 		//ft_write("toto");
 		//ft_print_params(arg);		
 		//ft_write(g_formats[str['s']].printfunc(arg, va_arg(arguments, char*)));
@@ -143,26 +51,7 @@ int		ft_set_spec(t_params *arg, char *str, int *index, va_list arguments, char *
 	return (0);
 }
 
-t_params	*ft_create_params(void)
-{
-	t_params	*arg;
-
-	arg = (t_params *)malloc(sizeof(t_params));
-	if (arg)
-		return (arg);
-	else
-		return (NULL);
-}
-
-t_params	*ft_set_zero_params(t_params *arg)
-{
-	int	i;
-
-	ft_bzero(arg, sizeof(t_params));
-	return (arg);
-}
-
-char		*ft_width_perc(t_params *arg)
+static char		*ft_width_perc(t_params *arg)
 {
 	if (arg->flags[MINUS])
 		return(ft_is_s_right(arg->width, arg->width - 1, "%", ' '));
@@ -170,7 +59,7 @@ char		*ft_width_perc(t_params *arg)
 		return(ft_is_s_left(arg->width, arg->width - 1, "%", ' '));
 }
 
-int		ft_read_string(char *str, va_list arguments)
+static int		ft_read_string(char *str, va_list arguments)
 {
 	int			index;
 	t_params	arg;
