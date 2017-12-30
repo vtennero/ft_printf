@@ -26,7 +26,7 @@ void	ft_print_params(t_params *arg)
 	printf("%c : %d\n", 'z', arg->flags[8]);
 	printf("%s : %d\n", "hh", arg->flags[9]);
 	printf("%s : %d\n", "ll", arg->flags[10]);
-	printf("%s : %d\n", "precision", arg->flags[11]);
+	printf("%s : %d\n", "precision (flag)", arg->flags[11]);
 	printf("width = %d\n", arg->width);
 	printf("precision = %d\n", arg->prec);
 }
@@ -45,6 +45,22 @@ char	*ft_append(char *buf, int n, char c)
 	}
 	append[i] = '\0';
 	return (ft_strjoin_clr(buf, append, 2));
+}
+
+char	*ft_prepend(char *buf, int n, char c)
+{
+	char	*prepend;
+	int		i;
+
+	i = 0;
+	prepend = malloc(sizeof(char) * n + 1);
+	if (prepend)
+	{
+		while (i < n)
+			prepend[i++] = c;
+	}
+	prepend[i] = '\0';
+	return (ft_strjoin_clr(prepend, buf, 2));
 }
 
 t_bool		ft_is_char(char c1, char c2)

@@ -14,36 +14,72 @@
 # define FT_PRINTF_H
 
 #include "../libft/libft.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdarg.h>
 #include <limits.h>
-
+#include <stdarg.h>
 #include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
 // NSFW
 
-#define TEXT "%5%"
+//#define TEXT "%lld", 9223372036854775807
+//#define TEXT "%lld", -9223372036854775808
+//#define TEXT "%jd", 9223372036854775807
+//#define TEXT "%jd", -9223372036854775808
 
+//#define TEXT "%.d %.0d", 0, 0
+//#define TEXT "%.d", 0, 0
+//#define TEXT "%.d", 0
+//#define TEXT "@moulitest: %5.d %5.0d", 0, 0
+#define TEXT "@moulitest: %.d %.0d", 0, 0
 
+//d
 
-
-//# define TEXT "%#+0- 10.5s", NULL
-//#define TEXT "%%%%%%%%%trtftft%%%%"
-//#define TEXT "toto%%basdsadas"
-//#define TEXT "totos", "titi"
-//#define TEXT "toto%%b%s", "titi"
-//#define TEXT "toto%%b/%10-.4s"
-//# define TEXT "//buffer[1]//%50.5 -0s//buffer[2]//%s%.4s %5.4d", "anticonstitutionnel", "toto", "titi", 350
 //# define TEXT "%d %U", 6, 5
 //# define TEXT "%5.5 0 d", 450
 //# define TEXT "%.-60d", 44
 //# define TEXT "Bonjour %10.4d, ca va ? %054-d", -44, 52
 //# define TEXT "Bonjour %10.4d, ca va ? %054d", -44, 52
+//#define TEXT "%d", -2147483648
+//#define TEXT "%d", -2147483648
+//#define TEXT "%0+5d", 42
+//#define TEXT "%05d", 42
+//#define TEXT "%0+5d", -42
+//#define TEXT "%05d", -42
+//#define TEXT "% 5d", -42
+//#define TEXT "%4.15d", 42 
+//#define TEXT "%03.2d", 0
+//#define TEXT "%03d", 1
+//#define TEXT "%03.2d", 1
+//#define TEXT "% d", 42
+//#define TEXT "% 10.5d", 4242
+
+//ld lld ...
+
+//#define TEXT "%ld", -2147483648
+//#define TEXT "%ld", 2147483648
+//#define TEXT "%ld", -2147483649
+//#define TEXT "%zd", 4294967295
+//#define TEXT "%zd", 4294967296
+
+//s
+
+//# define TEXT "%#+0- 10.5s", NULL
+//# define TEXT "//buffer[1]//%50.5 -0s//buffer[2]//%s%.4s %5.4d", "anticonstitutionnel", "toto", "titi", 350
 //# define TEXT "%50.5 0s", "anticonstitutionnel"
 //# define TEXT "%010.5s", "anticonstitutionnel"
 //# define TEXT "//buffer[1]//%50.5 -0s//buffer[2]//", "anticonstitutionnel"
+
+//other
+
+//#define TEXT "%5%"
+//#define TEXT "%%%%%%%%%trtftft%%%%"
+//#define TEXT "toto%%basdsadas"
+//#define TEXT "totos", "titi"
+//#define TEXT "toto%%b%s", "titi"
+//#define TEXT "toto%%b/%10-.4s"
+
 
 typedef int t_bool;
 
@@ -103,6 +139,7 @@ int		ft_write(char *str);
 
 void	ft_print_params(t_params *arg);
 char	*ft_append(char *buf, int n, char c);
+char	*ft_prepend(char *buf, int n, char c);
 t_bool		ft_is_char(char c1, char c2);
 
 //OTHER

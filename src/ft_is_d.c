@@ -1,44 +1,27 @@
 
 #include "ft_printf.h"
 
-static void		ft_override_params(t_params *arg, int nb)
+static void		ft_override_params(t_params *arg, long long nb)
 {
 	if (arg->flags[SPACE] && arg->flags[PLUS])
 		arg->flags[SPACE] = 0;
 	if (arg->flags[SPACE] && nb < 0)
 		arg->flags[SPACE] = 0;
+	if (arg->flags[PLUS] && nb < 0)
+		arg->flags[PLUS] = 0;
+	if (arg->flags[ZERO] && arg->flags[PREC] && arg->width)
+		arg->flags[ZERO] = 0;
 }
 
-static char	*ft_prep(char c)
-{
-	char	*preppie;
-
-	preppie = malloc(sizeof(char) + 1);
-	preppie[0] = c;
-	preppie[1] = '\0';
-	return (preppie);
-}
-
-static char	*ft_prepend(char *str, int number, t_params *arg)
-{
-	if (arg->flags[PLUS] && number >= 0)
-		return (ft_strjoin_clr(ft_prep('+'), str, 0));
-	else if (number < 0)
-		return (ft_strjoin_clr(ft_prep('-'), str, 0));
-	else if (arg->flags[SPACE])
-		return (ft_strjoin_clr(ft_prep(' '), str, 0));
-	else
-		return (str);
-}
-
-static char	*ft_malloc_width(int n, int z)
+static char	*ft_malloc_width(int n, t_params *arg)
 {
 	char	*str;
 	int		i;
 	char	c;
 
-	c = (z) ? '0' : ' ';
-	//c = ' ';
+	n = arg->width - arg->flags[SPACE] - arg->flags[PLUS] - n;
+
+	c = (arg->flags[ZERO]) ? '0' : ' ';
 	i = 0;
 	if (n < 0)
 		n = 0;
@@ -55,40 +38,83 @@ static char	*ft_malloc_width(int n, int z)
 	return (str);
 }
 
-static char	*ft_malloc_prec(char *str, int prec)
+static char	*ft_malloc_prec(char *str, t_params *arg)
 {
 	char	*s1;
 	int		i;
 	int		j;
 	int		len;
+	int		prec;
 
 	i = 0;
 	j = 0;
 	len = ft_strlen(str);
+	prec = arg->prec;
+	if (prec == 0 && arg->flags[PREC])
+		return (NULL);
 	s1 = (char *)malloc(sizeof(char) * ft_max(len, prec) + 1);
 	if (s1)
 	{
-/*		ft_putnbr(prec - len);
-		ft_putnbr(prec - len);
-		ft_putnbr(prec);
-		if (prec - len > 0)
-		{
-		ft_putstr("tata\n");
-		ft_putnbr(prec - len);
-*/
-			while (i < prec - len)
-				s1[i++] = '0';
-//		}
+		while (i < prec - len)
+			s1[i++] = '0';
 		while (j < len)
 		{
 			s1[i] = str[j];
 			j++;
 			i++;
 		}
-}
+		s1[i] = '\0';
+	}
 	return (s1);
 }
 
+char	*ft_is_d(t_params *arg, va_list lst)
+{
+	long long	number;
+	char		*s1;
+	char		*s2;
+	int			lstr;
+
+	number = ft_prop_cast(arg, lst, 'd');
+
+	ft_override_params(arg, number);
+
+	if (number >= 0)
+	{
+		s1 = ft_malloc_prec(ft_lltoa_base((long long)number, "0123456789"), arg);
+		lstr = ft_strlen(s1);
+	}
+	else
+	{
+		s1 = ft_malloc_prec(ft_lltoa_base((long long)(- number), "0123456789"), arg);
+		lstr = ft_strlen(s1) + 1;
+	}
+
+	s2 = ft_malloc_width(lstr, arg);
+
+	if (number < 0)
+	{
+		if (arg->flags[ZERO])
+			s2 = ft_prepend(s2, 1, '-');
+		else
+			s1 = ft_prepend(s1, 1, '-');
+	}
+	else if (number >= 0)
+	{
+		if (arg->flags[PLUS] && arg->flags[ZERO])
+			s2 = ft_prepend(s2, 1, '+');
+		else if (arg->flags[PLUS] && !arg->flags[ZERO])
+			s1 = ft_prepend(s1, 1, '+');
+		else if (arg->flags[SPACE])
+			s1 = ft_prepend(s1, 1, ' ');
+	}
+	if (arg->flags[MINUS])
+		return (ft_strjoin_clr(s1, s2, 2));
+	else
+		return (ft_strjoin_clr(s2 , s1, 2));
+}
+
+/*
 char	*ft_is_d(t_params *arg, va_list lst)
 {
 	long long	number;
@@ -98,11 +124,17 @@ char	*ft_is_d(t_params *arg, va_list lst)
 	number = ft_prop_cast(arg, lst, 'd');
 	//ft_print_params(arg);
 	ft_override_params(arg, number);
-	s1 = ft_malloc_prec(ft_itoa_base(ft_abs(number), "0123456789"), arg->prec);
-	s1 = ft_prepend(s1, number, arg);
+	if (number >= 0)
+		s1 = ft_malloc_prec(ft_lltoa_base((long long)number, "0123456789"), arg->prec);
+	else
+		s1 = ft_malloc_prec(ft_lltoa_base((long long)(- number), "0123456789"), arg->prec);
+	ft_putendl(s1);
+	//s1 = ft_prepend(s1, number, arg);
+	ft_putendl(s1);
 	s2 = ft_malloc_width(arg->width - ft_strlen(s1), arg->flags[ZERO]);	
 	if (arg->flags[MINUS])
 		return (ft_strjoin_clr(s1, s2, 2));
 	else
 		return (ft_strjoin_clr(s2 , s1, 2));
 }
+*/

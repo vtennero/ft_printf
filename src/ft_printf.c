@@ -82,7 +82,8 @@ int		ft_set_width(t_params *arg, char *str, int *index)
 			*index += 1;
 		}
 		*index -= 1;
-		return (1);
+		//if (arg->width > 0)
+			return (1);
 	}
 	return (0);
 }
