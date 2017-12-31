@@ -25,6 +25,7 @@ SRC =  main.c \
 	   ft_write.c \
 	   ft_is_s.c \
 	   ft_is_d.c \
+	   ft_is_c.c \
 	   ft_is_u.c \
 	   ft_prop_cast.c \
 	   ft_create_params.c \

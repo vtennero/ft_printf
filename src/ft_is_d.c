@@ -102,7 +102,9 @@ char	*ft_is_d(t_params *arg, va_list lst)
 			s2 = ft_prepend(s2, 1, '+');
 		else if (arg->flags[PLUS] && !arg->flags[ZERO])
 			s1 = ft_prepend(s1, 1, '+');
-		else if (arg->flags[SPACE])
+		else if (arg->flags[SPACE] && arg->flags[ZERO])
+			s2 = ft_prepend(s2, 1, ' ');
+		else if (arg->flags[SPACE] && !arg->flags[ZERO])
 			s1 = ft_prepend(s1, 1, ' ');
 	}
 	if (arg->flags[MINUS])

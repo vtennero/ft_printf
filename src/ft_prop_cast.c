@@ -43,6 +43,14 @@ void	*ft_prop_cast_s(t_params *arg, va_list lst)
 	else
 		return (va_arg(lst, char *));
 }
+
+int		ft_prop_cast_c(t_params *arg, va_list lst)
+{
+	if (arg->flags[L])
+		return (va_arg(lst, wint_t));
+	else
+		return (va_arg(lst, int));
+}
 /*
 long long	ft_prop_cast(t_params *arg, va_list lst, char c)
 {

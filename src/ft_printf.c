@@ -78,6 +78,8 @@ static int		ft_read_string(char *str, va_list arguments)
 		{
 			if (str[index] == '%')
 			{
+				if (ft_strlen(str) == 1)
+					return (0);
 				p++;
 				ft_bzero(&arg, sizeof(t_params));
 				//tmp = (tmp != 0) ? tmp + 1 : tmp;
@@ -119,7 +121,10 @@ static int		ft_read_string(char *str, va_list arguments)
 						break;
 					}
 					else
+					{
+						index--;
 						break;
+					}
 					index++;		
 				}
 			}

@@ -22,6 +22,13 @@ int	main(int ac, char **av)
 		ft_putchar(10);
 		ft_write("standard printf :\n");
 		printf(TEXT);
+
+		ft_write("my number of printed characters\n");
+		ft_putnbr(ft_printf(TEXT));
+		ft_putchar(10);
+		ft_write("standard printf :\n");
+		ft_putnbr(printf(TEXT));
+		ft_putchar(10);
 	}
 	//while (1)
 	//	;

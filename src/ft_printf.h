@@ -14,6 +14,7 @@
 # define FT_PRINTF_H
 
 #include "../libft/libft.h"
+#include <wchar.h>
 #include <limits.h>
 #include <stdarg.h>
 #include <stdint.h>
@@ -23,6 +24,32 @@
 
 // NSFW
 
+
+//#define TEXT "%S", L"米"
+//#define TEXT "%.4S", L"我是一只猫。" //undefined behavior
+
+//#define TEXT "%lu", 4294967296
+//#define TEXT "%lu", -42
+//#define TEXT "%llu", 4999999999
+//#define TEXT "%ju", 4999999999
+//#define TEXT "%ju", 4294967296
+
+//c
+
+//#define TEXT "%+c", 0
+#define TEXT "%c", 0
+//#define TEXT "% c", 0
+//#define TEXT "%5c", 42
+//#define TEXT "%-5c", 42
+//#define TEXT "%2c", 0
+
+//#define TEXT "% c", 'a'
+//#define TEXT "% c", 0
+//#define TEXT "@moulitest: %c", 0
+//#define TEXT "@moulitest: %c", 45
+
+//u
+
 //#define TEXT "%u", -4294967296
 //#define TEXT "%u", -4294967297
 //#define TEXT "%u", 9223372036854775807
@@ -31,7 +58,8 @@
 
 //d
 
-#define TEXT "%lllhd", 92233
+//#define TEXT "{% 03d}", 0
+//#define TEXT "%lllhd", 92233
 //#define TEXT "%.d %.0d", 0, 0
 //#define TEXT "%.d", 0, 0
 //#define TEXT "%.d", 0
@@ -83,12 +111,15 @@
 
 //other
 
+//#define TEXT ""
 //#define TEXT "%5%"
 //#define TEXT "%%%%%%%%%trtftft%%%%"
 //#define TEXT "toto%%basdsadas"
 //#define TEXT "totos", "titi"
 //#define TEXT "toto%%b%s", "titi"
 //#define TEXT "toto%%b/%10-.4s"
+//#define TEXT "%"
+//#define TEXT "% Zoooo"
 
 typedef int t_bool;
 
@@ -163,6 +194,7 @@ char		*ft_is_cap_c(t_params *arg, va_list lst);
 long long	ft_prop_cast_d(t_params *arg, va_list lst);
 long long	ft_prop_cast_u(t_params *arg, va_list lst);
 void		*ft_prop_cast_s(t_params *arg, va_list lst);
+int			ft_prop_cast_c(t_params *arg, va_list lst);
 
 //PRINT
 
