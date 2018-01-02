@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_override_spec.c                                 :+:      :+:    :+:   */
+/*   ft_override_length.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -47,7 +47,7 @@ static void	ft_is_h(t_params *arg)
 	arg->flags[HH] = 0;
 }
 
-void		ft_override_spec(t_params *arg)
+void		ft_override_length(t_params *arg)
 {
 	if (arg->flags[Z])
 		ft_is_z(arg);

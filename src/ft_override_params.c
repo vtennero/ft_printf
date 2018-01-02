@@ -18,7 +18,7 @@ t_params	*ft_general_overrides(t_params *arg)
 		arg->flags[SPACE] = 0;
 	if (arg->flags[MINUS] && arg->flags[ZERO])
 		arg->flags[ZERO] = 0;
-	ft_override_spec(arg);
+	ft_override_length(arg);
 	//cas des signed char
 	
 	//if (arg->flags[PREC] && arg->flags[ZERO])

@@ -24,6 +24,12 @@
 
 // NSFW
 
+#define TEXT "%x\n", -30
+
+
+//#define TEXT "%5p\n", &i
+
+//#define TEXT "@moulitest: %#.o %#.0o", 0, 0
 
 //#define TEXT "%S", L"米"
 //#define TEXT "%.4S", L"我是一只猫。" //undefined behavior
@@ -33,11 +39,24 @@
 //#define TEXT "%llu", 4999999999
 //#define TEXT "%ju", 4999999999
 //#define TEXT "%ju", 4294967296
+//#define TEXT "%hU", 4294967296
+
+//o
+
+//#define TEXT "%#6o", 2500
+//#define TEXT "%-#6o", 2500
+//#define TEXT "@moulitest: %.o %.0o", 0, 0
+//#define TEXT "%o\n", 8
+//#define TEXT "%-5.10o", 2500
+//#define TEXT "%-10.5o", 2500
+//define TEXT "%.#o", 0
+//#define TEXT "@moulitest: %5.o %5.0o", 0, 0
+//#define TEXT "@moulitest: %.10o", 42
 
 //c
 
 //#define TEXT "%+c", 0
-#define TEXT "%c", 0
+//#define TEXT "%c", 0
 //#define TEXT "% c", 0
 //#define TEXT "%5c", 42
 //#define TEXT "%-5c", 42
@@ -167,12 +186,11 @@ int		ft_set_spec(t_params *arg, char *str, int *index, va_list arguments, char *
 
 t_params	*ft_general_overrides(t_params *arg);
 void		ft_override_params_d(t_params *arg, long long nb);
-void		ft_override_spec(t_params *arg);
+void		ft_override_length(t_params *arg);
 
 //SPECIFIERS
 
 char		*ft_is_s(t_params *arg, va_list lst);
-
 char		*ft_is_cap_s(t_params *arg, va_list lst);
 char		*ft_is_p(t_params *arg, va_list lst);
 char		*ft_is_d(t_params *arg, va_list lst);
@@ -192,9 +210,10 @@ char		*ft_is_cap_c(t_params *arg, va_list lst);
 //long long	ft_prop_cast(t_params *arg, va_list lst, char c);
 
 long long	ft_prop_cast_d(t_params *arg, va_list lst);
-long long	ft_prop_cast_u(t_params *arg, va_list lst);
+char		*ft_prop_cast_u(t_params *arg, va_list lst);
 void		*ft_prop_cast_s(t_params *arg, va_list lst);
 int			ft_prop_cast_c(t_params *arg, va_list lst);
+void	*ft_prop_cast_p(t_params *arg, va_list lst);
 
 //PRINT
 

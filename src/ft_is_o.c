@@ -1,31 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_u.c                                          :+:      :+:    :+:   */
+/*   ft_is_o.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/30 15:52:33 by vtennero          #+#    #+#             */
-/*   Updated: 2017/12/30 15:52:34 by vtennero         ###   ########.fr       */
+/*   Created: 2018/01/02 18:52:44 by vtennero          #+#    #+#             */
+/*   Updated: 2018/01/02 18:52:46 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-long long	ft_unsign(long long number)
-{
-	long long	lim;
-
-	lim = 4294967296;
-	if (number >= 0)
-	{
-		while (number - lim >= 0)
-			number -= lim;
-	}
-	else
-		number = lim - number;
-	return (number);
-}
 
 static char	*ft_malloc_width(int n, t_params *arg)
 {
@@ -82,27 +67,26 @@ static char	*ft_malloc_prec(char *str, t_params *arg)
 	return (s1);
 }
 
-char	*ft_is_u(t_params *arg, va_list lst)
+char	*ft_is_o(t_params *arg, va_list lst)
 {
 	long long	number;
 	char		*s1;
 	char		*s2;
-	char		*str;
+	int			lstr;
 
-	//ft_putendl(ft_llutoa(4294967296));
-	str = ft_prop_cast_u(arg, lst);
-	//ft_putendl(str);
-	number = ft_unsign(number);
-	s1 = ft_malloc_prec(str, arg);
-	s2 = ft_malloc_width(ft_strlen(s1), arg);
-	/*if (arg->flags[PLUS] && arg->flags[ZERO])
-		s2 = ft_prepend(s2, 1, '+');
-	else if (arg->flags[PLUS] && !arg->flags[ZERO])
-		s1 = ft_prepend(s1, 1, '+');
-	else if (arg->flags[SPACE])
-		s1 = ft_prepend(s1, 1, ' ');*/
+	number = ft_prop_cast_d(arg, lst);
+	if (number >= 0)
+	{
+		s1 = ft_malloc_prec(ft_llutoa_base(number, "01234567"), arg);
+		if (arg->flags[HASH])
+			s1 = ft_prepend(s1, 1, '0');
+	}
+	//ft_putendl(s1);
+	lstr = ft_strlen(s1);
+	s2 = ft_malloc_width(lstr, arg);
+	//ft_putendl(s2);
 	if (arg->flags[MINUS])
-		return (ft_strjoin_clr(s1, s2, 2));
+		return (ft_strjoin_clr(s1, s2, 1));
 	else
-		return (ft_strjoin_clr(s2, s1, 2));
+		return (ft_strjoin_clr(s2, s1, 0));
 }

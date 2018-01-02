@@ -18,22 +18,22 @@ long long	ft_prop_cast_d(t_params *arg, va_list lst)
 		return (va_arg(lst, int));
 }
 
-long long	ft_prop_cast_u(t_params *arg, va_list lst)
+char		*ft_prop_cast_u(t_params *arg, va_list lst)
 {
-	if (arg->flags[HH])
-		return ((char)va_arg(lst, unsigned int));
-	else if (arg->flags[H])
-		return ((short)va_arg(lst, unsigned int));
-	else if (arg->flags[L])
-		return (va_arg(lst, unsigned long));
-	else if (arg->flags[LL])
-		return (va_arg(lst, unsigned long long));
+	if (arg->flags[Z])
+		return (ft_llutoa(va_arg(lst, size_t)));
 	else if (arg->flags[J])
-		return (va_arg(lst, uintmax_t));
-	else if (arg->flags[Z])
-		return (va_arg(lst, size_t));
+		return (ft_llutoa(va_arg(lst, uintmax_t)));
+	else if (arg->flags[LL])
+		return (ft_llutoa(va_arg(lst, unsigned long long)));
+	else if (arg->flags[L])
+		return (ft_lutoa(va_arg(lst, unsigned long)));
+	else if (arg->flags[H])
+		return (ft_llutoa((short)va_arg(lst, unsigned int)));
+	else if (arg->flags[HH])
+		return (ft_itoa((char)va_arg(lst, unsigned int)));
 	else
-		return (va_arg(lst, unsigned int));
+		return (ft_llutoa(va_arg(lst, unsigned int)));
 }
 
 void	*ft_prop_cast_s(t_params *arg, va_list lst)
@@ -51,6 +51,12 @@ int		ft_prop_cast_c(t_params *arg, va_list lst)
 	else
 		return (va_arg(lst, int));
 }
+
+void	*ft_prop_cast_p(t_params *arg, va_list lst)
+{
+	return (ft_itoa((int)va_arg(lst, void *)));
+}
+
 /*
 long long	ft_prop_cast(t_params *arg, va_list lst, char c)
 {
