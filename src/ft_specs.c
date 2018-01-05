@@ -41,12 +41,6 @@ char	*ft_is_cap_u(t_params *arg, va_list lst)
 	return (ft_is_u(arg, lst));
 }
 
-char	*ft_is_cap_x(t_params *arg, va_list lst)
-{
-	arg->flags[L] = 1;
-	return (ft_is_x(arg, lst));
-}
-
 char	*ft_is_cap_c(t_params *arg, va_list lst)
 {
 	arg->flags[L] = 1;

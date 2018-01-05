@@ -24,7 +24,13 @@
 
 // NSFW
 
-#define TEXT "%x\n", -30
+
+//#define TEXT "%jx", -4294967296
+//#define TEXT "%jx", -2147483648
+#define TEXT "%#8x", 42
+//#define TEXT "%X", -42
+//#define TEXT "%x %.x %.0x %.#0x", 0, 0, 0, 0
+//#define TEXT "%x %.x %.0x %.#0x", 1, 1, 1, 1
 
 
 //#define TEXT "%5p\n", &i
