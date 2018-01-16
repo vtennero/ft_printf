@@ -43,7 +43,8 @@ int		ft_set_spec(t_params *arg, char *str, int *index, va_list arguments, char *
 		//ft_write(g_formats[str['s']].printfunc(arg, va_arg(arguments, char*)));
 		//ft_write(va_arg(arguments, char *));
 		*buf = ft_strjoin_clr(*buf, g_formats[str[(*index)]].printfunc(arg, arguments), 0);
-		//ft_write(*buf);
+		//ft_putendl("buf");
+		//ft_putendl(*buf);
 
 		//ft_write(g_formats[str[*index]].printfunc(arg, var));
 		return (1);

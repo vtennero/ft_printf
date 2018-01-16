@@ -18,6 +18,24 @@ long long	ft_prop_cast_d(t_params *arg, va_list lst)
 		return (va_arg(lst, int));
 }
 
+long long	ft_prop_cast_o(t_params *arg, va_list lst)
+{
+	if (arg->flags[HH])
+		return ((char)va_arg(lst, unsigned int));
+	else if (arg->flags[H])
+		return ((short)va_arg(lst, unsigned int));
+	else if (arg->flags[L])
+		return (va_arg(lst, unsigned long));
+	else if (arg->flags[LL])
+		return (va_arg(lst, unsigned long long));
+	else if (arg->flags[J])
+		return (va_arg(lst, uintmax_t));
+	else if (arg->flags[Z])
+		return (va_arg(lst, size_t));
+	else
+		return (va_arg(lst, unsigned int));
+}
+
 char		*ft_prop_cast_u(t_params *arg, va_list lst)
 {
 	if (arg->flags[Z])

@@ -24,10 +24,33 @@
 
 // NSFW
 
+//#define TEXT "%#.4x, %#.0x", 0, 0
+//#define TEXT "%#.4x", 0
+#define TEXT "%#.0x", 0
+
+//#define TEXT "%#o", 0
+//#define TEXT "%#6o", 2500
+
+//o resume
+//#define TEXT ".%.o\n.zero%.0o\n5.%5.o\n5.zero%5.0o\n#%#o\n#.%#.o\n#.zero%#.0o", 0, 0, 0, 0, 0, 0, 0
+
+//#define TEXT "%#.o, %#.0o", 0, 0
+//#define TEXT "%hhu / %hhu", SHRT_MAX - 42, SHRT_MAX - 4200
 
 //#define TEXT "%jx", -4294967296
+//#define TEXT "%lu", -42
+
 //#define TEXT "%jx", -2147483648
-#define TEXT "%#8x", 42
+//#define TEXT "%5.x %5.0x", 0, 0
+
+//#define TEXT "%5.0xa b%5.x", 0, 0
+//#define TEXT "%5.xa b%5.0x", 128, 256
+//#define TEXT "%5.xa b%5.0x", 128, 128
+//#define TEXT "%5.x", 128
+//#define TEXT "%5.0x", 128
+//#define TEXT "%5.x", 0
+//#define TEXT "%5.0x", 0
+
 //#define TEXT "%X", -42
 //#define TEXT "%x %.x %.0x %.#0x", 0, 0, 0, 0
 //#define TEXT "%x %.x %.0x %.#0x", 1, 1, 1, 1
@@ -41,7 +64,7 @@
 //#define TEXT "%.4S", L"我是一只猫。" //undefined behavior
 
 //#define TEXT "%lu", 4294967296
-//#define TEXT "%lu", -42
+
 //#define TEXT "%llu", 4999999999
 //#define TEXT "%ju", 4999999999
 //#define TEXT "%ju", 4294967296
@@ -216,10 +239,15 @@ char		*ft_is_cap_c(t_params *arg, va_list lst);
 //long long	ft_prop_cast(t_params *arg, va_list lst, char c);
 
 long long	ft_prop_cast_d(t_params *arg, va_list lst);
+long long	ft_prop_cast_o(t_params *arg, va_list lst);
 char		*ft_prop_cast_u(t_params *arg, va_list lst);
 void		*ft_prop_cast_s(t_params *arg, va_list lst);
 int			ft_prop_cast_c(t_params *arg, va_list lst);
-void	*ft_prop_cast_p(t_params *arg, va_list lst);
+void		*ft_prop_cast_p(t_params *arg, va_list lst);
+
+//CHOOSE ITOA
+
+char		*ft_choose_itoa_o(t_params *arg, va_list lst, long long number);
 
 //PRINT
 

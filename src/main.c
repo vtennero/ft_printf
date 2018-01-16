@@ -25,6 +25,11 @@ int	main(int ac, char **av)
 		ft_write("standard printf :\n");
 		printf(TEXT);
 
+
+		/*printf("LE VRAI %5.x\n", 128);
+		ft_printf("LE FAUX %5.x\n", 128);
+		printf("LE VRAI 2 %5.0x\n", 128);
+		ft_printf("LE FAUX 2 %5.0x\n", 128);*/
 		/*ft_write("my number of printed characters\n");
 		ft_putnbr(ft_printf(TEXT));
 		ft_putchar(10);

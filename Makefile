@@ -18,7 +18,7 @@ FLAGS = -Wall -Werror -Wextra
 #FLAGS = -Wall -Wno-empty-body -Wno-unused -Wextra
 #FLAGS = 
 
-SRC =   \
+SRC =  main.c \
 	   ft_printf.c \
 	   ft_specs.c \
 	   utilities.c \
@@ -34,7 +34,8 @@ SRC =   \
 	   ft_create_params.c \
 	   ft_set_params.c \
 	   ft_override_params.c \
-	   ft_override_length.c
+	   ft_override_length.c \
+	   ft_choose_itoa.c
 
 LSRC = ft_memcmp.c \
 	  ft_strclr.c \

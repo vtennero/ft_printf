@@ -6,7 +6,7 @@
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 15:26:48 by vtennero          #+#    #+#             */
-/*   Updated: 2017/11/27 17:03:58 by vtennero         ###   ########.fr       */
+/*   Updated: 2018/01/16 14:28:18 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static void	ft_strjoin_clr_free(char *tmp1, char *tmp2, int d)
 {
-	if (d == 0)
+	if (d == 0 && tmp1)
 		free(tmp1);
-	else if (d == 1)
+	else if (d == 1 && tmp2)
 		free(tmp2);
-	else if (d == 2)
+	else if (d == 2 && tmp1 && tmp2)
 	{
 		free(tmp1);
 		free(tmp2);
