@@ -16,14 +16,16 @@ static char	*ft_malloc_width(t_params *arg)
 {
 	char	*str;
 	int		i;
+	char	c;
 
 	i = 0;
 	if (!arg->width)
 		return (NULL);
+	c = (arg->flags[ZERO]) ? '0' : ' ';
 	str = (char *)malloc(arg->width - 1 + 1);
 	if (str)
 		while (i < arg->width - 1)
-			str[i++] = ' ';
+			str[i++] = c;
 	return (str);
 }
 
@@ -35,13 +37,13 @@ char		*ft_is_c(t_params *arg, va_list lst)
 	if (arg->flags[MINUS])
 	{
 		if (c == 0)
-			return (ft_strjoin_clr("^@", ft_malloc_width(arg), 1));
+			c = -8;
 		return (ft_prepend(ft_malloc_width(arg), 1, c));
 	}
 	else
 	{
 		if (c == 0)
-			return (ft_strjoin_clr(ft_malloc_width(arg), "^@", 0));
+			c = -8;
 		return (ft_append(ft_malloc_width(arg), 1, c));
 	}
 }

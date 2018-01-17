@@ -21,6 +21,7 @@ char		*ft_itoa(int n)
 	neg = (n < 0) ? 1 : 0;
 	i = ft_intlen((n));
 	str = malloc(sizeof(char) * i + 1);
+	str[i] = '\0';
 	if (str)
 	{
 		while (i > 0)

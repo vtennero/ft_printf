@@ -1,30 +1,26 @@
 
 #include "ft_printf.h"
 
-static int	ft_check_if_null(char *str)
+static void	ft_check_if_null(char *str, int n)
 {
-	int		n;
-	char	*s2;
+	int		i;
 
-	n = 0;
-	if (!str)
-		return (0);
-	if ((s2 = ft_strstr(str, "^@")) != 0)
+	i = 0;
+	while (i < n)
 	{
-		n++;
-		//while ((s2 = ft_strstr(s2, "^@")) != 0)
-		//	n++;
+		if (str[i] == -8)
+			str[i] = 0;
+		i++;
 	}
-	return (n);
 }
 
 int	ft_write(char *str)
 {
 	int	n;
-	int	p;
 
 	n = ft_strlen(str);
-	p = ft_check_if_null(str);
+	ft_check_if_null(str, n);
 	write(1, str, n);
-	return (n - p);
+	//free(str);
+	return (n);
 }

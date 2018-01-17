@@ -24,9 +24,30 @@
 
 // NSFW
 
+//#define TEXT "%u%u%u%u%u", 1, 100, 999, 42, 999988888
+//#define TEXT "%u", 42
+
+//#define TEXT "{%5%}", 0
+//#define TEXT "{%5.%}", 0
+//#define TEXT "{%05.%}", 0
+
+//p
+
+//#define TEXT "wdt5\t|%5p|\nwdt5-\t|%5-p|\nwdt5.\t|%5.p|\n.\t|%.p|\n.zero\t|%.0p|\naddrs\t|%p|\n", 0, 0, 0, 0, 0, &i
+
+//#define TEXT "%-12p", &i
+//#define TEXT "%p", 140734630582824
+
+//#define TEXT "%.0p", 0
+//#define TEXT "%.p", 0
+//#define TEXT "%.5p", 0
+//#define TEXT "%15-.0p", 56
+
 //#define TEXT "%#.4x, %#.0x", 0, 0
 //#define TEXT "%#.4x", 0
-#define TEXT "%#.0x", 0
+//#define TEXT "%#.0x", 0
+#define TEXT "{%-15Z}", 123
+
 
 //#define TEXT "%#o", 0
 //#define TEXT "%#6o", 2500

@@ -19,6 +19,7 @@ char		*ft_llutoa(unsigned long long n)
 
 	i = ft_ullonglen((n));
 	str = malloc(sizeof(char) * i + 1);
+	str[i] = '\0';
 	if (str)
 	{
 		while (i > 0)

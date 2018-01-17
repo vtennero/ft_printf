@@ -91,7 +91,6 @@ char	*ft_is_u(t_params *arg, va_list lst)
 
 	//ft_putendl(ft_llutoa(4294967296));
 	str = ft_prop_cast_u(arg, lst);
-	//ft_putendl(str);
 	number = ft_unsign(number);
 	s1 = ft_malloc_prec(str, arg);
 	s2 = ft_malloc_width(ft_strlen(s1), arg);
