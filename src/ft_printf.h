@@ -24,6 +24,16 @@
 
 // NSFW
 
+//#define TEXT "%o, %ho, %hho", -42, -42, -42
+#define TEXT "%x, %hx, %hhx", -42, -42, -42
+
+//#define TEXT "%S", L"米"
+
+//#define TEXT "%hhu / %hhu", SHRT_MAX - 42, SHRT_MAX - 4200
+
+//real printf segfaults
+//#define TEXT "%s%S%p%d%D%i%o%O%u%U%x%X%c%C", -30, -30, -30, -30, -30, -30, -30, -30, -30, -30, -30, -30, -30, -30, -30
+
 //#define TEXT "%u%u%u%u%u", 1, 100, 999, 42, 999988888
 //#define TEXT "%u", 42
 
@@ -46,7 +56,7 @@
 //#define TEXT "%#.4x, %#.0x", 0, 0
 //#define TEXT "%#.4x", 0
 //#define TEXT "%#.0x", 0
-#define TEXT "{%-15Z}", 123
+//#define TEXT "{%-15Z}", 123
 
 
 //#define TEXT "%#o", 0
@@ -260,11 +270,13 @@ char		*ft_is_cap_c(t_params *arg, va_list lst);
 //long long	ft_prop_cast(t_params *arg, va_list lst, char c);
 
 long long	ft_prop_cast_d(t_params *arg, va_list lst);
-long long	ft_prop_cast_o(t_params *arg, va_list lst);
+unsigned long long	ft_prop_cast_o(t_params *arg, va_list lst);
 char		*ft_prop_cast_u(t_params *arg, va_list lst);
 void		*ft_prop_cast_s(t_params *arg, va_list lst);
 int			ft_prop_cast_c(t_params *arg, va_list lst);
-void		*ft_prop_cast_p(t_params *arg, va_list lst);
+unsigned long long ft_prop_cast_p(t_params *arg, va_list lst);
+unsigned long long ft_prop_cast_x(t_params *arg, va_list lst);
+unsigned long long ft_prop_cast_unsigned(t_params *arg, va_list lst);
 
 //CHOOSE ITOA
 

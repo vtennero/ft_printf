@@ -132,6 +132,7 @@ clean:
 
 fclean:
 	@ make clean
+	@ /bin/rm -f $(LIB)
 	@ /bin/rm -f $(NAME)
 
 re:

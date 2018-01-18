@@ -74,14 +74,20 @@ static char	*ft_malloc_prec(char *str, t_params *arg)
 
 char	*ft_is_o(t_params *arg, va_list lst)
 {
-	long long	number;
+	unsigned long long	number;
 	char		*s1;
 	char		*s2;
 	int			lstr;
 
-	number = ft_prop_cast_o(arg, lst);
-	s1 = ft_malloc_prec(ft_choose_itoa_o(arg, lst, number), arg);
-	/*if (number >= 0)
+	
+
+	number = ft_prop_cast_unsigned(arg, lst);
+	s1 = ft_malloc_prec(ft_llutoa_base(number, "01234567"), arg);
+
+	//s1 = ft_malloc_prec(ft_choose_itoa_o(arg, lst, number), arg);
+	
+	/*number = ft_prop_cast_o(arg, lst);
+	if (number >= 0)
 	{
 		s1 = str;
 		//s1 = ft_malloc_prec(ft_llutoa_base(number, "01234567"), arg);*/

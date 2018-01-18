@@ -69,22 +69,22 @@ static char	*ft_malloc_prec(char *str, t_params *arg)
 
 char	*ft_is_x(t_params *arg, va_list lst)
 {
-	long long	number;
+	unsigned long long	number;
 	char		*s1;
 	char		*s2;
 	int			hash;
 
 	hash = 0;
-	number = ft_prop_cast_d(arg, lst);
-	if (number >= 0)
+	number = ft_prop_cast_unsigned(arg, lst);
+	//if (number >= 0)
 		s1 = ft_malloc_prec(ft_llutoa_base(number, "0123456789abcdef"), arg);
-	else
+	/*else
 	{
 		s1 = ft_malloc_prec(ft_lltoa_base(-number -1, "fedcba9876543210"), arg);
 		s1 = ft_prepend(s1, 8 - ft_strlen(s1), 'f');
-		if (number < -2147483647)
-			s1 = ft_strjoin_clr("ffffffff", s1, 1);
-	}
+		//if (number < -2147483647)
+		//	s1 = ft_strjoin_clr("ffffffff", s1, 1);
+	}*/
 	if (arg->flags[HASH] && number != 0)
 		hash = 2;
 	s2 = ft_malloc_width(ft_strlen(s1) + hash, arg);
@@ -108,21 +108,21 @@ char	*ft_is_x(t_params *arg, va_list lst)
 
 char	*ft_is_cap_x(t_params *arg, va_list lst)
 {
-	long long	number;
+	unsigned long long	number;
 	char		*s1;
 	char		*s2;
 	int			hash;
 
 	hash = 0;
-	number = ft_prop_cast_d(arg, lst);
+	number = ft_prop_cast_unsigned(arg, lst);
 	if (number >= 0)
 		s1 = ft_malloc_prec(ft_llutoa_base(number, "0123456789ABCDEF"), arg);
 	else
 	{
 		s1 = ft_malloc_prec(ft_lltoa_base(-number -1, "FEDCBA9876543210"), arg);
 		s1 = ft_prepend(s1, 8 - ft_strlen(s1), 'F');
-		if (number < -2147483647)
-			s1 = ft_strjoin_clr("FFFFFFF", s1, 1);
+		//if (number < -2147483647)
+		//	s1 = ft_strjoin_clr("FFFFFFF", s1, 1);
 	}
 	if (arg->flags[HASH] && number != 0)
 		hash = 2;
