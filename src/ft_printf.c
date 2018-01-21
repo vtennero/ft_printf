@@ -66,7 +66,7 @@ static int		ft_is_perc(char c)
 		return (1);
 	return (0);
 }
-
+/*
 static int		ft_read_string(char *str, va_list arguments)
 {
 	int			index;
@@ -111,7 +111,7 @@ static int		ft_read_string(char *str, va_list arguments)
 	}
 	return (ft_write(buf));
 }
-/*
+*/
 static int		ft_read_string(char *str, va_list arguments)
 {
 	int			index;
@@ -182,7 +182,7 @@ static int		ft_read_string(char *str, va_list arguments)
 	}
 	return (ft_write(buf));
 }
-*/
+
 int	ft_printf(const char *format, ...)
 {
 	va_list	arguments;
