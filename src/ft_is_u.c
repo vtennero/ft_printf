@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-long long	ft_unsign(long long number)
+/*long long	ft_unsign(long long number)
 {
 	long long	lim;
 
@@ -25,7 +25,7 @@ long long	ft_unsign(long long number)
 	else
 		number = lim - number;
 	return (number);
-}
+}*/
 
 static char	*ft_malloc_width(int n, t_params *arg)
 {
@@ -84,15 +84,18 @@ static char	*ft_malloc_prec(char *str, t_params *arg)
 
 char	*ft_is_u(t_params *arg, va_list lst)
 {
-	long long	number;
+	unsigned long long	number;
 	char		*s1;
 	char		*s2;
-	char		*str;
+	//char		*str;
 
 	//ft_putendl(ft_llutoa(4294967296));
-	str = ft_prop_cast_u(arg, lst);
-	number = ft_unsign(number);
-	s1 = ft_malloc_prec(str, arg);
+	//str = ft_prop_cast_u(arg, lst);
+	//number = ft_unsign(number);
+	//s1 = ft_malloc_prec(str, arg);
+
+	number = ft_prop_cast_unsigned(arg, lst);
+	s1 = ft_malloc_prec(ft_llutoa(number), arg);
 	s2 = ft_malloc_width(ft_strlen(s1), arg);
 	/*if (arg->flags[PLUS] && arg->flags[ZERO])
 		s2 = ft_prepend(s2, 1, '+');

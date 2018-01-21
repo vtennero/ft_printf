@@ -25,7 +25,8 @@
 // NSFW
 
 //#define TEXT "%o, %ho, %hho", -42, -42, -42
-#define TEXT "%x, %hx, %hhx", -42, -42, -42
+//#define TEXT "{%05.%}"
+//#define TEXT "%x, %hx, %hhx", -42, -42, -42
 
 //#define TEXT "%S", L"米"
 
@@ -178,7 +179,7 @@
 //#define TEXT "%ld", 2147483648
 //#define TEXT "%ld", -2147483649
 //#define TEXT "%zd", 4294967295
-//#define TEXT "%zd", 4294967296
+#define TEXT "%zd", 4294967296
 
 //s
 
@@ -269,14 +270,16 @@ char		*ft_is_cap_c(t_params *arg, va_list lst);
 
 //long long	ft_prop_cast(t_params *arg, va_list lst, char c);
 
-long long	ft_prop_cast_d(t_params *arg, va_list lst);
-unsigned long long	ft_prop_cast_o(t_params *arg, va_list lst);
-char		*ft_prop_cast_u(t_params *arg, va_list lst);
+long long	ft_prop_cast_signed(t_params *arg, va_list lst);
+unsigned long long ft_prop_cast_unsigned(t_params *arg, va_list lst);
 void		*ft_prop_cast_s(t_params *arg, va_list lst);
 int			ft_prop_cast_c(t_params *arg, va_list lst);
+/*
+
+unsigned long long	ft_prop_cast_o(t_params *arg, va_list lst);
+char		*ft_prop_cast_u(t_params *arg, va_list lst);
 unsigned long long ft_prop_cast_p(t_params *arg, va_list lst);
-unsigned long long ft_prop_cast_x(t_params *arg, va_list lst);
-unsigned long long ft_prop_cast_unsigned(t_params *arg, va_list lst);
+unsigned long long ft_prop_cast_x(t_params *arg, va_list lst);*/
 
 //CHOOSE ITOA
 

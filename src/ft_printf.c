@@ -60,18 +60,68 @@ static char		*ft_width_perc(t_params *arg)
 		return(ft_is_s_left(arg->width, arg->width - 1, "%", ' '));
 }
 
+static int		ft_is_perc(char c)
+{
+	if (c == '%')
+		return (1);
+	return (0);
+}
+
 static int		ft_read_string(char *str, va_list arguments)
 {
 	int			index;
 	t_params	arg;
 	char		*buf;
-	//int			tmp;
 	int			p;
 
 	buf = NULL;
 	index = 0;
 	p = 0;
-	//tmp = index;
+	ft_bzero(&arg, sizeof(t_params));
+	if (str)
+	{
+		while (str[index] != '\0')
+		{
+			if (str[index] == '%')
+			{
+
+				if (ft_strlen(str) == 1)
+					return (0);
+				p++;
+				ft_bzero(&arg, sizeof(t_params));
+				index++;
+				while (str[index] != '\0')
+				{
+					if (!(ft_set_flags(&arg, str, &index) == 1))
+						if (!(ft_set_length(&arg, str, &index) == 1))
+							if (!(ft_set_width(&arg, str, &index) == 1))
+								if (!(ft_set_prec(&arg, str, &index) == 1))
+									if (!(ft_set_spec(&arg, str, &index, arguments, &buf) == 1))
+										if (!(ft_is_perc(str[index]) == 1))
+											buf = ft_append(buf, 1, str[index]);
+										else
+											break;
+				index++;
+				}
+			}
+			else
+				buf = ft_append(buf, 1, str[index]);
+			index++;
+		}
+	}
+	return (ft_write(buf));
+}
+/*
+static int		ft_read_string(char *str, va_list arguments)
+{
+	int			index;
+	t_params	arg;
+	char		*buf;
+	int			p;
+
+	buf = NULL;
+	index = 0;
+	p = 0;
 	ft_bzero(&arg, sizeof(t_params));
 	if (str)
 	{
@@ -83,8 +133,6 @@ static int		ft_read_string(char *str, va_list arguments)
 					return (0);
 				p++;
 				ft_bzero(&arg, sizeof(t_params));
-				//tmp = (tmp != 0) ? tmp + 1 : tmp;
-				//buf = ft_strjoin_clr(buf, ft_strsub(str, tmp, index - tmp), 1);
 				index++;
 				while (str[index] != '\0')
 				{
@@ -105,7 +153,6 @@ static int		ft_read_string(char *str, va_list arguments)
 						;
 					else if (ft_set_spec(&arg, str, &index, arguments, &buf) == 1)
 					{
-						//tmp = index;
 						break;
 					}
 					else if (str[index] == '%')
@@ -117,7 +164,6 @@ static int		ft_read_string(char *str, va_list arguments)
 						}
 						index--;
 						buf = ft_append(buf, p / 2, '%');
-						//tmp = index;
 						p = 0;
 						break;
 					}
@@ -136,7 +182,7 @@ static int		ft_read_string(char *str, va_list arguments)
 	}
 	return (ft_write(buf));
 }
-
+*/
 int	ft_printf(const char *format, ...)
 {
 	va_list	arguments;
@@ -144,8 +190,6 @@ int	ft_printf(const char *format, ...)
 
 	ft_set_g_formats();
 	va_start(arguments, format);
-	/*if (ft_strstr(format, "%") == NULL)
-		return (ft_write((char *)format));*/
 	n = ft_read_string((char *)format, arguments);
 	va_end(arguments);
 	return (n);

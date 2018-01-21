@@ -74,7 +74,7 @@ char	*ft_is_d(t_params *arg, va_list lst)
 	char		*s2;
 	int			lstr;
 
-	number = ft_prop_cast_d(arg, lst);
+	number = ft_prop_cast_signed(arg, lst);
 	ft_override_params_d(arg, number);
 	if (number >= 0)
 	{

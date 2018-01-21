@@ -19,11 +19,11 @@ int	main(int ac, char **av)
 
 	if (ac)
 	{
-		ft_putendl("my printf :");
+		//ft_putendl("my printf :");
 		ft_printf(TEXT);
-		ft_putchar(10);
-		ft_putendl("standard printf :");
-		printf(TEXT);
+		//ft_putchar(10);
+		//ft_putendl("standard printf :");
+		//printf(TEXT);
 
 		/*printf("LE VRAI %5.x\n", 128);
 		ft_printf("LE FAUX %5.x\n", 128);
