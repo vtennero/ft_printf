@@ -29,9 +29,11 @@ int		ft_set_flags(t_params *arg, char *str, int *index)
 
 int		ft_set_length(t_params *arg, char *str, int *index)
 {
+	//ft_putendl("//FT_SET_LENGTH//");
 	if (ft_strnequ(str + *index, "hh", 2) == 1)
 	{
 		*index += 1;
+		//ft_putendl("HH detected");
 		return (arg->flags[HH] = 1);
 	}
 	if (ft_strnequ(str + *index, "ll", 2) == 1)
@@ -40,7 +42,10 @@ int		ft_set_length(t_params *arg, char *str, int *index)
 		return (arg->flags[LL] = 1);
 	}
 	else if (ft_is_char(str[*index], 'h') == 1)
+		{
+		//ft_putendl("H detected");
 		return (arg->flags[H] = 1);
+		}
 	else if (ft_is_char(str[*index], 'l') == 1)
 		return (arg->flags[L] = 1);
 	else if (ft_is_char(str[*index], 'j') == 1)

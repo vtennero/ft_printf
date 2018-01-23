@@ -48,9 +48,16 @@ unsigned long long	ft_prop_cast_unsigned(t_params *arg, va_list lst)
 	else if (arg->flags[L])
 		return (va_arg(lst, unsigned long));
 	else if (arg->flags[H])
+		{
+			//ft_putendl("H");
 		return ((unsigned short)va_arg(lst, unsigned int));
+		}
 	else if (arg->flags[HH])
+		{
+			//ft_putendl("HH");
 		return ((unsigned char)va_arg(lst, unsigned int));
+		}
+		//ft_putendl("va arg unsigned int");
 	return (va_arg(lst, unsigned int));
 }
 

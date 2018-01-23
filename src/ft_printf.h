@@ -24,7 +24,9 @@
 
 // NSFW
 
+#define TEXT "AAA%#dBBB", 42
 //#define TEXT "%o, %ho, %hho", -42, -42, -42
+//#define TEXT "%hhd", -42
 //#define TEXT "{%05.%}"
 //#define TEXT "%x, %hx, %hhx", -42, -42, -42
 
@@ -179,7 +181,7 @@
 //#define TEXT "%ld", 2147483648
 //#define TEXT "%ld", -2147483649
 //#define TEXT "%zd", 4294967295
-#define TEXT "%zd", 4294967296
+//#define TEXT "%zd", 4294967296
 
 //s
 
@@ -241,7 +243,7 @@ int		ft_set_flags(t_params *arg, char *str, int *index);
 int		ft_set_length(t_params *arg, char *str, int *index);
 int		ft_set_width(t_params *arg, char *str, int *index);
 int		ft_set_prec(t_params *arg, char *str, int *index);
-int		ft_set_spec(t_params *arg, char *str, int *index, va_list arguments, char **buf);
+int		ft_set_spec(t_params *arg, char spec, va_list arguments, char **buf);
 
 //PARAMETERS OVERRIDE
 

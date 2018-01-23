@@ -21,6 +21,6 @@ int	ft_write(char *str)
 	n = ft_strlen(str);
 	ft_check_if_null(str, n);
 	write(1, str, n);
-	//free(str);
+	free(str);
 	return (n);
 }
