@@ -79,20 +79,20 @@ char	*ft_is_o(t_params *arg, va_list lst)
 	char		*s2;
 	int			lstr;
 
-	
-
 	number = ft_prop_cast_unsigned(arg, lst);
 	s1 = ft_malloc_prec(ft_llutoa_base(number, "01234567"), arg);
 
 	//s1 = ft_malloc_prec(ft_choose_itoa_o(arg, lst, number), arg);
-	
+
 	/*number = ft_prop_cast_o(arg, lst);
 	if (number >= 0)
 	{
 		s1 = str;
 		//s1 = ft_malloc_prec(ft_llutoa_base(number, "01234567"), arg);*/
-		if (arg->flags[HASH] && number != 0)
+		
+		if (arg->flags[HASH] && number != 0 && arg->prec == 0)
 			s1 = ft_prepend(s1, 1, '0');
+	
 	/*
 	}
 	else

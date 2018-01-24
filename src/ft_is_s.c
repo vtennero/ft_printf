@@ -40,22 +40,40 @@ static int		ft_width_s(int malloc_size, int *n, t_params *arg)
 	return (malloc_size);
 }
 
+char			*ft_is_s_perc(t_params *arg, char *format)
+{
+	int			malloc_size;
+	int			width;
+	int			n;
+	char		*str;
+
+	arg->flags[PREC] = 0;
+	str = ft_strndup(format, 1);
+	if (str == NULL)
+		str = ft_strdup("(null)"); //leak
+	width = arg->width;
+	n = 0;
+	malloc_size = ft_prec_s(0, ft_strlen(str), arg);
+	malloc_size = ft_width_s(malloc_size, &n, arg);
+	if (arg->flags[MINUS])
+		return (ft_is_s_right(malloc_size, n, str, ft_set_zero(arg)));
+	else
+		return (ft_is_s_left(malloc_size, n, str, ft_set_zero(arg)));
+}
+
 char			*ft_is_s(t_params *arg, va_list lst)
 {
 	int			malloc_size;
 	int			width;
-	int			str_length;
 	int			n;
 	char		*str;
 
 	str = ft_prop_cast_s(arg, lst);
 	if (str == NULL)
 		str = ft_strdup("(null)"); //leak
-	str_length = ft_strlen(str);
 	width = arg->width;
-	malloc_size = 0;
 	n = 0;
-	malloc_size = ft_prec_s(malloc_size, str_length, arg);
+	malloc_size = ft_prec_s(0, ft_strlen(str), arg);
 	malloc_size = ft_width_s(malloc_size, &n, arg);
 	if (arg->flags[MINUS])
 		return (ft_is_s_right(malloc_size, n, str, ft_set_zero(arg)));

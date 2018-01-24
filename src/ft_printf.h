@@ -24,10 +24,22 @@
 
 // NSFW
 
-#define TEXT "AAA%#dBBB", 42
+//%
+
+//#define TEXT "%"
+//#define TEXT "%%"
+#define TEXT "%.4S", L"我是一只猫。"
+//#define TEXT "%%%d", 42
+//#define TEXT "aa%%bb"
+//#define TEXT "%%%%%%%%%"
+//#define TEXT ".%%.%%.%%.%%.%%"
+//#define TEXT "{%}"
+//#define TEXT "{% %}"
+//#define TEXT "% Zoooooo"
+
+//#define TEXT "AAA%#dBBB", 42
 //#define TEXT "%o, %ho, %hho", -42, -42, -42
 //#define TEXT "%hhd", -42
-//#define TEXT "{%05.%}"
 //#define TEXT "%x, %hx, %hhx", -42, -42, -42
 
 //#define TEXT "%S", L"米"
@@ -267,6 +279,8 @@ char		*ft_is_x(t_params *arg, va_list lst);
 char		*ft_is_cap_x(t_params *arg, va_list lst);
 char		*ft_is_c(t_params *arg, va_list lst);
 char		*ft_is_cap_c(t_params *arg, va_list lst);
+
+char		*ft_is_s_perc(t_params *arg, char *format);
 
 //CAST / VA_ARGS
 
