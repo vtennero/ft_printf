@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_wcharlen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/12 17:48:38 by vtennero          #+#    #+#             */
-/*   Updated: 2017/12/29 17:15:40 by vtennero         ###   ########.fr       */
+/*   Created: 2018/01/25 16:41:27 by vtennero          #+#    #+#             */
+/*   Updated: 2018/01/25 17:07:26 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int				ft_printf(const char *format, ...)
+int	ft_wcharlen(wchar_t c)
 {
-	va_list		lst;
-	int			n;
 
-	va_start(lst, format);
-	n = ft_read_format((char *)format, lst);
-	va_end(lst);
-	return (n);
 }

@@ -18,9 +18,12 @@ FLAGS = -Wall -Werror -Wextra
 
 SRC =  main.c \
 	   ft_printf.c \
-	   ft_other_specs.c \
-	   utilities.c \
-	   ft_print_buffer.c \
+	   ft_format.c \
+	   ft_create_params.c \
+	   ft_set_params.c \
+	   ft_override_params.c \
+	   ft_override_length.c \
+	   ft_prop_cast.c \
 	   ft_is_s.c \
 	   ft_is_d.c \
 	   ft_is_c.c \
@@ -28,11 +31,11 @@ SRC =  main.c \
 	   ft_is_o.c \
 	   ft_is_p.c \
 	   ft_is_x.c \
-	   ft_prop_cast.c \
-	   ft_create_params.c \
-	   ft_set_params.c \
-	   ft_override_params.c \
-	   ft_override_length.c \
+	   ft_is_s_perc.c \
+	   ft_other_specs.c \
+	   ft_prepend_or_append.c \
+	   ft_left_or_right.c \
+	   ft_print_buffer.c \
 
 LSRC = ft_memcmp.c \
 	  ft_strclr.c \

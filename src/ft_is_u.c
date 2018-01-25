@@ -6,17 +6,17 @@
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/30 15:52:33 by vtennero          #+#    #+#             */
-/*   Updated: 2017/12/30 15:52:34 by vtennero         ###   ########.fr       */
+/*   Updated: 2018/01/25 14:14:26 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*ft_malloc_width(int n, t_params *arg)
+static char				*ft_malloc_width(int n, t_params *arg)
 {
-	char	*str;
-	int		i;
-	char	c;
+	char				*str;
+	int					i;
+	char				c;
 
 	n = arg->width - arg->flags[SPACE] - arg->flags[PLUS] - n;
 	c = (arg->flags[ZERO]) ? '0' : ' ';
@@ -36,12 +36,12 @@ static char	*ft_malloc_width(int n, t_params *arg)
 	return (str);
 }
 
-static char	*ft_malloc_prec(char *str, t_params *arg)
+static char				*ft_malloc_prec(char *str, t_params *arg)
 {
-	char	*s1;
-	int		i;
-	int		j;
-	int		len;
+	char				*s1;
+	int					i;
+	int					j;
+	int					len;
 
 	i = 0;
 	j = 0;
@@ -68,11 +68,11 @@ static char	*ft_malloc_prec(char *str, t_params *arg)
 	return (s1);
 }
 
-char	*ft_is_u(t_params *arg, va_list lst)
+char					*ft_is_u(t_params *arg, va_list lst)
 {
 	unsigned long long	number;
-	char		*s1;
-	char		*s2;
+	char				*s1;
+	char				*s2;
 
 	number = ft_prop_cast_unsigned(arg, lst);
 	s1 = ft_malloc_prec(ft_llutoa(number), arg);

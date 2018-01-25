@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_s.c                                          :+:      :+:    :+:   */
+/*   ft_is_s_perc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/30 14:59:35 by vtennero          #+#    #+#             */
-/*   Updated: 2018/01/25 14:11:36 by vtennero         ###   ########.fr       */
+/*   Created: 2018/01/25 13:47:25 by vtennero          #+#    #+#             */
+/*   Updated: 2018/01/25 14:13:13 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,23 @@ static int		ft_width_s(int malloc_size, int *n, t_params *arg)
 	return (malloc_size);
 }
 
-char			*ft_is_s(t_params *arg, va_list lst)
+char			*ft_is_s_perc(t_params *arg, char *format)
 {
 	int			malloc_size;
 	int			width;
 	int			n;
 	char		*str;
 
-	str = ft_prop_cast_s(arg, lst);
-	if (str == NULL && arg->width == 0)
-		return(str = ft_strdup("(null)"));
+	arg->flags[PREC] = 0;
+	str = ft_strndup(format, 1);
+	if (str == NULL)
+		str = ft_strdup("(null)");
 	width = arg->width;
 	n = 0;
 	malloc_size = ft_prec_s(0, ft_strlen(str), arg);
 	malloc_size = ft_width_s(malloc_size, &n, arg);
 	if (arg->flags[MINUS])
-		return (ft_is_s_right(malloc_size, n, str, ft_set_zero(arg)));
+		return (ft_is_s_perc_right(malloc_size, n, str, ft_set_zero(arg)));
 	else
-		return (ft_is_s_left(malloc_size, n, str, ft_set_zero(arg)));
+		return (ft_is_s_perc_left(malloc_size, n, str, ft_set_zero(arg)));
 }

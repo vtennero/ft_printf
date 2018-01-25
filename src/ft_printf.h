@@ -22,200 +22,11 @@
 #include <string.h>
 #include <unistd.h>
 
-// NSFW
+//#define TEXT "%o\\n", 40
 
-//%
+#define TEXT "{%05.s}", 0
 
-//#define TEXT "%"
-//#define TEXT "%%"
-//#define TEXT "%.4S", L"我是一只猫。"
-#define TEXT "%s", "abc"
-//#define TEXT "%20.15d\\n", 54321
-//#define TEXT "%%%d", 42
-//#define TEXT "aa%%bb"
-//#define TEXT "%%%%%%%%%"
-//#define TEXT ".%%.%%.%%.%%.%%"
-//#define TEXT "{%}"
-//#define TEXT "{% %}"
-//#define TEXT "% Zoooooo"
-
-//#define TEXT "AAA%#dBBB", 42
-//#define TEXT "%o, %ho, %hho", -42, -42, -42
-//#define TEXT "%hhd", -42
-//#define TEXT "%x, %hx, %hhx", -42, -42, -42
-
-//#define TEXT "%S", L"米"
-
-//#define TEXT "%hhu / %hhu", SHRT_MAX - 42, SHRT_MAX - 4200
-
-//real printf segfaults
-//#define TEXT "%s%S%p%d%D%i%o%O%u%U%x%X%c%C", -30, -30, -30, -30, -30, -30, -30, -30, -30, -30, -30, -30, -30, -30, -30
-
-//#define TEXT "%u%u%u%u%u", 1, 100, 999, 42, 999988888
-//#define TEXT "%u", 42
-
-//#define TEXT "{%5%}", 0
-//#define TEXT "{%5.%}", 0
-//#define TEXT "{%05.%}", 0
-
-//p
-
-//#define TEXT "wdt5\t|%5p|\nwdt5-\t|%5-p|\nwdt5.\t|%5.p|\n.\t|%.p|\n.zero\t|%.0p|\naddrs\t|%p|\n", 0, 0, 0, 0, 0, &i
-
-//#define TEXT "%-12p", &i
-//#define TEXT "%p", 140734630582824
-
-//#define TEXT "%.0p", 0
-//#define TEXT "%.p", 0
-//#define TEXT "%.5p", 0
-//#define TEXT "%15-.0p", 56
-
-//#define TEXT "%#.4x, %#.0x", 0, 0
-//#define TEXT "%#.4x", 0
-//#define TEXT "%#.0x", 0
-//#define TEXT "{%-15Z}", 123
-
-
-//#define TEXT "%#o", 0
-//#define TEXT "%#6o", 2500
-
-//o resume
-//#define TEXT ".%.o\n.zero%.0o\n5.%5.o\n5.zero%5.0o\n#%#o\n#.%#.o\n#.zero%#.0o", 0, 0, 0, 0, 0, 0, 0
-
-//#define TEXT "%#.o, %#.0o", 0, 0
-//#define TEXT "%hhu / %hhu", SHRT_MAX - 42, SHRT_MAX - 4200
-
-//#define TEXT "%jx", -4294967296
-//#define TEXT "%lu", -42
-
-//#define TEXT "%jx", -2147483648
-//#define TEXT "%5.x %5.0x", 0, 0
-
-//#define TEXT "%5.0xa b%5.x", 0, 0
-//#define TEXT "%5.xa b%5.0x", 128, 256
-//#define TEXT "%5.xa b%5.0x", 128, 128
-//#define TEXT "%5.x", 128
-//#define TEXT "%5.0x", 128
-//#define TEXT "%5.x", 0
-//#define TEXT "%5.0x", 0
-
-//#define TEXT "%X", -42
-//#define TEXT "%x %.x %.0x %.#0x", 0, 0, 0, 0
-//#define TEXT "%x %.x %.0x %.#0x", 1, 1, 1, 1
-
-
-//#define TEXT "%5p\n", &i
-
-//#define TEXT "@moulitest: %#.o %#.0o", 0, 0
-
-//#define TEXT "%S", L"米"
-//#define TEXT "%.4S", L"我是一只猫。" //undefined behavior
-
-//#define TEXT "%lu", 4294967296
-
-//#define TEXT "%llu", 4999999999
-//#define TEXT "%ju", 4999999999
-//#define TEXT "%ju", 4294967296
-//#define TEXT "%hU", 4294967296
-
-//o
-
-//#define TEXT "%#6o", 2500
-//#define TEXT "%-#6o", 2500
-//#define TEXT "@moulitest: %.o %.0o", 0, 0
-//#define TEXT "%o\n", 8
-//#define TEXT "%-5.10o", 2500
-//#define TEXT "%-10.5o", 2500
-//define TEXT "%.#o", 0
-//#define TEXT "@moulitest: %5.o %5.0o", 0, 0
-//#define TEXT "@moulitest: %.10o", 42
-
-//c
-
-//#define TEXT "%+c", 0
-//#define TEXT "%c", 0
-//#define TEXT "% c", 0
-//#define TEXT "%5c", 42
-//#define TEXT "%-5c", 42
-//#define TEXT "%2c", 0
-
-//#define TEXT "% c", 'a'
-//#define TEXT "% c", 0
-//#define TEXT "@moulitest: %c", 0
-//#define TEXT "@moulitest: %c", 45
-
-//u
-
-//#define TEXT "%u", -4294967296
-//#define TEXT "%u", -4294967297
-//#define TEXT "%u", 9223372036854775807
-//#define TEXT "%u", 4294967296
-//#define TEXT "%u", -4294967299
-
-//d
-
-//#define TEXT "{% 03d}", 0
-//#define TEXT "%lllhd", 92233
-//#define TEXT "%.d %.0d", 0, 0
-//#define TEXT "%.d", 0, 0
-//#define TEXT "%.d", 0
-//#define TEXT "@moulitest: %5.d %5.0d", 0, 0
-//#define TEXT "@moulitest: %.d %.0d", 0, 0
-//#define TEXT "@moulitest: %.d", 0
-//#define TEXT "@moulitest: %.d %.0d", 42, 43
-
-//# define TEXT "%d %U", 6, 5
-//# define TEXT "%5.5 0 d", 450
-//# define TEXT "%.-60d", 44
-//# define TEXT "Bonjour %10.4d, ca va ? %054-d", -44, 52
-//# define TEXT "Bonjour %10.4d, ca va ? %054d", -44, 52
-//#define TEXT "%d", -2147483648
-//#define TEXT "%d", -2147483648
-//#define TEXT "%0+5d", 42
-//#define TEXT "%05d", 42
-//#define TEXT "%0+5d", -42
-//#define TEXT "%05d", -42
-//#define TEXT "% 5d", -42
-//#define TEXT "%4.15d", 42 
-//#define TEXT "%03.2d", 0
-//#define TEXT "%03d", 1
-//#define TEXT "%03.2d", 1
-//#define TEXT "% d", 42
-//#define TEXT "% 10.5d", 4242
-
-
-//#define TEXT "%lld", 9223372036854775807
-//#define TEXT "%lld", -9223372036854775808
-//#define TEXT "%jd", 9223372036854775807
-//#define TEXT "%jd", -9223372036854775808
-
-//ld lld ...
-
-//#define TEXT "%ld", -2147483648
-//#define TEXT "%ld", 2147483648
-//#define TEXT "%ld", -2147483649
-//#define TEXT "%zd", 4294967295
-//#define TEXT "%zd", 4294967296
-
-//s
-
-//# define TEXT "%#+0- 10.5s", NULL
-//# define TEXT "//buffer[1]//%50.5 -0s//buffer[2]//%s%.4s %5.4d", "anticonstitutionnel", "toto", "titi", 350
-//# define TEXT "%50.5 0s", "anticonstitutionnel"
-//# define TEXT "%010.5s", "anticonstitutionnel"
-//# define TEXT "//buffer[1]//%50.5 -0s//buffer[2]//", "anticonstitutionnel"
-
-//other
-
-//#define TEXT ""
-//#define TEXT "%5%"
-//#define TEXT "%%%%%%%%%trtftft%%%%"
-//#define TEXT "toto%%basdsadas"
-//#define TEXT "totos", "titi"
-//#define TEXT "toto%%b%s", "titi"
-//#define TEXT "toto%%b/%10-.4s"
-//#define TEXT "%"
-//#define TEXT "% Zoooo"
+//#define TEXT "%s\\n", NULL
 
 typedef int t_bool;
 
@@ -234,7 +45,6 @@ typedef struct	s_params
 {
 	int			width;
 	int			prec;
-	//t_bool		spec[L_CHR + 1];
 	t_bool		flags[PREC + 1];
 }				t_params;
 
@@ -248,6 +58,7 @@ int			ft_printf(const char *format, ...);
 //PARAMETERS CREATION
 
 void		ft_set_g_formats(void);
+int			ft_read_format(char *format, va_list lst);
 t_params	*ft_create_params(void);
 t_params	*ft_set_zero_params(t_params *arg);
 
@@ -257,13 +68,17 @@ int		ft_set_flags(t_params *arg, char *str, int *index);
 int		ft_set_length(t_params *arg, char *str, int *index);
 int		ft_set_width(t_params *arg, char *str, int *index);
 int		ft_set_prec(t_params *arg, char *str, int *index);
-int		ft_set_spec(t_params *arg, char spec, va_list arguments, char **buf);
 
 //PARAMETERS OVERRIDE
 
 t_params	*ft_general_overrides(t_params *arg);
 void		ft_override_params_d(t_params *arg, long long nb);
 void		ft_override_length(t_params *arg);
+void		ft_is_z(t_params *arg);
+void		ft_is_j(t_params *arg);
+void		ft_is_ll(t_params *arg);
+void		ft_is_l(t_params *arg);
+void		ft_is_h(t_params *arg);
 
 //SPECIFIERS
 
@@ -283,7 +98,7 @@ char		*ft_is_c(t_params *arg, va_list lst);
 char		*ft_is_cap_c(t_params *arg, va_list lst);
 char		*ft_is_s_perc(t_params *arg, char *format);
 
-//CAST / VA_ARGS
+//CAST
 
 long long	ft_prop_cast_signed(t_params *arg, va_list lst);
 unsigned long long ft_prop_cast_unsigned(t_params *arg, va_list lst);
@@ -293,17 +108,15 @@ int			ft_prop_cast_c(t_params *arg, va_list lst);
 //PRINT
 
 int			ft_print_buffer(char *str);
-
-//UTILITIES
-
 void		ft_print_params(t_params *arg);
-char		*ft_append(char *buf, int n, char c);
-char		*ft_prepend(char *buf, int n, char c);
-t_bool		ft_is_char(char c1, char c2);
 
-//OTHER
+//STRING MANIPULATION
 
 char		*ft_is_s_left(int malloc_size, int n, char *str, char c);
 char		*ft_is_s_right(int malloc_size, int n, char *str, char c);
+char		*ft_is_s_perc_left(int malloc_size, int n, char *str, char c);
+char		*ft_is_s_perc_right(int malloc_size, int n, char *str, char c);
+char		*ft_append(char *buf, int n, char c);
+char		*ft_prepend(char *buf, int n, char c);
 
 #endif

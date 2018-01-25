@@ -6,17 +6,17 @@
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 22:19:43 by vtennero          #+#    #+#             */
-/*   Updated: 2018/01/02 22:19:44 by vtennero         ###   ########.fr       */
+/*   Updated: 2018/01/25 14:10:25 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*ft_malloc_width(int n, t_params *arg)
+static char				*ft_malloc_width(int n, t_params *arg)
 {
-	char	*str;
-	int		i;
-	char	c;
+	char				*str;
+	int					i;
+	char				c;
 
 	n = arg->width - arg->flags[SPACE] - arg->flags[PLUS] - n;
 	c = (arg->flags[ZERO]) ? '0' : ' ';
@@ -36,12 +36,12 @@ static char	*ft_malloc_width(int n, t_params *arg)
 	return (str);
 }
 
-static char	*ft_malloc_prec(char *str, t_params *arg)
+static char				*ft_malloc_prec(char *str, t_params *arg)
 {
-	char	*s1;
-	int		i;
-	int		j;
-	int		len;
+	char				*s1;
+	int					i;
+	int					j;
+	int					len;
 
 	i = 0;
 	j = 0;
@@ -52,7 +52,7 @@ static char	*ft_malloc_prec(char *str, t_params *arg)
 	if (s1)
 	{
 		while (i < arg->prec - len)
-				s1[i++] = '0';
+			s1[i++] = '0';
 		while (j < len)
 		{
 			s1[i] = str[j];
@@ -66,11 +66,11 @@ static char	*ft_malloc_prec(char *str, t_params *arg)
 	return (s1);
 }
 
-char	*ft_is_p(t_params *arg, va_list lst)
+char					*ft_is_p(t_params *arg, va_list lst)
 {
 	unsigned long long	number;
-	char		*s1;
-	char		*s2;
+	char				*s1;
+	char				*s2;
 
 	arg->flags[LL] = 1;
 	number = ft_prop_cast_unsigned(arg, lst);

@@ -12,6 +12,14 @@
 
 #include "ft_printf.h"
 
+static t_bool	ft_is_char(char c1, char c2)
+{
+	if (c1 == c2)
+		return (1);
+	else
+		return (0);
+}
+
 int		ft_set_flags(t_params *arg, char *str, int *index)
 {
 	if (ft_is_char(str[*index], '#') == 1)

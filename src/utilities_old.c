@@ -99,6 +99,8 @@ char			*ft_is_s_right(int malloc_size, int n, char *str, char c)
 			i++;
 		}
 		s[i] = '\0';
+	}
+	return (s);
 }
 
 char			*ft_is_s_left(int malloc_size, int n, char *str, char c)
