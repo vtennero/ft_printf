@@ -35,23 +35,22 @@ void		ft_set_g_formats(void)
 
 int		ft_set_spec(t_params *arg, char spec, va_list arguments, char **buf)
 {
+	char	*processed_string;
+
+	processed_string = NULL;
 	if (g_formats[spec].printfunc)
 	{
 		ft_general_overrides(arg);
-		*buf = ft_strjoin_clr(*buf, g_formats[spec].printfunc(arg, arguments), 2);
+		//printf("ft_set_spec buf pointer addr : %p\n", buf);
+		processed_string = g_formats[spec].printfunc(arg, arguments);
+		//printf("ft_set_spec processed_string pointer addr : %p\n", processed_string);
+		*buf = ft_strjoin_clr(*buf, processed_string, 0);
+		//free(processed_string);
+		//*buf = ft_strjoin_clr(*buf, g_formats[spec].printfunc(arg, arguments), 2);
 		return (1);
 	}
 	return (0);
 }
-
-static char		*ft_width_perc(t_params *arg)
-{
-	if (arg->flags[MINUS])
-		return(ft_is_s_right(arg->width, arg->width - 1, "%", ' '));
-	else
-		return(ft_is_s_left(arg->width, arg->width - 1, "%", ' '));
-}
-
 
 static int		ft_flwp(t_params *arg, char *format, int *i)
 {
@@ -75,6 +74,7 @@ static void		ft_is_not_perc(char **buf, char *format, int *index)
 	while (format[i] != '%' && format[i] != '\0')
 		i += 1;
 	addition = ft_strndup(format, i);
+	//printf("ft_strndup malloc pointer addr : %p\n", addition);
 	*index += i - 1;
 	*buf = ft_strjoin_clr(*buf, addition, 2);
 }
@@ -126,7 +126,7 @@ static int		ft_read_string(char *str, va_list arguments)
 			index++;
 		}
 	}
-	return (ft_write(buf));
+	return (ft_print_buffer(buf));
 }
 
 int	ft_printf(const char *format, ...)
@@ -140,188 +140,3 @@ int	ft_printf(const char *format, ...)
 	va_end(arguments);
 	return (n);
 }
-
-/*
-static int		ft_read_string(char *str, va_list arguments)
-{
-	int			index;
-	t_params	arg;
-	char		*buf;
-	int			p;
-
-	buf = NULL;
-	index = 0;
-	p = 0;
-	ft_bzero(&arg, sizeof(t_params));
-	if (str)
-	{
-		while (str[index] != '\0')
-		{
-			if (str[index] == '%')
-			{
-				if (ft_strlen(str) == 1)
-					return (0);
-				p++;
-				ft_bzero(&arg, sizeof(t_params));
-				index++;
-				while (str[index] != '\0')
-				{
-					if (ft_set_flags(&arg, str, &index) == 1)						
-						;
-					else if (ft_set_length(&arg, str, &index) == 1)
-						;
-					else if (ft_set_width(&arg, str, &index) == 1)
-					{
-						if (str[index + 1] == '%')
-						{
-							buf = ft_width_perc(&arg);
-							index++;
-							break;
-						}
-					}
-					else if (ft_set_prec(&arg, str, &index) == 1)
-						;
-					else if (ft_set_spec(&arg, str, &index, arguments, &buf) == 1)
-					{
-						break;
-					}
-					else if (str[index] == '%')
-					{
-						while (str[index] == '%')
-						{
-							p++;
-							index++;
-						}
-						index--;
-						buf = ft_append(buf, p / 2, '%');
-						p = 0;
-						break;
-					}
-					else
-					{
-						index--;
-						break;
-					}
-					index++;		
-				}
-			}
-			else
-				buf = ft_append(buf, 1, str[index]);
-			index++;
-		}
-	}
-	return (ft_write(buf));
-}
-*/
-
-
-/*
-static int		ft_read_string(char *str, va_list arguments)
-{
-	int			index;
-	t_params	arg;
-	char		*buf;
-	int			p;
-
-	buf = NULL;
-	index = 0;
-	p = 0;
-	ft_bzero(&arg, sizeof(t_params));
-	if (str)
-	{
-		while (str[index] != '\0')
-		{
-			if (str[index] == '%')
-			{
-
-				if (ft_strlen(str) == 1)
-					return (0);
-				p++;
-				ft_bzero(&arg, sizeof(t_params));
-				index++;
-				while (str[index] != '\0')
-				{
-					if (!(ft_set_flags(&arg, str, &index) == 1))
-						if (!(ft_set_length(&arg, str, &index) == 1))
-							if (!(ft_set_width(&arg, str, &index) == 1))
-								if (!(ft_set_prec(&arg, str, &index) == 1))
-									if (!(ft_set_spec(&arg, str, &index, arguments, &buf) == 1))
-										if (!(ft_is_perc(str[index]) == 1))
-											buf = ft_append(buf, 1, str[index]);
-										else
-											break;
-				index++;
-				}
-			}
-			else
-				buf = ft_append(buf, 1, str[index]);
-			index++;
-		}
-	}
-	return (ft_write(buf));
-}
-*/
-
-/*
-static int		ft_is_perc(t_params *arg, char *str, int *index, va_list arguments, char **buf)
-{
-	int			t;
-
-	ft_putendl("//FT_IS_PERC//");
-	t = 0;
-	if (str[*index])
-	{	
-	if (ft_set_flags(arg, str, index) == 1)						
-		t = 1;
-	else if (ft_set_length(arg, str, index) == 1)
-			t = 1;
-	else if (ft_set_width(arg, str, index) == 1)
-		t = 1;
-	else if (ft_set_prec(arg, str, index) == 1)
-		t = 1;
-	else if (ft_set_spec(arg, str, index, arguments, buf) == 1)
-		t = 2;
-	}
-	return (t);
-}
-
-static int		ft_read_string(char *str, va_list arguments)
-{
-	int			index;
-	t_params	arg;
-	char		*buf;
-
-	buf = NULL;
-	index = 0;
-	if (str)
-	{
-		while (str[index] != '\0')
-		{
-			if (str[index] == '%')
-			{
-				if (ft_strlen(str) == 1)
-					return (0);
-				ft_bzero(&arg, sizeof(t_params));
-				index++;
-				while (str[index] != '\0')
-				{
-					if (ft_is_perc(&arg, str, &index, arguments, &buf) == 1)
-						;
-					else if (ft_is_perc(&arg, str, &index, arguments, &buf) == 2)
-						break;
-					else
-					{
-						index--;
-						break;
-					}
-					index++;
-				}
-			}
-			else
-				buf = ft_append(buf, 1, str[index]);
-			index++;
-		}
-	}
-	return (ft_write(buf));
-}
-*/

@@ -17,6 +17,7 @@ t_params	*ft_create_params(void)
 	t_params	*arg;
 
 	arg = (t_params *)malloc(sizeof(t_params));
+	//printf("ft_create_params malloc pointer addr : %p\n", arg);
 	if (arg)
 		return (arg);
 	else

@@ -51,6 +51,7 @@ char			*ft_is_s_perc(t_params *arg, char *format)
 	str = ft_strndup(format, 1);
 	if (str == NULL)
 		str = ft_strdup("(null)"); //leak
+	//printf("ft_is_s_perc malloc pointer addr : %p\n", str);
 	width = arg->width;
 	n = 0;
 	malloc_size = ft_prec_s(0, ft_strlen(str), arg);
@@ -71,6 +72,7 @@ char			*ft_is_s(t_params *arg, va_list lst)
 	str = ft_prop_cast_s(arg, lst);
 	if (str == NULL)
 		str = ft_strdup("(null)"); //leak
+	//printf("ft_is_s malloc pointer addr : %p\n", str);
 	width = arg->width;
 	n = 0;
 	malloc_size = ft_prec_s(0, ft_strlen(str), arg);

@@ -12,21 +12,6 @@
 
 #include "ft_printf.h"
 
-/*long long	ft_unsign(long long number)
-{
-	long long	lim;
-
-	lim = 4294967296;
-	if (number >= 0)
-	{
-		while (number - lim >= 0)
-			number -= lim;
-	}
-	else
-		number = lim - number;
-	return (number);
-}*/
-
 static char	*ft_malloc_width(int n, t_params *arg)
 {
 	char	*str;
@@ -79,6 +64,7 @@ static char	*ft_malloc_prec(char *str, t_params *arg)
 		}
 		s1[i] = '\0';
 	}
+	free(str);
 	return (s1);
 }
 
@@ -87,22 +73,10 @@ char	*ft_is_u(t_params *arg, va_list lst)
 	unsigned long long	number;
 	char		*s1;
 	char		*s2;
-	//char		*str;
-
-	//ft_putendl(ft_llutoa(4294967296));
-	//str = ft_prop_cast_u(arg, lst);
-	//number = ft_unsign(number);
-	//s1 = ft_malloc_prec(str, arg);
 
 	number = ft_prop_cast_unsigned(arg, lst);
 	s1 = ft_malloc_prec(ft_llutoa(number), arg);
 	s2 = ft_malloc_width(ft_strlen(s1), arg);
-	/*if (arg->flags[PLUS] && arg->flags[ZERO])
-		s2 = ft_prepend(s2, 1, '+');
-	else if (arg->flags[PLUS] && !arg->flags[ZERO])
-		s1 = ft_prepend(s1, 1, '+');
-	else if (arg->flags[SPACE])
-		s1 = ft_prepend(s1, 1, ' ');*/
 	if (arg->flags[MINUS])
 		return (ft_strjoin_clr(s1, s2, 2));
 	else

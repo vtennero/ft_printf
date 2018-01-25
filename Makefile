@@ -15,14 +15,12 @@ NAME = dummy_test
 LIB = libftprintf.a
 
 FLAGS = -Wall -Werror -Wextra
-#FLAGS = -Wall -Wno-empty-body -Wno-unused -Wextra
-#FLAGS = 
 
 SRC =  main.c \
 	   ft_printf.c \
-	   ft_specs.c \
+	   ft_other_specs.c \
 	   utilities.c \
-	   ft_write.c \
+	   ft_print_buffer.c \
 	   ft_is_s.c \
 	   ft_is_d.c \
 	   ft_is_c.c \
@@ -35,7 +33,6 @@ SRC =  main.c \
 	   ft_set_params.c \
 	   ft_override_params.c \
 	   ft_override_length.c \
-	   ft_choose_itoa.c
 
 LSRC = ft_memcmp.c \
 	  ft_strclr.c \

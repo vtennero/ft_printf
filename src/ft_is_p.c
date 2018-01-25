@@ -61,6 +61,7 @@ static char	*ft_malloc_prec(char *str, t_params *arg)
 		}
 		s1[i] = '\0';
 	}
+	free(str);
 	s1 = ft_strjoin_clr("0x", s1, 1);
 	return (s1);
 }
@@ -73,15 +74,7 @@ char	*ft_is_p(t_params *arg, va_list lst)
 
 	arg->flags[LL] = 1;
 	number = ft_prop_cast_unsigned(arg, lst);
-	//if (number >= 0)
-		s1 = ft_malloc_prec(ft_llutoa_base(number, "0123456789abcdef"), arg);
-	/*else if (number < 0)
-	{
-		s1 = ft_malloc_prec(ft_lltoa_base(-number -1, "fedcba9876543210"), arg);
-		s1 = ft_prepend(s1, 8 - ft_strlen(s1), 'f');
-		if (number < -2147483647)
-			s1 = ft_strjoin_clr("ffffffff", s1, 1);
-	}*/
+	s1 = ft_malloc_prec(ft_llutoa_base(number, "0123456789abcdef"), arg);
 	s2 = ft_malloc_width(ft_strlen(s1), arg);
 	if (arg->flags[MINUS])
 		return (ft_strjoin_clr(s1, s2, 2));

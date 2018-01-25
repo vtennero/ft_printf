@@ -28,7 +28,9 @@
 
 //#define TEXT "%"
 //#define TEXT "%%"
-#define TEXT "%.4S", L"我是一只猫。"
+//#define TEXT "%.4S", L"我是一只猫。"
+#define TEXT "%s", "abc"
+//#define TEXT "%20.15d\\n", 54321
 //#define TEXT "%%%d", 42
 //#define TEXT "aa%%bb"
 //#define TEXT "%%%%%%%%%"
@@ -279,31 +281,18 @@ char		*ft_is_x(t_params *arg, va_list lst);
 char		*ft_is_cap_x(t_params *arg, va_list lst);
 char		*ft_is_c(t_params *arg, va_list lst);
 char		*ft_is_cap_c(t_params *arg, va_list lst);
-
 char		*ft_is_s_perc(t_params *arg, char *format);
 
 //CAST / VA_ARGS
-
-//long long	ft_prop_cast(t_params *arg, va_list lst, char c);
 
 long long	ft_prop_cast_signed(t_params *arg, va_list lst);
 unsigned long long ft_prop_cast_unsigned(t_params *arg, va_list lst);
 void		*ft_prop_cast_s(t_params *arg, va_list lst);
 int			ft_prop_cast_c(t_params *arg, va_list lst);
-/*
-
-unsigned long long	ft_prop_cast_o(t_params *arg, va_list lst);
-char		*ft_prop_cast_u(t_params *arg, va_list lst);
-unsigned long long ft_prop_cast_p(t_params *arg, va_list lst);
-unsigned long long ft_prop_cast_x(t_params *arg, va_list lst);*/
-
-//CHOOSE ITOA
-
-char		*ft_choose_itoa_o(t_params *arg, va_list lst, long long number);
 
 //PRINT
 
-int			ft_write(char *str);
+int			ft_print_buffer(char *str);
 
 //UTILITIES
 

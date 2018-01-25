@@ -38,6 +38,7 @@ char			*ft_append(char *buf, int n, char c)
 
 	i = 0;
 	append = malloc(sizeof(char) * n + 1);
+	//printf("ft_append malloc pointer addr : %p\n", append);
 	if (append)
 	{
 		while (i < n)
@@ -54,6 +55,7 @@ char			*ft_prepend(char *buf, int n, char c)
 
 	i = 0;
 	prepend = malloc(sizeof(char) * n + 1);
+	//printf("ft_prepend malloc pointer addr : %p\n", prepend);
 	if (prepend)
 	{
 		while (i < n)
@@ -81,6 +83,7 @@ char			*ft_is_s_right(int malloc_size, int n, char *str, char c)
 	j = 0;
 	n = malloc_size - n;
 	s = malloc(malloc_size + 1);
+	//printf("ft_is_right malloc pointer addr : %p\n", s);
 	if (s)
 	{
 		while (i < malloc_size)
@@ -96,8 +99,6 @@ char			*ft_is_s_right(int malloc_size, int n, char *str, char c)
 			i++;
 		}
 		s[i] = '\0';
-	}
-	return (s);
 }
 
 char			*ft_is_s_left(int malloc_size, int n, char *str, char c)
@@ -109,6 +110,7 @@ char			*ft_is_s_left(int malloc_size, int n, char *str, char c)
 	i = 0;
 	j = 0;
 	s = malloc(malloc_size + 1);
+	//printf("ft_is_left malloc pointer addr : %p\n", s);
 	if (s)
 	{
 		while (i < malloc_size)

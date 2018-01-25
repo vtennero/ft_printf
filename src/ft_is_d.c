@@ -24,6 +24,7 @@ static char	*ft_malloc_width(int n, t_params *arg)
 	if (n < 0)
 		n = 0;
 	str = (char *)malloc(n + 1);
+	//printf("ft_is_d malloc width s2 pointer addr : %p\n", str);
 	if (str)
 	{
 		while (i < n)
@@ -52,6 +53,8 @@ static char	*ft_malloc_prec(char *str, t_params *arg)
 			return (NULL);
 	}
 	s1 = (char *)malloc(sizeof(char) * ft_max(len, arg->prec) + 1);
+	//printf("ft_is_d lltoabase pointer addr : %p\n", str);
+	//printf("ft_is_d malloc prec pointer addr : %p\n", s1);
 	if (s1)
 	{
 		while (i < arg->prec - len)
@@ -64,6 +67,7 @@ static char	*ft_malloc_prec(char *str, t_params *arg)
 		}
 		s1[i] = '\0';
 	}
+	free(str);
 	return (s1);
 }
 
@@ -112,28 +116,3 @@ char	*ft_is_d(t_params *arg, va_list lst)
 	else
 		return (ft_strjoin_clr(s2, s1, 2));
 }
-
-/*
-   char	*ft_is_d(t_params *arg, va_list lst)
-   {
-   long long	number;
-   char		*s1;
-   char		*s2;
-
-   number = ft_prop_cast(arg, lst, 'd');
-//ft_print_params(arg);
-ft_override_params(arg, number);
-if (number >= 0)
-s1 = ft_malloc_prec(ft_lltoa_base((long long)number, "0123456789"), arg->prec);
-else
-s1 = ft_malloc_prec(ft_lltoa_base((long long)(- number), "0123456789"), arg->prec);
-ft_putendl(s1);
-//s1 = ft_prepend(s1, number, arg);
-ft_putendl(s1);
-s2 = ft_malloc_width(arg->width - ft_strlen(s1), arg->flags[ZERO]);	
-if (arg->flags[MINUS])
-return (ft_strjoin_clr(s1, s2, 2));
-else
-return (ft_strjoin_clr(s2 , s1, 2));
-}
-*/

@@ -64,6 +64,7 @@ static char	*ft_malloc_prec(char *str, t_params *arg)
 		}
 		s1[i] = '\0';
 	}
+	free(str);
 	return (s1);
 }
 
@@ -76,15 +77,7 @@ char	*ft_is_x(t_params *arg, va_list lst)
 
 	hash = 0;
 	number = ft_prop_cast_unsigned(arg, lst);
-	//if (number >= 0)
 	s1 = ft_malloc_prec(ft_llutoa_base(number, "0123456789abcdef"), arg);
-	/*else
-	{
-		s1 = ft_malloc_prec(ft_lltoa_base(-number -1, "fedcba9876543210"), arg);
-		s1 = ft_prepend(s1, 8 - ft_strlen(s1), 'f');
-		//if (number < -2147483647)
-		//	s1 = ft_strjoin_clr("ffffffff", s1, 1);
-	}*/
 	if (arg->flags[HASH] && number != 0)
 		hash = 2;
 	s2 = ft_malloc_width(ft_strlen(s1) + hash, arg);

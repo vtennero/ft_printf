@@ -49,12 +49,10 @@ static char	*ft_malloc_prec(char *str, t_params *arg)
 	if (str)
 	{
 		if (arg->prec == 0 && arg->flags[PREC] && str[0] == '0')
-		//changed for %#o 0 test
 		{
 		if (!arg->flags[HASH])
 			return (NULL);
 		}
-		//if (arg->prec == 0 && str[0] == '0')
 	}
 	s1 = (char *)malloc(sizeof(char) * ft_max(len, arg->prec) + 1);
 	if (s1)
@@ -69,6 +67,7 @@ static char	*ft_malloc_prec(char *str, t_params *arg)
 		}
 		s1[i] = '\0';
 	}
+	free(str);
 	return (s1);
 }
 
@@ -81,29 +80,8 @@ char	*ft_is_o(t_params *arg, va_list lst)
 
 	number = ft_prop_cast_unsigned(arg, lst);
 	s1 = ft_malloc_prec(ft_llutoa_base(number, "01234567"), arg);
-
-	//s1 = ft_malloc_prec(ft_choose_itoa_o(arg, lst, number), arg);
-
-	/*number = ft_prop_cast_o(arg, lst);
-	if (number >= 0)
-	{
-		s1 = str;
-		//s1 = ft_malloc_prec(ft_llutoa_base(number, "01234567"), arg);*/
-		
-		if (arg->flags[HASH] && number != 0 && arg->prec == 0)
-			s1 = ft_prepend(s1, 1, '0');
-	
-	/*
-	}
-	else
-	{*/
-		//s1 = ft_malloc_prec(ft_llutoa_base(65536 + number, "01234567"), arg);
-		//s1 = ft_malloc_prec(ft_llutoa_base(number, "01234567"), arg);
-		
-		//test
-		//if (arg->flags[HASH])
-			//s1 = ft_prepend(s1, 1, '0');
-	//}
+	if (arg->flags[HASH] && number != 0 && arg->prec == 0)
+		s1 = ft_prepend(s1, 1, '0');
 	lstr = ft_strlen(s1);
 	s2 = ft_malloc_width(lstr, arg);
 	if (arg->flags[MINUS])

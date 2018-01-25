@@ -14,11 +14,11 @@
 
 static void	ft_strjoin_clr_free(char *tmp1, char *tmp2, int d)
 {
-	if (d == 0 && tmp1)
+	if (d == 0)
 		free(tmp1);
-	else if (d == 1 && tmp2)
+	else if (d == 1)
 		free(tmp2);
-	else if (d == 2 && tmp1 && tmp2)
+	else if (d == 2)
 	{
 		free(tmp1);
 		free(tmp2);
