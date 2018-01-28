@@ -25,7 +25,20 @@
 
 //#define TEXT "%o\\n", 40
 
-#define TEXT "%.6S", "abc漢"
+#define TEXT "%.6S", L"abc漢"
+// #define TEXT "%05.u!", 0
+
+
+// #define TEXT "%0#14.0o", 12587499
+// #define TEXT "\n%024hho et%#1.2o %0012.O", (unsigned char)12, 0, 123654789
+// #define TEXT "%#15.9o", 123456789
+//#define TEXT "%#.3o", 90
+
+//#define TEXT "%0#10.x %0#x", 12345, 0
+// #define TEXT "%lx", (unsigned long)-178965423
+// #define TEXT "%020.14jx", 0xffaabbccee
+// #define TEXT "%hX", (unsigned short)40
+
 
 //#define TEXT "%s\\n", NULL
 
@@ -119,5 +132,6 @@ char		*ft_is_s_perc_left(int malloc_size, int n, char *str, char c);
 char		*ft_is_s_perc_right(int malloc_size, int n, char *str, char c);
 char		*ft_append(char *buf, int n, char c);
 char		*ft_prepend(char *buf, int n, char c);
+char		*ft_is_unicode_c(t_params *arg, int var);
 
 #endif

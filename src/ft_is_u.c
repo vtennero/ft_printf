@@ -76,6 +76,8 @@ char					*ft_is_u(t_params *arg, va_list lst)
 
 	number = ft_prop_cast_unsigned(arg, lst);
 	s1 = ft_malloc_prec(ft_llutoa(number), arg);
+	if (arg->flags[PREC])
+		arg->flags[ZERO] = 0;
 	s2 = ft_malloc_width(ft_strlen(s1), arg);
 	if (arg->flags[MINUS])
 		return (ft_strjoin_clr(s1, s2, 2));

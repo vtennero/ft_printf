@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_wcharlen.c                                      :+:      :+:    :+:   */
+/*   ft_wstrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/25 16:41:27 by vtennero          #+#    #+#             */
-/*   Updated: 2018/01/28 17:31:01 by vtennero         ###   ########.fr       */
+/*   Created: 2018/01/28 17:30:06 by vtennero          #+#    #+#             */
+/*   Updated: 2018/01/28 17:32:17 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_wcharlen(wchar_t c)
+int		ft_wstrlen(wchar_t *wstr)
 {
-	if (c >= 0 && c < 0x7f)
-		return (1);
-	else if (c < 0x7ff)
-		return (2);
-	else if (c < 0xffff)
-		return (3);
-	else if (c < 0x10ffff)
-		return (4);
-	return (0);
+	int	len;
+
+	len = 0;
+	while (*wstr)
+		len += ft_wcharlen(*wstr++);
+	return (len);
 }

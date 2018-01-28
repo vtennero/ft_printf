@@ -77,6 +77,8 @@ char					*ft_is_x(t_params *arg, va_list lst)
 
 	hash = 0;
 	number = ft_prop_cast_unsigned(arg, lst);
+	if (arg->flags[ZERO] && arg->prec == 0 && arg->flags[PREC])
+		arg->flags[ZERO] = 0;
 	s1 = ft_malloc_prec(ft_llutoa_base(number, "0123456789abcdef"), arg);
 	if (arg->flags[HASH] && number != 0)
 		hash = 2;
@@ -108,6 +110,8 @@ char					*ft_is_cap_x(t_params *arg, va_list lst)
 
 	hash = 0;
 	number = ft_prop_cast_unsigned(arg, lst);
+	if (arg->flags[ZERO] && arg->prec == 0 && arg->flags[PREC])
+		arg->flags[ZERO] = 0;
 	s1 = ft_malloc_prec(ft_llutoa_base(number, "0123456789ABCDEF"), arg);
 	if (arg->flags[HASH] && number != 0)
 		hash = 2;

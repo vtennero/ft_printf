@@ -79,7 +79,7 @@ static char *ft_get_wchar(wchar_t wc, char wca[4])
 	return (NULL);
 }
 
-static char		*ft_is_unicode_c(t_params *arg, int var)
+char		*ft_is_unicode_c(t_params *arg, int var)
 {
 	char		wca[4];
 	wchar_t		wc;
