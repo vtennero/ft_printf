@@ -17,6 +17,8 @@ int	main(int ac, char **av)
 {
 	if (ac)
 	{
+		setlocale(LC_ALL, "");
+
 		ft_putendl("my printf :");
 		ft_printf(TEXT);
 		ft_putchar(10);
@@ -27,12 +29,12 @@ int	main(int ac, char **av)
 		ft_printf("LE FAUX %5.x\n", 128);
 		printf("LE VRAI 2 %5.0x\n", 128);
 		ft_printf("LE FAUX 2 %5.0x\n", 128);*/
-		/*ft_write("my number of printed characters\n");
+		ft_putstr("my number of printed characters\n");
 		ft_putnbr(ft_printf(TEXT));
 		ft_putchar(10);
-		ft_write("standard printf :\n");
+		ft_putstr("standard printf :\n");
 		ft_putnbr(printf(TEXT));
-		ft_putchar(10);*/
+		ft_putchar(10);
 	}
 	//while (1)
 	//	;

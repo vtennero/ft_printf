@@ -21,10 +21,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <locale.h>
 
 //#define TEXT "%o\\n", 40
 
-#define TEXT "{%05.s}", 0
+#define TEXT "%.6S", "abc漢"
 
 //#define TEXT "%s\\n", NULL
 
@@ -64,10 +65,10 @@ t_params	*ft_set_zero_params(t_params *arg);
 
 //PARAMETERS SETTINGS
 
-int		ft_set_flags(t_params *arg, char *str, int *index);
-int		ft_set_length(t_params *arg, char *str, int *index);
-int		ft_set_width(t_params *arg, char *str, int *index);
-int		ft_set_prec(t_params *arg, char *str, int *index);
+int			ft_set_flags(t_params *arg, char *str, int *index);
+int			ft_set_length(t_params *arg, char *str, int *index);
+int			ft_set_width(t_params *arg, char *str, int *index);
+int			ft_set_prec(t_params *arg, char *str, int *index);
 
 //PARAMETERS OVERRIDE
 

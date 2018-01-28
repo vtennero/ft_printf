@@ -87,6 +87,7 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_abs(int n);
 int					ft_max(size_t n, size_t p);
+int					ft_wcharlen(wchar_t c);
 
 /*
 ** ------------------------- ITOA & ALII -------------------------

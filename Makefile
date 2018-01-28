@@ -112,7 +112,8 @@ LSRC = ft_memcmp.c \
 	  ft_longlen.c \
 	  ft_ulonglen.c \
 	  ft_llonglen.c \
-	  ft_ullonglen.c
+	  ft_ullonglen.c \
+	  ft_wcharlen.c
 
 PLSRC = $(addprefix libft/, $(LSRC))
 

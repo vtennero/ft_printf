@@ -14,5 +14,13 @@
 
 int	ft_wcharlen(wchar_t c)
 {
-
+	if (c >= 0 && c < 0x7f)
+		return(1);
+	else if (c < 0x7ff)
+		return (2);
+	else if (c < 0xffff)
+		return (3);
+	else if (c < 0x10ffff)
+		return (4);
+	return (0);
 }
