@@ -41,6 +41,7 @@ static int		ft_set_spec(t_params *arg, char spec, va_list lst, char **buf)
 	{
 		ft_general_overrides(arg);
 		processed_string = g_formats[spec].printfunc(arg, lst);
+		// printf("processed string addr : %p\n", &processed_string);
 		*buf = ft_strjoin_clr(*buf, processed_string, 2);
 		return (1);
 	}
@@ -76,7 +77,6 @@ static void		ft_is_not_perc(char **buf, char *format, int *index)
 static void		ft_is_perc(char **buf, char *format, int *index, va_list lst)
 {
 	int			i;
-	char		*addition;
 	t_params	arg;
 
 	i = 1;
@@ -96,6 +96,7 @@ static void		ft_is_perc(char **buf, char *format, int *index, va_list lst)
 		i++;
 	}
 	*index += i - 1;
+	// printf("buf addr : %p\n", buf);
 	if (arg.flags[ERR])
 		*index = -1;
 }

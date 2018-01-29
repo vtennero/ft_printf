@@ -27,9 +27,15 @@
 
 // #define TEXT "%9.6ls", s
 // #define TEXT "%lc, %lc", L'暖', L'ح'
-#define TEXT "%9.6ls %S", s, (wchar_t *)'a'
+// #define TEXT "%9.6ls %S", s, (wchar_t *)'a'
 // #define TEXT "%S", (wchar_t *)'a'
+#define TEXT "%S", L"暖炉"
 
+// #define TEXT "%#6o", 2500
+// #define TEXT "%-#6o", 2500
+// #define TEXT "%4.15S", L"我是一只猫。"
+// #define TEXT "%ls, %ls", L"暖炉", L"لحم خنزير"
+// #define TEXT "%s|%d|%p|%%|%S|%D|%i|%o|%O|%u|%U|%x|%X|%c|%C","bonjour", 42, &c, L"暖炉", LONG_MAX, 42, 42, 42, 100000, ULONG_MAX, 42, 42, 'c', L'플'
 
 
 // #define TEXT "%S", L"我是一只猫。"

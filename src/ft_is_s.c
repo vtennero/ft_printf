@@ -71,41 +71,50 @@ char			*ft_unicode_converter(t_params *arg, wchar_t *wstr, int len)
 	int			n;
 	int			width;
 	int			tmp;
+	int			tmp2;
 
 	i = 0;
 	j = 0;
 	n = 0;
 	new = NULL;
-	tmp = (arg->prec) ? arg->prec : len;
+	if (arg->flags[PREC])
+		tmp2 = arg->prec;
+	// tmp = (arg->prec) ? arg->prec : len;
 	// ft_printf("len = %d\n", len);
 	// ft_printf("tmp = %d\n", tmp);
+	// printf("new addr : %p\n", &new);
 	while (i < len + 1 && tmp >= 1)
 	{
 		// ft_printf("i = %d\n",i);
 		if (arg->flags[ERR] == 1)
-			return (NULL);
+			{
+				free (new);
+		 		printf("new addr : %p\n", &new);
+				return (NULL);
+			}
 		else
 		{
 		new = ft_strjoin_clr(new, ft_is_unicode_c(arg, (int)wstr[j]), 2);
 		// ft_putchar(ft_is_unicode_c(arg, (int)wstr[j]));
 		// ft_putendl("");
-		if (arg->prec)
-			tmp -= ft_wcharlen(wstr[j]);
+		// if (arg->prec)
+			// tmp -= ft_wcharlen(wstr[j]);
 		i += ft_wcharlen(wstr[j]);
 		j++;
 	}
 	}
 	// ft_putendl(new);
 	// ft_printf("tmp = %d\n", tmp);
-	if (arg->prec)
-		arg->prec = arg->prec - tmp;
+	// if (arg->prec)
+		// arg->prec = arg->prec - tmp;
+	arg->prec = tmp2;
 	malloc_size = ft_prec_s(0, ft_strlen(new), arg);
 	// ft_printf("malloc_size = %d\n", malloc_size);
 	malloc_size = ft_width_s(malloc_size, &n, arg);
 	if (arg->flags[MINUS])
-		return (ft_is_s_right(malloc_size, n, new, ft_set_zero(arg)));
+		return (ft_is_s_perc_right(malloc_size, n, new, ft_set_zero(arg)));
 	else
-		return (ft_is_s_left(malloc_size, n, new, ft_set_zero(arg)));
+		return (ft_is_s_perc_left(malloc_size, n, new, ft_set_zero(arg)));
 }
 
 static char		*ft_is_unicode_s(t_params *arg, va_list lst)
@@ -118,6 +127,7 @@ static char		*ft_is_unicode_s(t_params *arg, va_list lst)
 
 
 	str = NULL;
+	// printf("str addr : %p\n", &str);
 	if ((wstr = ft_prop_cast_s(arg, lst)) == NULL)
 		return (str = ft_strdup("(null)"));
 
@@ -129,27 +139,7 @@ static char		*ft_is_unicode_s(t_params *arg, va_list lst)
 	// malloc_size = ft_width_s(malloc_size, &n, arg);
 	// printf("malloc_size = %d\n", malloc_size);
 	//if (arg->flags[MINUS])
-		return (ft_unicode_converter(arg, wstr, ft_wstrlen(wstr)));
-	//else
-	//	return (ft_is_s_left(malloc_size, n, wstr, ft_set_zero(arg)));
-
-	printf("%S\n", wstr);
-	printf("wstr[0] = %c\n", wstr[0]);
-	printf("wstr[1] = %c\n", wstr[1]);
-	printf("wstr[2] = %c\n", wstr[2]);
-	printf("wstr[3] = %c\n", wstr[3]);
-	printf("wstr[4] = %c\n", wstr[4]);
-	printf("wstr[5] = %c\n", wstr[5]);
-	printf("wstr[6] = %c\n", wstr[6]);
-	printf("wstr[7] = %c\n", wstr[7]);
-	printf("wstr[8] = %c\n", wstr[8]);
-	printf("wstr[9] = %c\n", wstr[9]);
-	printf("wstr[10] = %c\n", wstr[10]);
-	printf("wstr[11] = %c\n", wstr[11]);
-	printf("wstr[12] = %c\n", wstr[12]);
-	printf("wstr[13] = %c\n", wstr[13]);
-
-	return (0);
+	return (ft_unicode_converter(arg, wstr, ft_wstrlen(wstr)));
 }
 
 char			*ft_is_s(t_params *arg, va_list lst)

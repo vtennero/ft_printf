@@ -82,7 +82,10 @@ char					*ft_is_o(t_params *arg, va_list lst)
 	s1 = ft_malloc_prec(ft_llutoa_base(number, "01234567"), arg);
 	lstr = ft_strlen(s1);
 	if (arg->flags[HASH] && number != 0 && arg->prec == 0)
+		{
 		s1 = ft_prepend(s1, 1, '0');
+		lstr++;
+		}
 	if (arg->flags[PREC])
 		arg->flags[ZERO] = 0;
 	s2 = ft_malloc_width(lstr, arg);
