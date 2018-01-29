@@ -13,17 +13,25 @@
 #include <stdio.h>
 #include "ft_printf.h"
 
-int	main(int ac, char **av)
+int	main(void)
 {
-	if (ac)
-	{
-		setlocale(LC_ALL, "");
+	int		a;
+	int		b;
+	wchar_t	s[4];
 
+	s[0] = 0x53;
+	s[1] = 0x3abc;
+	s[2] = 0x81000;
+	s[3] = '\0';
+		// setlocale(LC_ALL, "");
+		// ft_putnbr(MB_CUR_MAX);
 		ft_putendl("my printf :");
-		ft_printf(TEXT);
+		a = ft_printf(TEXT);
 		ft_putchar(10);
 		ft_putendl("standard printf :");
-		printf(TEXT);
+		b = printf(TEXT);
+		ft_printf("my printf returns : %d\n", a);
+		ft_printf("standard printf returns : %d\n", b);
 
 
 		/*ft_putstr("my number of printed characters\n");
@@ -32,7 +40,6 @@ int	main(int ac, char **av)
 		ft_putstr("standard printf :\n");
 		ft_putnbr(printf(TEXT));
 		ft_putchar(10);*/
-	}
 	//while (1)
 	//	;
 	return (0);

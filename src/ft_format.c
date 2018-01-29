@@ -96,6 +96,8 @@ static void		ft_is_perc(char **buf, char *format, int *index, va_list lst)
 		i++;
 	}
 	*index += i - 1;
+	if (arg.flags[ERR])
+		*index = -1;
 }
 
 int				ft_read_format(char *format, va_list lst)
@@ -115,11 +117,13 @@ int				ft_read_format(char *format, va_list lst)
 				if (ft_strlen(format) == 1)
 					return (0);
 				ft_is_perc(&buf, format + index, &index, lst);
+				if (index == -1)
+					return (ft_print_buffer(buf, index));
 			}
 			else
 				ft_is_not_perc(&buf, format + index, &index);
 			index++;
 		}
 	}
-	return (ft_print_buffer(buf));
+	return (ft_print_buffer(buf, index));
 }

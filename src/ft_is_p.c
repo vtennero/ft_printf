@@ -62,22 +62,44 @@ static char				*ft_malloc_prec(char *str, t_params *arg)
 		s1[i] = '\0';
 	}
 	free(str);
-	s1 = ft_strjoin_clr("0x", s1, 1);
 	return (s1);
 }
 
-char					*ft_is_p(t_params *arg, va_list lst)
+static	char			*ft_is_p_one(t_params *arg, unsigned long long number)
 {
-	unsigned long long	number;
 	char				*s1;
 	char				*s2;
+	int					lstr;
 
-	arg->flags[LL] = 1;
-	number = ft_prop_cast_unsigned(arg, lst);
 	s1 = ft_malloc_prec(ft_llutoa_base(number, "0123456789abcdef"), arg);
-	s2 = ft_malloc_width(ft_strlen(s1), arg);
+	s1 = ft_strjoin_clr("0x", s1, 1);
+	lstr = ft_strlen(s1);
+	s2 = ft_malloc_width(lstr, arg);
 	if (arg->flags[MINUS])
 		return (ft_strjoin_clr(s1, s2, 2));
 	else
 		return (ft_strjoin_clr(s2, s1, 2));
+}
+static	char			*ft_is_p_two(t_params *arg, unsigned long long number)
+{
+	char				*s1;
+	char				*s2;
+	int					lstr;
+
+	s1 = ft_malloc_prec(ft_llutoa_base(number, "0123456789abcdef"), arg);
+	lstr = ft_strlen(s1);
+	s2 = ft_malloc_width(lstr + 2, arg);
+	s2 = ft_strjoin_clr("0x", s2, 1);
+	return (ft_strjoin_clr(s2, s1, 2));
+}
+char					*ft_is_p(t_params *arg, va_list lst)
+{
+	unsigned long long	number;
+
+	arg->flags[LL] = 1;
+	number = ft_prop_cast_unsigned(arg, lst);
+	if (arg->flags[ZERO] && arg->width > 0 && arg->flags[MINUS] == 0)
+		return(ft_is_p_two(arg, number));
+	else
+		return (ft_is_p_one(arg, number));
 }

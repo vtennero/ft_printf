@@ -25,7 +25,26 @@
 
 //#define TEXT "%o\\n", 40
 
-#define TEXT "%.6S", L"abc漢"
+// #define TEXT "%9.6ls", s
+// #define TEXT "%lc, %lc", L'暖', L'ح'
+#define TEXT "%9.6ls %S", s, (wchar_t *)'a'
+// #define TEXT "%S", (wchar_t *)'a'
+
+
+
+// #define TEXT "%S", L"我是一只猫。"
+// #define TEXT "%s %C %d %p %x %% %S", "bonjour ", L'該', 42, &free, 42, L"لحم خن�..."
+// #define TEXT "%.1S", L"Jamvon"
+// #define TEXT "%hhS, %hhS", 0, L"米米"
+// #define TEXT "%ls, %ls", L"暖炉", L"لحم خنزير"
+// #define TEXT "{%30S}", L"我是一只猫。"
+// #define TEXT "%05p", 0
+// #define TEXT "%5p", 15
+// #define TEXT "%0-5p", 15
+// #define TEXT "%-5p", 15
+// #define TEXT "%.4S", L"我是一只猫。"
+// #define TEXT "%.4S", L"abc漢"
+
 // #define TEXT "%05.u!", 0
 
 
@@ -46,7 +65,7 @@ typedef int t_bool;
 
 enum
 {
-	HASH, PLUS, MINUS, SPACE, ZERO, H, L, J, Z, HH, LL, PREC
+	HASH, PLUS, MINUS, SPACE, ZERO, H, L, J, Z, HH, LL, PREC, ERR
 };
 
 enum
@@ -59,7 +78,7 @@ typedef struct	s_params
 {
 	int			width;
 	int			prec;
-	t_bool		flags[PREC + 1];
+	t_bool		flags[ERR + 1];
 }				t_params;
 
 typedef struct s_struct
@@ -121,7 +140,7 @@ int			ft_prop_cast_c(t_params *arg, va_list lst);
 
 //PRINT
 
-int			ft_print_buffer(char *str);
+int			ft_print_buffer(char *str, int err);
 void		ft_print_params(t_params *arg);
 
 //STRING MANIPULATION

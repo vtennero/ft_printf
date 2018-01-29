@@ -21,6 +21,8 @@ static char		ft_set_zero(t_params *arg)
 
 static int		ft_prec_s(int malloc_size, int str_length, t_params *arg)
 {
+	// ft_printf("arg->prec = %d str_length = %d\n", arg->prec, str_length);
+
 	if (arg->prec > str_length)
 		malloc_size = str_length;
 	else if (arg->flags[PREC] == 0)
@@ -64,36 +66,67 @@ char			*ft_unicode_converter(t_params *arg, wchar_t *wstr, int len)
 {
 	char		*new;
 	int			i;
+	int			j;
+	int			malloc_size;
+	int			n;
+	int			width;
+	int			tmp;
 
 	i = 0;
+	j = 0;
+	n = 0;
 	new = NULL;
-	while (i < len - 1)
+	tmp = (arg->prec) ? arg->prec : len;
+	// ft_printf("len = %d\n", len);
+	// ft_printf("tmp = %d\n", tmp);
+	while (i < len + 1 && tmp >= 1)
 	{
-		new = ft_strjoin_clr(new, ft_is_unicode_c(arg, (int)wstr[i]), 2);
-		i++;
+		// ft_printf("i = %d\n",i);
+		if (arg->flags[ERR] == 1)
+			return (NULL);
+		else
+		{
+		new = ft_strjoin_clr(new, ft_is_unicode_c(arg, (int)wstr[j]), 2);
+		// ft_putchar(ft_is_unicode_c(arg, (int)wstr[j]));
+		// ft_putendl("");
+		if (arg->prec)
+			tmp -= ft_wcharlen(wstr[j]);
+		i += ft_wcharlen(wstr[j]);
+		j++;
+	}
 	}
 	// ft_putendl(new);
-	return (new);
+	// ft_printf("tmp = %d\n", tmp);
+	if (arg->prec)
+		arg->prec = arg->prec - tmp;
+	malloc_size = ft_prec_s(0, ft_strlen(new), arg);
+	// ft_printf("malloc_size = %d\n", malloc_size);
+	malloc_size = ft_width_s(malloc_size, &n, arg);
+	if (arg->flags[MINUS])
+		return (ft_is_s_right(malloc_size, n, new, ft_set_zero(arg)));
+	else
+		return (ft_is_s_left(malloc_size, n, new, ft_set_zero(arg)));
 }
 
 static char		*ft_is_unicode_s(t_params *arg, va_list lst)
 {
 	wchar_t		*wstr;
 	char		*str;
-	int			malloc_size;
-	int			width;
-	int			n;
+	// int			malloc_size;
+	// int			width;
+	// int			n;
+
 
 	str = NULL;
 	if ((wstr = ft_prop_cast_s(arg, lst)) == NULL)
-		return (str = ft_strdup("(null"));
+		return (str = ft_strdup("(null)"));
 
 	// printf("wcharlen = %d\n", ft_wcharlen(wstr[3]));
 	// printf("wstrlen = %d\n", ft_wstrlen(wstr));
-	width = arg->width;
-	n = 0;
-	malloc_size = ft_prec_s(0, ft_wstrlen(wstr), arg);
-	malloc_size = ft_width_s(malloc_size, &n, arg);
+	// width = arg->width;
+	// n = 0;
+	// malloc_size = ft_prec_s(0, ft_wstrlen(wstr), arg);
+	// malloc_size = ft_width_s(malloc_size, &n, arg);
 	// printf("malloc_size = %d\n", malloc_size);
 	//if (arg->flags[MINUS])
 		return (ft_unicode_converter(arg, wstr, ft_wstrlen(wstr)));

@@ -25,6 +25,7 @@ void		ft_print_params(t_params *arg)
 	ft_printf("%c : %d\n", 'z', arg->flags[8]);
 	ft_printf("%s : %d\n", "hh", arg->flags[9]);
 	ft_printf("%s : %d\n", "ll", arg->flags[10]);
+	ft_printf("%s : %d\n", "err", arg->flags[11]);
 	ft_printf("%s : %d\n", "precision (flag)", arg->flags[11]);
 	ft_printf("width = %d\n", arg->width);
 	ft_printf("precision = %d\n", arg->prec);
@@ -43,13 +44,18 @@ static void	ft_check_if_null(char *str, int n)
 	}
 }
 
-int			ft_print_buffer(char *str)
+int			ft_print_buffer(char *str, int err)
 {
 	int		n;
 
+	if (err == -1)
+		return (-1);
+	else
+	{
 	n = ft_strlen(str);
 	ft_check_if_null(str, n);
 	write(1, str, n);
 	free(str);
+}
 	return (n);
 }

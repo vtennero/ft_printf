@@ -48,25 +48,27 @@ static char		*ft_is_normal_c(t_params *arg, int var)
 	}
 }
 
-static char *ft_get_wchar(wchar_t wc, char wca[4])
+static char *ft_get_wchar(wchar_t wc, char wca[4], t_params *arg)
 {
+	// ft_printf("charlen = %d\n", ft_wcharlen(wc));
+	// ft_printf("ft_get_wchar %x\n", wc);
 	if (ft_wcharlen(wc) == 1)
 	{
 		wca[0] = (char)wc;
-		return (strdup(wca));
+		return (ft_strdup(wca));
 	}
 	else if (ft_wcharlen(wc) == 2)
 	{
 		wca[0] = (char)((wc >> 6) | 0xc0);
 		wca[1] = (char)((wc & 0x3f) | 0x80);
-		return (strdup(wca));
+		return (ft_strdup(wca));
 	}
 	else if (ft_wcharlen(wc) == 3)
 	{
 		wca[0] = (char)((wc >> 12) | 0xe0);
 		wca[1] = (char)(((wc >> 6) & 0x3f) | 0x80);
 		wca[2] = (char)((wc & 0x3f) | 0x80);
-		return (strdup(wca));
+		return (ft_strdup(wca));
 	}
 	else if (ft_wcharlen(wc) == 4)
 	{
@@ -74,8 +76,10 @@ static char *ft_get_wchar(wchar_t wc, char wca[4])
 		wca[1] = (char)(((wc >> 12) & 0x3f) | 0x80);
 		wca[2] = (char)(((wc >> 6) & 0x3f) | 0x80);
 		wca[3] = (char)((wc & 0x3f) | 0x80);
-		return (strdup(wca));
+		return (ft_strdup(wca));
 	}
+	arg->flags[ERR] = 1;
+	// ft_printf("ft_get_wchar: arg->flags[ERR] = %d\n", arg->flags[ERR]);
 	return (NULL);
 }
 
@@ -89,7 +93,7 @@ char		*ft_is_unicode_c(t_params *arg, int var)
 	wca[1] = 0;
 	wca[2] = 0;
 	wca[3] = 0;
-	return(ft_get_wchar(wc, wca));
+	return(ft_get_wchar(wc, wca, arg));
 }
 
 char		*ft_is_c(t_params *arg, va_list lst)
@@ -97,7 +101,7 @@ char		*ft_is_c(t_params *arg, va_list lst)
 	int		var;
 
 	var = ft_prop_cast_c(arg, lst);
-	if (var < 255)
+	if (var <= 255)
 		return (ft_is_normal_c (arg, var));
 	return (ft_is_unicode_c(arg, var));
 }
