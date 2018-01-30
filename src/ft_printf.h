@@ -29,13 +29,15 @@
 // #define TEXT "%lc, %lc", L'暖', L'ح'
 // #define TEXT "%9.6ls %S", s, (wchar_t *)'a'
 // #define TEXT "%S", (wchar_t *)'a'
-#define TEXT "%S", L"暖炉"
+// #define TEXT "%S", L"暖炉"
 
 // #define TEXT "%#6o", 2500
 // #define TEXT "%-#6o", 2500
 // #define TEXT "%4.15S", L"我是一只猫。"
 // #define TEXT "%ls, %ls", L"暖炉", L"لحم خنزير"
-// #define TEXT "%s|%d|%p|%%|%S|%D|%i|%o|%O|%u|%U|%x|%X|%c|%C","bonjour", 42, &c, L"暖炉", LONG_MAX, 42, 42, 42, 100000, ULONG_MAX, 42, 42, 'c', L'플'
+#define TEXT "%s|%d|%p|%%|%S|%D|%i|%o|%O|%u|%U|%x|%X|%c|%C","bonjour", 42, &c, L"暖炉", LONG_MAX, 42, 42, 42, 100000, ULONG_MAX, 42, 42, 'c', L'플'
+// #define TEXT "%s|%d|%p|%%|%S|%D|%i|%o|%O|%u|%U|%x|%X|%c|%C", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+// #define TEXT "%s %C %d %p %x %% %S", "bonjour ", L'該', 42, &free, 42, L"لحم خنزير"
 
 
 // #define TEXT "%S", L"我是一只猫。"
@@ -63,6 +65,12 @@
 // #define TEXT "%lx", (unsigned long)-178965423
 // #define TEXT "%020.14jx", 0xffaabbccee
 // #define TEXT "%hX", (unsigned short)40
+
+// #define TEXT "%S\\n", L"ݗݜशব"
+
+// #define TEXT "%s%s%s\\n", "test", "test", "test"
+// #define TEXT "%s\n", NULL
+// #define TEXT "%C\\n", 15000
 
 
 //#define TEXT "%s\\n", NULL

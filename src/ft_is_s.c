@@ -79,17 +79,18 @@ char			*ft_unicode_converter(t_params *arg, wchar_t *wstr, int len)
 	new = NULL;
 	if (arg->flags[PREC])
 		tmp2 = arg->prec;
+	// new = (char *)malloc(sizeof(char) * ft_wstrlen(wstr));
 	// tmp = (arg->prec) ? arg->prec : len;
 	// ft_printf("len = %d\n", len);
 	// ft_printf("tmp = %d\n", tmp);
 	// printf("new addr : %p\n", &new);
-	while (i < len + 1 && tmp >= 1)
+	while (i < len)
 	{
 		// ft_printf("i = %d\n",i);
 		if (arg->flags[ERR] == 1)
 			{
 				free (new);
-		 		printf("new addr : %p\n", &new);
+		 		// printf("new addr : %p\n", &new);
 				return (NULL);
 			}
 		else

@@ -122,14 +122,15 @@ static char *ft_get_wchar_prec(wchar_t wc, char wca[4], t_params *arg)
 
 char		*ft_is_unicode_c(t_params *arg, int var)
 {
-	char		wca[4];
+	char		wca[MB_CUR_MAX];
 	wchar_t		wc;
 
 	wc = (wchar_t)var;
-	wca[0] = 0;
+	ft_bzero(wca, MB_CUR_MAX);
+	/*wca[0] = 0;
 	wca[1] = 0;
 	wca[2] = 0;
-	wca[3] = 0;
+	wca[3] = 0;*/
 	if (arg->flags[PREC])
 		return(ft_get_wchar_prec(wc, wca, arg));
 	else
