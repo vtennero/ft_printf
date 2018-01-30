@@ -6,70 +6,11 @@
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 18:52:44 by vtennero          #+#    #+#             */
-/*   Updated: 2018/01/25 14:09:02 by vtennero         ###   ########.fr       */
+/*   Updated: 2018/01/30 19:25:19 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static char				*ft_malloc_width(int n, t_params *arg)
-{
-	char				*str;
-	int					i;
-	char				c;
-
-	n = arg->width - arg->flags[SPACE] - arg->flags[PLUS] - n;
-	c = (arg->flags[ZERO]) ? '0' : ' ';
-	i = 0;
-	if (n < 0)
-		n = 0;
-	str = (char *)malloc(n + 1);
-	if (str)
-	{
-		while (i < n)
-		{
-			str[i] = c;
-			i++;
-		}
-		str[i] = '\0';
-	}
-	return (str);
-}
-
-static char				*ft_malloc_prec(char *str, t_params *arg)
-{
-	char				*s1;
-	int					i;
-	int					j;
-	int					len;
-
-	i = 0;
-	j = 0;
-	len = ft_strlen(str);
-	if (str)
-	{
-		if (arg->prec == 0 && arg->flags[PREC] && str[0] == '0')
-		{
-			if (!arg->flags[HASH])
-				return (NULL);
-		}
-	}
-	s1 = (char *)malloc(sizeof(char) * ft_max(len, arg->prec) + 1);
-	if (s1)
-	{
-		while (i < arg->prec - len)
-			s1[i++] = '0';
-		while (j < len)
-		{
-			s1[i] = str[j];
-			j++;
-			i++;
-		}
-		s1[i] = '\0';
-	}
-	free(str);
-	return (s1);
-}
 
 char					*ft_is_o(t_params *arg, va_list lst)
 {
@@ -77,20 +18,29 @@ char					*ft_is_o(t_params *arg, va_list lst)
 	char				*s1;
 	char				*s2;
 	int					lstr;
+	char				*str;
 
 	number = ft_prop_cast_unsigned(arg, lst);
-	s1 = ft_malloc_prec(ft_llutoa_base(number, "01234567"), arg);
+	str = ft_llutoa_base(number, "01234567");
+	s1 = ft_malloc_prec_o(str, arg);
+	free(str);
 	lstr = ft_strlen(s1);
 	if (arg->flags[HASH] && number != 0 && arg->prec == 0)
-		{
+	{
 		s1 = ft_prepend(s1, 1, '0');
 		lstr++;
-		}
+	}
 	if (arg->flags[PREC])
 		arg->flags[ZERO] = 0;
-	s2 = ft_malloc_width(lstr, arg);
+	s2 = ft_malloc_width_dopux(lstr, arg);
 	if (arg->flags[MINUS])
 		return (ft_strjoin_clr(s1, s2, 1));
 	else
 		return (ft_strjoin_clr(s2, s1, 2));
+}
+
+char					*ft_is_cap_o(t_params *arg, va_list lst)
+{
+	arg->flags[L] = 1;
+	return (ft_is_o(arg, lst));
 }

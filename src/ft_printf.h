@@ -116,5 +116,20 @@ char				*ft_is_s_perc_right(int size, int n, char *str, char c);
 char				*ft_append(char *buf, int n, char c);
 char				*ft_prepend(char *buf, int n, char c);
 char				*ft_is_unicode_c(t_params *arg, int var);
+/*
+** ------------------------- PRECISION -------------------------
+*/
+char				*ft_build_prec_str(int p, int len, char *str, char *s1);
+char				*ft_malloc_prec_o(char *str, t_params *arg);
+char				*ft_malloc_prec_p(char *str, t_params *arg);
+int					ft_prec_s(int malloc_size, int str_length, t_params *arg);
+char				*ft_malloc_prec_dux(char *str, t_params *arg);
+/*
+** ------------------------- WIDTH -------------------------
+*/
+char				ft_set_zero(t_params *arg);
+char				*ft_malloc_width_dopux(int n, t_params *arg);
+int					ft_malloc_width_s(int malloc_size, int *n, t_params *arg);
+char				*ft_malloc_width_c(t_params *arg);
 
 #endif

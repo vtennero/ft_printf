@@ -37,10 +37,10 @@ static int		ft_set_spec(t_params *arg, char spec, va_list lst, char **buf)
 	char		*processed_string;
 
 	processed_string = NULL;
-	if (g_formats[spec].printfunc)
+	if (g_formats[(int)spec].printfunc)
 	{
 		ft_general_overrides(arg);
-		processed_string = g_formats[spec].printfunc(arg, lst);
+		processed_string = g_formats[(int)spec].printfunc(arg, lst);
 		*buf = ft_strjoin_clr(*buf, processed_string, 2);
 		return (1);
 	}

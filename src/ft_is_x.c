@@ -12,124 +12,86 @@
 
 #include "ft_printf.h"
 
-static char				*ft_malloc_width(int n, t_params *arg)
+static char				*b_x(char *s, int h, t_params *a, unsigned long long n)
 {
-	char				*str;
-	int					i;
-	char				c;
+	char				*s2;
 
-	n = arg->width - arg->flags[SPACE] - arg->flags[PLUS] - n;
-	c = (arg->flags[ZERO]) ? '0' : ' ';
-	i = 0;
-	if (n < 0)
-		n = 0;
-	str = (char *)malloc(n + 1);
-	if (str)
+	s2 = ft_malloc_width_dopux(ft_strlen(s) + h, a);
+	if (a->flags[HASH] && n != 0)
 	{
-		while (i < n)
+		if (a->flags[ZERO])
+			s2 = ft_strjoin_clr("0x", s2, 1);
+		else
 		{
-			str[i] = c;
-			i++;
+			if (a->flags[MINUS])
+				s = ft_strjoin_clr("0x", s, 1);
+			else
+				s2 = ft_strjoin_clr(s2, "0x", 0);
 		}
-		str[i] = '\0';
 	}
-	return (str);
+	if (a->flags[MINUS])
+		return (ft_strjoin_clr(s, s2, 2));
+	else
+		return (ft_strjoin_clr(s2, s, 2));
 }
 
-static char				*ft_malloc_prec(char *str, t_params *arg)
+static char				*b_cx(char *s, int h, t_params *a, unsigned long long n)
 {
-	char				*s1;
-	int					i;
-	int					j;
-	int					len;
+	char				*s2;
 
-	i = 0;
-	j = 0;
-	len = ft_strlen(str);
-	if (str)
+	s2 = ft_malloc_width_dopux(ft_strlen(s) + h, a);
+	if (a->flags[HASH] && n != 0)
 	{
-		if (arg->prec == 0 && arg->flags[PREC] && str[0] == '0')
-			return (NULL);
-	}
-	s1 = (char *)malloc(sizeof(char) * ft_max(len, arg->prec) + 1);
-	if (s1)
-	{
-		while (i < arg->prec - len)
-			s1[i++] = '0';
-		while (j < len)
+		if (a->flags[ZERO])
+			s2 = ft_strjoin_clr("0X", s2, 1);
+		else
 		{
-			s1[i] = str[j];
-			j++;
-			i++;
+			if (a->flags[MINUS])
+				s = ft_strjoin_clr("0X", s, 1);
+			else
+				s2 = ft_strjoin_clr(s2, "0X", 0);
 		}
-		s1[i] = '\0';
 	}
-	free(str);
-	return (s1);
+	if (a->flags[MINUS])
+		return (ft_strjoin_clr(s, s2, 2));
+	else
+		return (ft_strjoin_clr(s2, s, 2));
 }
 
 char					*ft_is_x(t_params *arg, va_list lst)
 {
 	unsigned long long	number;
 	char				*s1;
-	char				*s2;
 	int					hash;
+	char				*str;
 
 	hash = 0;
 	number = ft_prop_cast_unsigned(arg, lst);
+	str = ft_llutoa_base(number, "0123456789abcdef");
 	if (arg->flags[ZERO] && arg->prec == 0 && arg->flags[PREC])
 		arg->flags[ZERO] = 0;
-	s1 = ft_malloc_prec(ft_llutoa_base(number, "0123456789abcdef"), arg);
+	s1 = ft_malloc_prec_dux(str, arg);
+	free(str);
 	if (arg->flags[HASH] && number != 0)
 		hash = 2;
-	s2 = ft_malloc_width(ft_strlen(s1) + hash, arg);
-	if (arg->flags[HASH] && number != 0)
-	{
-		if (arg->flags[ZERO])
-			s2 = ft_strjoin_clr("0x", s2, 1);
-		else
-		{
-			if (arg->flags[MINUS])
-				s1 = ft_strjoin_clr("0x", s1, 1);
-			else
-				s2 = ft_strjoin_clr(s2, "0x", 0);
-		}
-	}
-	if (arg->flags[MINUS])
-		return (ft_strjoin_clr(s1, s2, 2));
-	else
-		return (ft_strjoin_clr(s2, s1, 2));
+	return (b_x(s1, hash, arg, number));
 }
 
 char					*ft_is_cap_x(t_params *arg, va_list lst)
 {
 	unsigned long long	number;
 	char				*s1;
-	char				*s2;
 	int					hash;
+	char				*str;
 
 	hash = 0;
 	number = ft_prop_cast_unsigned(arg, lst);
+	str = ft_llutoa_base(number, "0123456789ABCDEF");
 	if (arg->flags[ZERO] && arg->prec == 0 && arg->flags[PREC])
 		arg->flags[ZERO] = 0;
-	s1 = ft_malloc_prec(ft_llutoa_base(number, "0123456789ABCDEF"), arg);
+	s1 = ft_malloc_prec_dux(str, arg);
+	free(str);
 	if (arg->flags[HASH] && number != 0)
 		hash = 2;
-	s2 = ft_malloc_width(ft_strlen(s1) + hash, arg);
-	if (arg->flags[HASH] && number != 0)
-	{
-		if (arg->flags[ZERO])
-			s2 = ft_strjoin_clr("0X", s2, 1);
-		else
-		{
-			if (arg->flags[MINUS])
-				s1 = ft_strjoin_clr("0X", s1, 1);
-			else
-				s2 = ft_strjoin_clr(s2, "0X", 0);
-		}
-	}
-	if (arg->flags[MINUS])
-		return (ft_strjoin_clr(s1, s2, 2));
-	else
-		return (ft_strjoin_clr(s2, s1, 2));
+	return (b_cx(s1, hash, arg, number));
 }

@@ -74,6 +74,7 @@ size_t				ft_strlcat(char *dst, const char *src, size_t size);
 void				ft_putchar(char c);
 void				ft_putchar_fd(char c, int fd);
 int					ft_abs(int n);
+long long			ft_abs_ll(long long n);
 int					ft_max(size_t n, size_t p);
 int					ft_wcharlen(wchar_t c);
 int					ft_wcharlen(wchar_t c);

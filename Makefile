@@ -10,15 +10,11 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = dummy_test
+NAME = libftprintf.a
 
-LIB = libftprintf.a
+FLAGS = -Wall -Werror -Wextra
 
-# FLAGS = -Wall -Werror -Wextra -g3
- FLAGS = -g
-
-SRC =  main.c \
-	   ft_printf.c \
+SRC =  ft_printf.c \
 	   ft_format.c \
 	   ft_create_params.c \
 	   ft_set_params.c \
@@ -32,9 +28,11 @@ SRC =  main.c \
 	   ft_is_o.c \
 	   ft_is_p.c \
 	   ft_is_x.c \
+	   ft_is_cap_s.c \
 	   ft_is_s_perc.c \
 	   ft_unicode.c \
-	   ft_other_specs.c \
+	   ft_precision.c \
+	   ft_width.c \
 	   ft_prepend_or_append.c \
 	   ft_left_or_right.c \
 	   ft_print_buffer.c \
@@ -99,6 +97,7 @@ LSRC = ft_memcmp.c \
 	  ft_lstmap.c \
 	  ft_strndup.c \
 	  ft_abs.c \
+	  ft_abs_ll.c \
 	  ft_max.c \
 	  ft_itoa.c \
 	  ft_ltoa.c \
@@ -125,19 +124,20 @@ PSRC = $(addprefix src/, $(SRC))
 
 OBJ =  $(SRC:.c=.o) $(LSRC:.c=.o)
 
-all:
+all: $(NAME)
+
+$(NAME):
 	@ gcc -c $(PLSRC) $(FLAGS) -I libft/
 	@ gcc -c $(PSRC) $(FLAGS) -I src/
-	@ ar rc $(LIB) $(OBJ)
-	@ ranlib $(LIB)
-	@ gcc $(FLAGS) -o $(NAME) $(LIB)
+	@ ar rc $(NAME) $(OBJ)
+	@ ranlib $(NAME)
 
 clean:
 	@ /bin/rm -f $(OBJ)
 
 fclean:
 	@ make clean
-	@ /bin/rm -f $(LIB)
+	@ /bin/rm -f $(NAME)
 	@ /bin/rm -f $(NAME)
 
 re:
