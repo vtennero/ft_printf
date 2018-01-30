@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_eq_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/24 17:02:14 by vtennero          #+#    #+#             */
-/*   Updated: 2018/01/30 15:19:53 by vtennero         ###   ########.fr       */
+/*   Created: 2018/01/30 14:36:49 by vtennero          #+#    #+#             */
+/*   Updated: 2018/01/30 14:37:32 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
-size_t	ft_strlen(const char *s)
+int	ft_eq_char(char c1, char c2)
 {
-	int	i;
-
-	i = 0;
-	if (s)
-	{
-		while (s[i] != '\0')
-			i++;
-	}
-	return (i);
+	if (c1 == c2)
+		return (1);
+	else
+		return (0);
 }

@@ -24,7 +24,6 @@ static char	*ft_malloc_width(int n, t_params *arg)
 	if (n < 0)
 		n = 0;
 	str = (char *)malloc(n + 1);
-	//printf("ft_is_d malloc width s2 pointer addr : %p\n", str);
 	if (str)
 	{
 		while (i < n)
@@ -53,8 +52,6 @@ static char	*ft_malloc_prec(char *str, t_params *arg)
 			return (NULL);
 	}
 	s1 = (char *)malloc(sizeof(char) * ft_max(len, arg->prec) + 1);
-	//printf("ft_is_d lltoabase pointer addr : %p\n", str);
-	//printf("ft_is_d malloc prec pointer addr : %p\n", s1);
 	if (s1)
 	{
 		while (i < arg->prec - len)

@@ -6,7 +6,7 @@
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 10:37:46 by vtennero          #+#    #+#             */
-/*   Updated: 2018/01/25 14:23:03 by vtennero         ###   ########.fr       */
+/*   Updated: 2018/01/30 14:56:44 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ int			ft_print_buffer(char *str, int err)
 		return (-1);
 	else
 	{
-	n = ft_strlen(str);
-	ft_check_if_null(str, n);
-	write(1, str, n);
-	free(str);
-}
+		n = ft_strlen(str);
+		ft_check_if_null(str, n);
+		write(1, str, n);
+		free(str);
+	}
 	return (n);
 }

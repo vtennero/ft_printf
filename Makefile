@@ -6,7 +6,7 @@
 #    By: vtennero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/17 15:16:05 by vtennero          #+#    #+#              #
-#    Updated: 2017/12/29 14:21:20 by vtennero         ###   ########.fr        #
+#    Updated: 2018/01/30 16:31:43 by vtennero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = dummy_test
 
 LIB = libftprintf.a
 
-FLAGS = -Wall -Werror -Wextra
+# FLAGS = -Wall -Werror -Wextra -g3
+ FLAGS = -g
 
 SRC =  main.c \
 	   ft_printf.c \
@@ -32,6 +33,7 @@ SRC =  main.c \
 	   ft_is_p.c \
 	   ft_is_x.c \
 	   ft_is_s_perc.c \
+	   ft_unicode.c \
 	   ft_other_specs.c \
 	   ft_prepend_or_append.c \
 	   ft_left_or_right.c \
@@ -114,7 +116,8 @@ LSRC = ft_memcmp.c \
 	  ft_llonglen.c \
 	  ft_ullonglen.c \
 	  ft_wcharlen.c \
-	  ft_wstrlen.c
+	  ft_wstrlen.c \
+	  ft_eq_char.c
 
 PLSRC = $(addprefix libft/, $(LSRC))
 
@@ -123,8 +126,8 @@ PSRC = $(addprefix src/, $(SRC))
 OBJ =  $(SRC:.c=.o) $(LSRC:.c=.o)
 
 all:
-	@ gcc -c $(PLSRC) -I libft/
-	@ gcc -c $(PSRC) -I src/
+	@ gcc -c $(PLSRC) $(FLAGS) -I libft/
+	@ gcc -c $(PSRC) $(FLAGS) -I src/
 	@ ar rc $(LIB) $(OBJ)
 	@ ranlib $(LIB)
 	@ gcc $(FLAGS) -o $(NAME) $(LIB)

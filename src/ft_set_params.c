@@ -6,31 +6,23 @@
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/30 14:49:50 by vtennero          #+#    #+#             */
-/*   Updated: 2017/12/30 14:57:59 by vtennero         ###   ########.fr       */
+/*   Updated: 2018/01/30 14:57:19 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static t_bool	ft_is_char(char c1, char c2)
-{
-	if (c1 == c2)
-		return (1);
-	else
-		return (0);
-}
-
 int		ft_set_flags(t_params *arg, char *str, int *index)
 {
-	if (ft_is_char(str[*index], '#') == 1)
+	if (ft_eq_char(str[*index], '#') == 1)
 		return (arg->flags[HASH] = 1);
-	else if (ft_is_char(str[*index], '+') == 1)
+	else if (ft_eq_char(str[*index], '+') == 1)
 		return (arg->flags[PLUS] = 1);
-	else if (ft_is_char(str[*index], '-') == 1)
+	else if (ft_eq_char(str[*index], '-') == 1)
 		return (arg->flags[MINUS] = 1);
-	else if (ft_is_char(str[*index], ' ') == 1)
+	else if (ft_eq_char(str[*index], ' ') == 1)
 		return (arg->flags[SPACE] = 1);
-	else if (ft_is_char(str[*index], '0') == 1)
+	else if (ft_eq_char(str[*index], '0') == 1)
 		return (arg->flags[ZERO] = 1);
 	return (0);
 }
@@ -47,15 +39,15 @@ int		ft_set_length(t_params *arg, char *str, int *index)
 		*index += 1;
 		return (arg->flags[LL] = 1);
 	}
-	else if (ft_is_char(str[*index], 'h') == 1)
-		{
+	else if (ft_eq_char(str[*index], 'h') == 1)
+	{
 		return (arg->flags[H] = 1);
-		}
-	else if (ft_is_char(str[*index], 'l') == 1)
+	}
+	else if (ft_eq_char(str[*index], 'l') == 1)
 		return (arg->flags[L] = 1);
-	else if (ft_is_char(str[*index], 'j') == 1)
+	else if (ft_eq_char(str[*index], 'j') == 1)
 		return (arg->flags[J] = 1);
-	else if (ft_is_char(str[*index], 'z') == 1)
+	else if (ft_eq_char(str[*index], 'z') == 1)
 		return (arg->flags[Z] = 1);
 	return (0);
 }
@@ -78,7 +70,7 @@ int		ft_set_width(t_params *arg, char *str, int *index)
 
 int		ft_set_prec(t_params *arg, char *str, int *index)
 {
-	if (ft_is_char(str[*index], '.') == 1)
+	if (ft_eq_char(str[*index], '.') == 1)
 	{
 		*index += 1;
 		arg->flags[PREC] = 1;
@@ -95,5 +87,18 @@ int		ft_set_prec(t_params *arg, char *str, int *index)
 		*index -= 1;
 		return (1);
 	}
+	return (0);
+}
+
+int		ft_flwp(t_params *arg, char *format, int *i)
+{
+	if (ft_set_flags(arg, format, i) == 1)
+		return (1);
+	else if (ft_set_length(arg, format, i) == 1)
+		return (1);
+	else if (ft_set_width(arg, format, i) == 1)
+		return (1);
+	else if (ft_set_prec(arg, format, i) == 1)
+		return (1);
 	return (0);
 }

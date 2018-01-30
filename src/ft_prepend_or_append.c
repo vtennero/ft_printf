@@ -18,7 +18,7 @@ char			*ft_prepend(char *buf, int n, char c)
 	int			i;
 
 	i = 0;
-	prepend = malloc(sizeof(char) * n + 1);
+	prepend = (char *)malloc(sizeof(char) * n + 1);
 	if (prepend)
 	{
 		while (i < n)
@@ -34,7 +34,7 @@ char			*ft_append(char *buf, int n, char c)
 	int			i;
 
 	i = 0;
-	append = malloc(sizeof(char) * n + 1);
+	append = (char *)malloc(sizeof(char) * n + 1);
 	if (append)
 	{
 		while (i < n)

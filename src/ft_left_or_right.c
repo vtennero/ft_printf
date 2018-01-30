@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char			*ft_is_s_right(int malloc_size, int n, char *str, char c)
+char			*ft_is_s_right(int size, int n, char *str, char c)
 {
 	int			i;
 	int			j;
@@ -20,11 +20,9 @@ char			*ft_is_s_right(int malloc_size, int n, char *str, char c)
 
 	i = 0;
 	j = 0;
-	n = malloc_size - n;
-	s = malloc(malloc_size + 1);
-	if (s)
+	if ((s = (char*)malloc(size + 1)))
 	{
-		while (i < malloc_size)
+		while (i < size)
 		{
 			if (n)
 			{
@@ -41,7 +39,7 @@ char			*ft_is_s_right(int malloc_size, int n, char *str, char c)
 	return (s);
 }
 
-char			*ft_is_s_left(int malloc_size, int n, char *str, char c)
+char			*ft_is_s_left(int size, int n, char *str, char c)
 {
 	int			i;
 	int			j;
@@ -49,10 +47,9 @@ char			*ft_is_s_left(int malloc_size, int n, char *str, char c)
 
 	i = 0;
 	j = 0;
-	s = malloc(malloc_size + 1);
-	if (s)
+	if ((s = (char*)malloc(size + 1)))
 	{
-		while (i < malloc_size)
+		while (i < size)
 		{
 			if (n)
 			{
@@ -68,7 +65,7 @@ char			*ft_is_s_left(int malloc_size, int n, char *str, char c)
 	return (s);
 }
 
-char			*ft_is_s_perc_right(int malloc_size, int n, char *str, char c)
+char			*ft_is_s_perc_right(int size, int n, char *str, char c)
 {
 	int			i;
 	int			j;
@@ -76,11 +73,9 @@ char			*ft_is_s_perc_right(int malloc_size, int n, char *str, char c)
 
 	i = 0;
 	j = 0;
-	n = malloc_size - n;
-	s = malloc(malloc_size + 1);
-	if (s)
+	if ((s = (char*)malloc(size + 1)))
 	{
-		while (i < malloc_size)
+		while (i < size)
 		{
 			if (n)
 			{
@@ -99,7 +94,7 @@ char			*ft_is_s_perc_right(int malloc_size, int n, char *str, char c)
 	return (s);
 }
 
-char			*ft_is_s_perc_left(int malloc_size, int n, char *str, char c)
+char			*ft_is_s_perc_left(int size, int n, char *str, char c)
 {
 	int			i;
 	int			j;
@@ -107,10 +102,9 @@ char			*ft_is_s_perc_left(int malloc_size, int n, char *str, char c)
 
 	i = 0;
 	j = 0;
-	s = malloc(malloc_size + 1);
-	if (s)
+	if ((s = (char*)malloc(size + 1)))
 	{
-		while (i < malloc_size)
+		while (i < size)
 		{
 			if (n)
 			{

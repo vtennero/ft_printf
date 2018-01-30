@@ -6,7 +6,7 @@
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 14:28:03 by vtennero          #+#    #+#             */
-/*   Updated: 2018/01/25 14:28:05 by vtennero         ###   ########.fr       */
+/*   Updated: 2018/01/30 14:45:57 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,9 @@ static int		ft_set_spec(t_params *arg, char spec, va_list lst, char **buf)
 	{
 		ft_general_overrides(arg);
 		processed_string = g_formats[spec].printfunc(arg, lst);
-		// printf("processed string addr : %p\n", &processed_string);
 		*buf = ft_strjoin_clr(*buf, processed_string, 2);
 		return (1);
 	}
-	return (0);
-}
-
-static int		ft_flwp(t_params *arg, char *format, int *i)
-{
-	if (ft_set_flags(arg, format, i) == 1)						
-		return (1);
-	else if (ft_set_length(arg, format, i) == 1)
-		return (1);
-	else if (ft_set_width(arg, format, i) == 1)
-		return (1);
-	else if (ft_set_prec(arg, format, i) == 1)
-		return (1);
 	return (0);
 }
 
@@ -96,7 +82,6 @@ static void		ft_is_perc(char **buf, char *format, int *index, va_list lst)
 		i++;
 	}
 	*index += i - 1;
-	// printf("buf addr : %p\n", buf);
 	if (arg.flags[ERR])
 		*index = -1;
 }

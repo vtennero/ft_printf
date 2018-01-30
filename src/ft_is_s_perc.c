@@ -56,7 +56,7 @@ char			*ft_is_s_perc(t_params *arg, char *format)
 	malloc_size = ft_prec_s(0, ft_strlen(str), arg);
 	malloc_size = ft_width_s(malloc_size, &n, arg);
 	if (arg->flags[MINUS])
-		return (ft_is_s_perc_right(malloc_size, n, str, ft_set_zero(arg)));
+		return (ft_is_s_perc_right(malloc_size, malloc_size - n, str, ft_set_zero(arg)));
 	else
 		return (ft_is_s_perc_left(malloc_size, n, str, ft_set_zero(arg)));
 }

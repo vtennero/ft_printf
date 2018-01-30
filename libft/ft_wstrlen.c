@@ -17,7 +17,17 @@ int		ft_wstrlen(wchar_t *wstr)
 	int	len;
 
 	len = 0;
-	while (*wstr)
-		len += ft_wcharlen(*wstr++);
+	if (wstr)
+	{
+		while (*wstr)
+		{
+			len += ft_wcharlen(*wstr);
+			if (ft_wcharlen(*wstr) == 0)
+			{
+				return (-1);
+			}
+			wstr++;
+		}
+	}
 	return (len);
 }

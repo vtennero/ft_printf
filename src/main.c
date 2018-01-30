@@ -13,6 +13,11 @@
 #include <stdio.h>
 #include "ft_printf.h"
 
+// #define TEXT "{%030S}", L"我是一只猫。"
+#define TEXT "%9.6ls %S", s, (wchar_t *)'a'
+// #define TEXT "{%030S}", L"我#是#一#只#猫#。"
+// #define TEXT "%S", L"。"
+
 int	main(void)
 {
 	int		a;
@@ -24,13 +29,14 @@ int	main(void)
 	s[1] = 0x3abc;
 	s[2] = 0x81000;
 	s[3] = '\0';
-	setlocale(LC_ALL, "en_US.UTF-8");
+	// ft_printf("s[2] len = %d\n", ft_wcharlen(s[2]));
+	// setlocale(LC_ALL, "en_US.UTF-8");
 	// ft_putnbr(MB_CUR_MAX);
 	// ft_putendl("my printf :");
 	a = ft_printf(TEXT);
 	ft_putchar(10);
 	// ft_putendl("standard printf :");
-	// b = printf(TEXT);
+	b = printf(TEXT);
 	// ft_printf("my printf returns : %d\n", a);
 	// ft_printf("standard printf returns : %d\n", b);
 
