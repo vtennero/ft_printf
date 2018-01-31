@@ -36,7 +36,7 @@ static char	*ft_wchar(wchar_t wc, char wca[MB_CUR_MAX + 1])
 		wca[2] = (char)(((wc >> 6) & 0x3f) | 0x80);
 		wca[3] = (char)((wc & 0x3f) | 0x80);
 	}
-	return ((ft_wcharlen(wc) >= 1 && ft_wcharlen(wc) <= 4) ? \
+	return ((ft_wcharlen(wc) >= 1 && ft_wcharlen(wc) <= 4) ?
 			ft_strdup(wca) : NULL);
 }
 
@@ -65,7 +65,7 @@ static char	*ft_wchar_p(wchar_t wc, char wca[MB_CUR_MAX + 1], t_params *arg)
 		wca[3] = (char)((wc & 0x3f) | 0x80);
 	}
 	arg->prec -= ft_wcharlen(wc);
-	return ((arg->prec >= 0) && ft_wcharlen(wc) >= 1 && ft_wcharlen(wc) <= 4 ? \
+	return ((arg->prec >= 0) && ft_wcharlen(wc) >= 1 && ft_wcharlen(wc) <= 4 ?
 			ft_strdup(wca) : NULL);
 }
 

@@ -49,7 +49,10 @@ int			ft_print_buffer(char *str, int err)
 	int		n;
 
 	if (err == -1)
+	{
+		free(str);
 		return (-1);
+	}
 	else
 	{
 		n = ft_strlen(str);

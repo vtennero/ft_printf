@@ -89,8 +89,7 @@ char			*ft_is_s_perc_right(int size, int n, char *str, char c)
 		}
 		s[i] = '\0';
 	}
-	if (str)
-		free(str);
+	free(str);
 	return (s);
 }
 
@@ -117,7 +116,6 @@ char			*ft_is_s_perc_left(int size, int n, char *str, char c)
 		}
 		s[i] = '\0';
 	}
-	if (str)
-		free(str);
+	free(str);
 	return (s);
 }

@@ -6,7 +6,7 @@
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/30 14:59:35 by vtennero          #+#    #+#             */
-/*   Updated: 2018/01/30 19:17:47 by vtennero         ###   ########.fr       */
+/*   Updated: 2018/01/31 15:27:56 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char		*ft_unicode_prec_width(t_params *arg, int len, char *new)
 	malloc_size = ft_prec_s(0, len, arg);
 	malloc_size = ft_malloc_width_s(malloc_size, &n, arg);
 	if (arg->flags[MINUS])
-		return (ft_is_s_perc_right(malloc_size, malloc_size - n, \
+		return (ft_is_s_perc_right(malloc_size, malloc_size - n,
 					new, ft_set_zero(arg)));
 	else
 		return (ft_is_s_perc_left(malloc_size, n, new, ft_set_zero(arg)));
@@ -85,7 +85,9 @@ static char		*ft_is_unicode_s(t_params *arg, va_list lst)
 	str = NULL;
 	wstr = ft_prop_cast_s(arg, lst);
 	if (wstr == NULL)
+	{
 		return (str = ft_strdup("(null)"));
+	}
 	if (ft_wstrlen(wstr) == -1)
 	{
 		arg->flags[ERR] = 1;
