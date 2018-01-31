@@ -1,4 +1,4 @@
-# ft_printf (Work in Progress)
+# ft_printf
 
 The goal of the project is to recode the printf function (man 3 printf).
 
@@ -42,6 +42,8 @@ Minimum ﬁeld-width
 Precision
 
 The following length specifiers: hh h l ll j z
+
+Unicode characters
 
 ### Undefined behavior
 
