@@ -6,7 +6,7 @@
 #    By: vtennero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/17 15:16:05 by vtennero          #+#    #+#              #
-#    Updated: 2018/01/30 16:31:43 by vtennero         ###   ########.fr        #
+#    Updated: 2018/02/11 11:18:10 by vtennero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,8 @@ LSRC = ft_memcmp.c \
 	  ft_putnbr.c \
 	  ft_strlcat.c \
 	  ft_strtrim.c \
-	  ft_strjoin.c ft_strsub.c \
+	  ft_strjoin.c \
+	  ft_strsub.c \
 	  ft_putnbr_fd.c \
 	  ft_strlen.c \
 	  ft_strmap.c \
