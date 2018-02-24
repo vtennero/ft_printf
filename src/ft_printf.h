@@ -49,11 +49,12 @@ typedef struct		s_struct
 }					t_struct;
 
 int					ft_printf(const char *format, ...);
+int					ft_dprintf(int fd, const char *format, ...);
 /*
 ** ------------------------- PARAMETERS CREATION -------------------------
 */
 void				ft_set_g_formats(void);
-int					ft_read_format(char *format, va_list lst);
+int					ft_read_format(char *format, va_list lst, int fd);
 t_params			*ft_create_params(void);
 t_params			*ft_set_zero_params(t_params *arg);
 /*
@@ -104,7 +105,7 @@ int					ft_prop_cast_c(t_params *arg, va_list lst);
 /*
 ** ------------------------- PRINT -------------------------
 */
-int					ft_print_buffer(char *str, int err);
+int					ft_print_buffer(char *str, int err, int fd);
 void				ft_print_params(t_params *arg);
 /*
 ** ------------------------- STRING MANIPULATION -------------------------

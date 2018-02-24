@@ -44,7 +44,7 @@ static void	ft_check_if_null(char *str, int n)
 	}
 }
 
-int			ft_print_buffer(char *str, int err)
+int			ft_print_buffer(char *str, int err, int fd)
 {
 	int		n;
 
@@ -57,7 +57,7 @@ int			ft_print_buffer(char *str, int err)
 	{
 		n = ft_strlen(str);
 		ft_check_if_null(str, n);
-		write(1, str, n);
+		write(fd, str, n);
 		free(str);
 	}
 	return (n);

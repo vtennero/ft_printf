@@ -18,7 +18,18 @@ int				ft_printf(const char *format, ...)
 	int			n;
 
 	va_start(lst, format);
-	n = ft_read_format((char *)format, lst);
+	n = ft_read_format((char *)format, lst, 1);
+	va_end(lst);
+	return (n);
+}
+
+int				ft_dprintf(int fd, const char *format, ...)
+{
+	va_list		lst;
+	int			n;
+
+	va_start(lst, format);
+	n = ft_read_format((char *)format, lst, fd);
 	va_end(lst);
 	return (n);
 }
