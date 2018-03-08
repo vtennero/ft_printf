@@ -61,6 +61,10 @@ Instructions : [Subject](http://bit.ly/2le7CAs)
 
 Test programs (not made by me) : [42FC](https://github.com/jgigault/42FileChecker) | [curqui_test](https://github.com/curquiza/curqui_test)
 
+## Disclaimer
+
+This project, along with most projects from my github, follows the rules specified by the [42 Norm](https://www.dropbox.com/s/a6bpolsav238d97/norme.en.pdf?dl=0). Among others, it implies that all functions do not exceed 25 lines, as a means to make the code as clear as possible.
+
 ## Author
 
 * **Victor Tenneroni** - [Website](http://victor-tenneroni.com/)
